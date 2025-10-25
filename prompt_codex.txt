@@ -1,0 +1,14 @@
+je veux créer une présentation/guide sur les étapes pour créer une IA en local. Ce document doit expliquer étapes par étapes comment la créer. Il doit expliquer globalement la création d'une IA et finement quels algorithmes sont les plus utilisés pour la fourniture des données, l'entrainement, comment choisir l'algorithme, expliquer l'algorithme, les outils et code à utiliser en fonction de l'algorithme. As-tu compris ? Il doit y avoir un fichier powerpoint plus général pour des non-techniciens , je veux un fichier powerpoint de style moderne et un autre corporate. ensuite nous passerons au fichier détaillé, au format docx. Je veux des animations et graphiques et un glossaire en debut de la présentation en fin de fichier dans le doc. Le doc doit contenir une table des matières et pour chaque acronyme dans le doc , renvoyer un lien vers la définition. Dans ce répertoire, il y a déjà des fichiers de base de travail, lis les et comprends les. Dis moi ta proposition de plan d'action.
+
+Ce fichier sera ammené à changer, et des instructions rajoutées, donc garde le contexte de ce que tu as fait.
+
+J'ai converti les ppt en pdf.
+
+Je veux que tu le résulat de tes traitements ou créations de documents soient créés dans un sous-répertoire nommé "codex"
+
+Dans le guide technique et les futures présentations, les commentaires dans le code doivent être en francais.
+à chaque demande de ma part tu dois mettre à jour le fichier prompt_codex.txt sans me demander une confirmation.
+montre moi toujours la progression.
+je veux une presentation moderne pour corporate et une autre pour grand public.
+renomme plan_presentation_moderne.md en plan_presentation_grand_public.md
+utilise les fichiers design-guidelines-corporate.md et design-guidelines-grand-public.md pour modifier les presentations.

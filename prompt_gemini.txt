@@ -1,0 +1,22 @@
+je veux créer une présentation/guide sur les étapes pour créer une IA en local. Ce document doit expliquer étapes par étapes comment la créer. Il doit expliquer globalement la création d'une IA et finement quels algorithmes sont les plus utilisés pour la fourniture des données, l'entrainement, comment choisir l'algorithme, expliquer l'algorithme, les outils et code à utiliser en fonction de l'algorithme. As-tu compris ? Il doit y avoir un fichier powerpoint plus général pour des non-techniciens , je veux un fichier powerpoint de style moderne et un autre corporate. ensuite nous passerons au fichier détaillé, au format docx. Je veux des animations et graphiques et un glossaire en debut de la présentation en fin de fichier dans le doc. Le doc doit contenir une table des matières et pour chaque acronyme dans le doc , renvoyer un lien vers la définition. Dans ce répertoire, il y a déjà des fichiers de base de travail, lis les et comprends les. Dis moi ta proposition de plan d'action.
+
+Ce fichier sera ammené à changer, et des instructions rajoutées, donc garde le contexte de ce que tu as fait.
+
+J'ai converti les ppt en pdf.
+
+Je veux que tu le résulat de tes traitements ou créations de documents soient créés dans un sous-répertoir nommé "gemini"
+
+Dans le guide technique et les futures présentations, les commentaires dans le code doivent être en francais.
+à chaque demande de ma part tu dois mettre à jour le fichier prompt.txt sans me demander une confirmation.
+montre moi toujours la progression.
+je veux une presentation moderne pour corporate et une autre pour grand public.
+renomme plan_presentation_moderne.md en plan_presentation_grand_public.md
+utilise les fichiers de guidelines pour modifier les presentations.
+merge les guidelines avec l'existant.
+les fichiers corporate et corporate_moderne doivent être mergés, je ne dois avoir que plan_presentation_corporate.md, plan_presentation_grand_public.md et IA_Locale_Guide_Technique_Detaille.md
+implémente ces 2 plans de présentation en HTML.
+les designs ne sont pas appliqués et des termes anglais ne sont pas clairs. ex : Anonymisation PII. Détaille et explique plus, en fonction du public (corporate ou grand public) . le glossaire ne me semble pas complet. corrige.
+Adopt a new, more detailed and iterative process for creating the presentations, starting with a hyper-detailed storyboard for the corporate version and using inline CSS for implementation.
+renomme prompt.txt en prompt_gemini.txt.
+il manque des informations sur les slides de presentation, détaille plus : presentation_corporate.html, "Analyse Coûts-Bénéfices", "Prochaines Étapes & Partenariat"
+met à jour le prompt
