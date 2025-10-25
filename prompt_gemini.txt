@@ -14,3 +14,13 @@ renomme plan_presentation_moderne.md en plan_presentation_grand_public.md
 les fichiers corporate et corporate_moderne doivent être mergés, je ne dois avoir que plan_presentation_corporate.md, plan_presentation_grand_public.md et IA_Locale_Guide_Technique_Detaille.md
 implémente ces 2 plans de présentation en HTML.
 renomme prompt.txt en prompt_gemini.txt.
+
+Progression:
+- Suppression des diapositives dupliquées "Comment fonctionne le RAG ?" et "Glossaire" dans `plan_presentation_grand_public.md`.
+- Re-numérotation séquentielle des diapositives dans `plan_presentation_grand_public.md`.
+- Suppression des diapositives dupliquées "Comment fonctionne le RAG ?" et "Glossaire" dans `presentation_grand_public.html`.
+- Ajustement des numéros de diapositives dans les commentaires de `presentation_grand_public.html` (vérifié et corrigé).
+- Création de `presentation_grand_public.html` avec le contenu généré à partir de `plan_presentation_grand_public.md`.
+- Création de `presentation_corporate.html` avec le contenu généré à partir de `plan_presentation_corporate.md`.
+- Vérification et confirmation que tous les commentaires de code dans `IA_Locale_Guide_Technique_Detaille.md` sont en français.
+- Mise à jour de `IA_Locale_Guide_Technique_Detaille.md` avec la métrique d'évaluation BLEU/ROUGE.

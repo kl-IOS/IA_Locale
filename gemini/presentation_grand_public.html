@@ -10,70 +10,178 @@
         @keyframes fadeInSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Variables de couleur */
+        :root {
+            --color-primary: #5EA8A7;
+            --color-primary-dark: #277884;
+            --color-accent: #FE4447;
+            --color-muted: #F8F9FA;
+            --color-surface-foreground: #2C3E50;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: var(--color-surface-foreground);
+        }
+
+        .slides-container {
+            width: 100vw;
+            height: 100vh;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            box-sizing: border-box;
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .slide h2 {
+            font-size: 2.25rem;
+            color: var(--color-primary-dark);
+            font-weight: 700;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .slide h3 {
+            margin: 0;
+            color: var(--color-primary-dark);
+        }
+
+        .slide p {
+            margin: 0;
+        }
+
+        .slide ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .slide li {
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .card {
+            background-color: var(--color-muted);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .numbered-badge {
+            width: 50px;
+            height: 50px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .numbered-badge.accent {
+            background: var(--color-accent);
+        }
     </style>
 </head>
 <body>
 
-    <div class="slides-container" style="width: 100vw; height: 100vh; scroll-snap-type: y mandatory; overflow-y: scroll; font-family: Arial, sans-serif; background-color: #FFFFFF; color: #2C3E50; scroll-behavior: smooth;">
+    <div class="slides-container">
 
         <!-- Diapositive 1 : Titre -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background: linear-gradient(135deg, #5EA8A7 0%, #277884 100%); color: white; text-align: center;">
-            <h1 style="font-size: 4.5rem; margin: 0; line-height: 1.2; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Créez votre IA Locale</h1>
+        <div class="slide" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); color: white; text-align: center;">
+            <h1 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Créez votre IA Locale</h1>
             <h2 style="font-size: 1.875rem; opacity: 0.9; margin: 0; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s 0.3s forwards;">Le Guide Complet de A à Z pour les non-techniciens</h2>
         </div>
 
         <!-- Diapositive 2 : Qu'est-ce qu'une IA locale ? 🤔 -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Qu'est-ce qu'une IA locale ? 🤔</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Qu'est-ce qu'une IA locale ? 🤔</h2>
             <div style="width: 100%; flex-grow: 1; display: flex; flex-direction: column; gap: 1.5rem;">
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.2s forwards;"><div style="width: 50px; height: 50px; background-color: #5EA8A7; border-radius: 50%; color: white; font-size: 1.5rem; display: flex; justify-content: center; align-items: center; flex-shrink: 0;">🔒</div><div><h3 style="margin:0; color: #277884;">Confidentialité totale</h3><p style="margin:0;">Vos données restent chez vous.</p></div></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.4s forwards;"><div style="width: 50px; height: 50px; background-color: #5EA8A7; border-radius: 50%; color: white; font-size: 1.5rem; display: flex; justify-content: center; align-items: center; flex-shrink: 0;">🎮</div><div><h3 style="margin:0; color: #277884;">Contrôle complet</h3><p style="margin:0;">Vous maîtrisez tout le système.</p></div></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.6s forwards;"><div style="width: 50px; height: 50px; background-color: #5EA8A7; border-radius: 50%; color: white; font-size: 1.5rem; display: flex; justify-content: center; align-items: center; flex-shrink: 0;">💸</div><div><h3 style="margin:0; color: #277884;">Sans frais d'abonnement</h3><p style="margin:0;">Pas de coûts récurrents.</p></div></div>
+                <div class="card" style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.2s forwards;"><div class="icon-circle">🔒</div><div><h3>Confidentialité totale</h3><p>Vos données restent chez vous.</p></div></div>
+                <div class="card" style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.4s forwards;"><div class="icon-circle">🎮</div><div><h3>Contrôle complet</h3><p>Vous maîtrisez tout le système.</p></div></div>
+                <div class="card" style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.6s forwards;"><div class="icon-circle">💸</div><div><h3>Sans frais d'abonnement</h3><p>Pas de coûts récurrents.</p></div></div>
             </div>
         </div>
 
         <!-- Diapositive 3 : Que peut faire votre IA locale ? -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; position: relative; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Que peut faire votre IA locale ?</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Que peut faire votre IA locale ?</h2>
             <div style="width: 100%; flex-grow: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.2s forwards;"><h3>Assistant Personnel</h3><p>Répondre à vos questions, résumer des documents, organiser vos notes. 🧠</p></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.4s forwards;"><h3>Recherche Intelligente</h3><p>Retrouver rapidement des informations dans vos archives personnelles (e-mails, documents). 🔍</p></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.6s forwards;"><h3>Organisation de Contenus</h3><p>Classer vos photos, transcrire vos mémos vocaux, analyser vos vidéos YouTube. 🗂️</p></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.8s forwards;"><h3>Création de Contenus</h3><p>Générer des idées, rédiger des brouillons, reformuler des textes. ✍️</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.2s forwards;"><h3>Assistant Personnel</h3><p>Répondre à vos questions, résumer des documents, organiser vos notes. 🧠</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.4s forwards;"><h3>Recherche Intelligente</h3><p>Retrouver rapidement des informations dans vos archives personnelles (e-mails, documents). 🔍</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.6s forwards;"><h3>Organisation de Contenus</h3><p>Classer vos photos, transcrire vos mémos vocaux, analyser vos vidéos YouTube. 🗂️</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.8s forwards;"><h3>Création de Contenus</h3><p>Générer des idées, rédiger des brouillons, reformuler des textes. ✍️</p></div>
             </div>
         </div>
 
         <!-- Diapositive 4 : De quoi avez-vous besoin ? 💻 -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">De quoi avez-vous besoin ? 💻</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">De quoi avez-vous besoin ? 💻</h2>
             <div style="width: 100%; flex-grow: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; opacity: 0; transform: translateX(-20px); animation: fadeInSlideUp 0.8s 0.2s forwards;">
-                    <h3 style="margin:0; color: #277884;">Matériel</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">Ordinateur moderne (Windows, Mac ou Linux)</li>
-                        <li style="margin-bottom: 0.5rem;">16 à 32 Go de RAM</li>
+                <div class="card" style="opacity: 0; transform: translateX(-20px); animation: fadeInSlideUp 0.8s 0.2s forwards;">
+                    <h3>Matériel</h3>
+                    <ul>
+                        <li>Ordinateur moderne (Windows, Mac ou Linux)</li>
+                        <li>16 à 32 Go de RAM</li>
                         <li>Carte graphique recommandée (NVIDIA idéalement)</li>
                     </ul>
                 </div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; opacity: 0; transform: translateX(20px); animation: fadeInSlideUp 0.8s 0.4s forwards;">
-                    <h3 style="margin:0; color: #277884;">Logiciels</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">Python (langage de programmation)</li>
-                        <li style="margin-bottom: 0.5rem;">Outils d'IA (Ollama ou LM Studio)</li>
+                <div class="card" style="opacity: 0; transform: translateX(20px); animation: fadeInSlideUp 0.8s 0.4s forwards;">
+                    <h3>Logiciels</h3>
+                    <ul>
+                        <li>Python (langage de programmation)</li>
+                        <li>Outils d'IA (Ollama ou LM Studio)</li>
                         <li>Bibliothèques spécialisées</li>
                     </ul>
                 </div>
             </div>
-            <p style="color: #6C757D; margin-top: 2rem; opacity: 0; animation: fadeIn 0.8s 0.6s forwards;">Rassurez-vous : nous verrons tout pas à pas !</p>
+            <p style="color: var(--color-surface-foreground); margin-top: 2rem; opacity: 0; animation: fadeIn 0.8s 0.6s forwards;">Rassurez-vous : nous verrons tout pas à pas !</p>
         </div>
 
         <!-- Diapositive 5 : Étape 1 - Définir votre besoin -->
-        <!-- Diapositive 5 : Étape 1 - Définir votre besoin -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">1. Définir votre besoin</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">1. Définir votre besoin</h2>
             <div style="width: 100%; flex-grow: 1;">
                 <h3 style="margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.2s forwards;">Posez-vous ces questions :</h3>
-                <ul style="list-style: none; padding: 0; margin: 0;">
+                <ul>
                     <li style="margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.4s forwards;"><b>Que voulez-vous faire ?</b> (Répondre à des questions, résumer des documents, analyser du texte...)</li>
                     <li style="margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.6s forwards;"><b>Quelles données avez-vous ?</b> (Documents PDF, notes, emails, historique YouTube...)</li>
                     <li style="margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.8s forwards;"><b>Quelles sont vos contraintes ?</b> (Vitesse, confidentialité, budget matériel...)</li>
@@ -82,82 +190,82 @@
         </div>
 
         <!-- Diapositive 6 : Étape 2 - Préparer vos données -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">2. Préparer vos données</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">2. Préparer vos données</h2>
             <div style="width: 100%; flex-grow: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
                 <div style="opacity: 0; transform: translateX(-20px); animation: fadeInSlideRight 0.8s 0.2s forwards;">
-                    <h3 style="margin-bottom: 1rem; color: #277884;">Sources possibles</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">Documents personnels (PDF, Word)</li>
-                        <li style="margin-bottom: 0.5rem;">Notes et transcriptions</li>
+                    <h3>Sources possibles</h3>
+                    <ul>
+                        <li>Documents personnels (PDF, Word)</li>
+                        <li>Notes et transcriptions</li>
                         <li>Historique YouTube (via Google Takeout)</li>
                     </ul>
                 </div>
                 <div style="opacity: 0; transform: translateX(20px); animation: fadeInSlideRight 0.8s 0.4s forwards;">
-                    <h3 style="margin-bottom: 1rem; color: #277884;">Organisation</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">Nettoyer le texte</li>
-                        <li style="margin-bottom: 0.5rem;">Supprimer les doublons</li>
-                        <li style="margin-bottom: 0.5rem;"><b>Protéger les informations sensibles :</b> On s'assure de masquer les informations personnelles comme les noms ou les adresses email.</li>
+                    <h3>Organisation</h3>
+                    <ul>
+                        <li>Nettoyer le texte</li>
+                        <li>Supprimer les doublons</li>
+                        <li><b>Protéger les informations sensibles :</b> On s'assure de masquer les informations personnelles comme les noms ou les adresses email.</li>
                         <li>Découper en sections</li>
                     </ul>
                 </div>
             </div>
             <div style="width: 100%; margin-top: 2rem; opacity: 0; animation: fadeIn 0.8s 0.6s forwards;">
-                <h3 style="margin-bottom: 1rem; color: #277884;">Utiliser vos données YouTube</h3>
-                <p style="margin:0;">Extrayez votre historique de visionnage et vos sous-titres via Google Takeout pour créer une base de connaissances personnalisée sur vos contenus préférés. 🎬</p>
+                <h3>Utiliser vos données YouTube</h3>
+                <p>Extrayez votre historique de visionnage et vos sous-titres via Google Takeout pour créer une base de connaissances personnalisée sur vos contenus préférés. 🎬</p>
             </div>
         </div>
 
         <!-- Diapositive 7 : Étape 3 - Deux approches principales -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">3. Deux approches principales</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">3. Deux approches principales</h2>
             <div style="width: 100%; flex-grow: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                <div style="background-color: #5EA8A7; border-radius: 12px; padding: 1.5rem; color: white; opacity: 0; transform: translateX(-20px); animation: fadeInSlideUp 0.8s 0.2s forwards;">
-                    <h3 style="margin:0; color: white;">RAG (Recherche + Génération)</h3>
-                    <p style="margin:0;">Rapide à mettre en place, idéal pour des documents, facilement modifiable. <b>Recommandé pour débuter.</b></p>
+                <div class="card" style="background-color: var(--color-primary); color: white; opacity: 0; transform: translateX(-20px); animation: fadeInSlideUp 0.8s 0.2s forwards;">
+                    <h3 style="color: white;">RAG (Recherche + Génération)</h3>
+                    <p style="color: white;">Rapide à mettre en place, idéal pour des documents, facilement modifiable. <b>Recommandé pour débuter.</b></p>
                 </div>
-                <div style="background-color: #FE4447; border-radius: 12px; padding: 1.5rem; color: white; opacity: 0; transform: translateX(20px); animation: fadeInSlideUp 0.8s 0.4s forwards;">
-                    <h3 style="margin:0; color: white;">Fine-tuning (Entraînement personnalisé)</h3>
-                    <p style="margin:0;">Plus de contrôle, style personnalisé, raisonnement adapté. <b>Plus technique.</b></p>
+                <div class="card" style="background-color: var(--color-accent); color: white; opacity: 0; transform: translateX(20px); animation: fadeInSlideUp 0.8s 0.4s forwards;">
+                    <h3 style="color: white;">Fine-tuning (Entraînement personnalisé)</h3>
+                    <p style="color: white;">Plus de contrôle, style personnalisé, raisonnement adapté. <b>Plus technique.</b></p>
                 </div>
             </div>
         </div>
 
         <!-- Diapositive 8 : Comment fonctionne le RAG ? -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Comment fonctionne le RAG ?</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Comment fonctionne le RAG ?</h2>
             <div style="width: 100%; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center;">
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; width: 60%; opacity: 0; animation: fadeInSlideUp 0.8s 0.2s forwards;"><b>1. Indexation :</b> Vos documents sont convertis en vecteurs mathématiques.</div>
-                <p style="font-size: 2rem; color: #5EA8A7; margin: 0.5rem 0; opacity: 0; animation: fadeIn 0.8s 0.4s forwards;">↓</p>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; width: 60%; opacity: 0; animation: fadeInSlideUp 0.8s 0.6s forwards;"><b>2. Recherche :</b> L'IA trouve les passages pertinents pour votre question.</div>
-                <p style="font-size: 2rem; color: #5EA8A7; margin: 0.5rem 0; opacity: 0; animation: fadeIn 0.8s 0.8s forwards;">↓</p>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; width: 60%; opacity: 0; animation: fadeInSlideUp 0.8s 1s forwards;"><b>3. Génération :</b> L'IA formule une réponse basée sur ces passages.</div>
+                <div class="card" style="margin-bottom: 1rem; width: 60%; opacity: 0; animation: fadeInSlideUp 0.8s 0.2s forwards;"><b>1. Indexation :</b> Vos documents sont convertis en vecteurs mathématiques.</div>
+                <p style="font-size: 2rem; color: var(--color-primary); margin: 0.5rem 0; opacity: 0; animation: fadeIn 0.8s 0.4s forwards;">↓</p>
+                <div class="card" style="margin-bottom: 1rem; width: 60%; opacity: 0; animation: fadeInSlideUp 0.8s 0.6s forwards;"><b>2. Recherche :</b> L'IA trouve les passages pertinents pour votre question.</div>
+                <p style="font-size: 2rem; color: var(--color-primary); margin: 0.5rem 0; opacity: 0; animation: fadeIn 0.8s 0.8s forwards;">↓</p>
+                <div class="card" style="margin-bottom: 1rem; width: 60%; opacity: 0; animation: fadeInSlideUp 0.8s 1s forwards;"><b>3. Génération :</b> L'IA formule une réponse basée sur ces passages.</div>
             </div>
         </div>
 
-
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; position: relative; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; padding-bottom: 0.5rem; border-bottom: 3px solid #5EA8A7; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Choisir la Bonne Approche pour votre Projet</h2>
+        <!-- Diapositive 9 : Choisir la Bonne Approche pour votre Projet -->
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Choisir la Bonne Approche pour votre Projet</h2>
             <div style="width: 100%; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center;">
-                <p style="font-size: 1.125rem; color: #2C3E50; margin-bottom: 2rem; opacity: 0; animation: fadeIn 0.8s 0.2s forwards;">Le choix de la méthode dépend de ce que vous voulez faire. Voici quelques pistes :</p>
+                <p style="font-size: 1.125rem; color: var(--color-surface-foreground); margin-bottom: 2rem; opacity: 0; animation: fadeIn 0.8s 0.2s forwards;">Le choix de la méthode dépend de ce que vous voulez faire. Voici quelques pistes :</p>
                 <ul style="list-style: none; padding: 0; margin: 0; width: 80%; text-align: left;">
                     <li style="font-size: 1.125rem; margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.4s forwards;"><b>Vous avez des documents (PDF, notes) ?</b> &rarr; Le <b>RAG</b> est idéal pour des réponses précises.</li>
                     <li style="font-size: 1.125rem; margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.6s forwards;"><b>Vous voulez un style d'écriture particulier ?</b> &rarr; Le <b>Fine-tuning</b> peut adapter l'IA à votre façon de parler.</li>
                     <li style="font-size: 1.125rem; margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.8s forwards;"><b>Vous travaillez avec des images ou du son ?</b> &rarr; Il existe des IA spécialisées pour la <b>Vision</b> (photos) ou l'<b>Audio</b> (voix).</li>
                 </ul>
-                <p style="font-size: 1.125rem; color: #2C3E50; margin-top: 2rem; opacity: 0; animation: fadeIn 0.8s 1s forwards;"><b>Conseil :</b> Commencez simple avec le RAG, puis explorez d'autres options si besoin !</p>
+                <p style="font-size: 1.125rem; color: var(--color-surface-foreground); margin-top: 2rem; opacity: 0; animation: fadeIn 0.8s 1s forwards;"><b>Conseil :</b> Commencez simple avec le RAG, puis explorez d'autres options si besoin !</p>
             </div>
         </div>
 
         <!-- Diapositive 10 : Étape 4 - Outils à installer -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">4. Outils à installer</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">4. Outils à installer</h2>
             <div style="width: 100%; flex-grow: 1;">
-                <h3 style="margin-bottom: 1rem; color: #277884; opacity: 0; animation: fadeIn 0.8s 0.2s forwards;">Outil principal : Ollama (Recommandé pour débuter)</h3>
+                <h3 style="margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.2s forwards;">Outil principal : Ollama (Recommandé pour débuter)</h3>
                 <p style="margin-bottom: 2rem; opacity: 0; animation: fadeIn 0.8s 0.4s forwards;">Interface simple pour faire fonctionner des modèles d'IA.</p>
-                <h3 style="margin-bottom: 1rem; color: #277884; opacity: 0; animation: fadeIn 0.8s 0.6s forwards;">Outils complémentaires :</h3>
-                <ul style="list-style: none; padding: 0; margin: 0;">
+                <h3 style="margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.6s forwards;">Outils complémentaires :</h3>
+                <ul>
                     <li style="margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.8s 0.8s forwards;">Python : Le langage de programmation le plus utilisé pour l'IA.</li>
                     <li style="margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.8s 1s forwards;">FAISS ou Chroma : Des bases de données spécialisées pour stocker les informations de vos documents.</li>
                     <li style="margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.8s 1.2s forwards;">Transformers : Des outils pour comprendre et générer du texte avec l'IA.</li>
@@ -166,34 +274,34 @@
         </div>
 
         <!-- Diapositive 11 : Étape 5 - Mise en pratique -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">5. Mise en pratique</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">5. Mise en pratique</h2>
             <div style="width: 100%; flex-grow: 1; display: flex; flex-direction: column; gap: 1rem;">
-                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.2s forwards;"><div style="width: 50px; height: 50px; background: #5EA8A7; color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700; border-radius: 50%; flex-shrink: 0;">1</div><p style="margin:0;">Installer Ollama</p></div>
-                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.4s forwards;"><div style="width: 50px; height: 50px; background: #5EA8A7; color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700; border-radius: 50%; flex-shrink: 0;">2</div><p style="margin:0;">Télécharger un modèle (Llama 3.1)</p></div>
-                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.6s forwards;"><div style="width: 50px; height: 50px; background: #5EA8A7; color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700; border-radius: 50%; flex-shrink: 0;">3</div><p style="margin:0;">Indexer vos documents</p></div>
-                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.8s forwards;"><div style="width: 50px; height: 50px; background: #5EA8A7; color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700; border-radius: 50%; flex-shrink: 0;">4</div><p style="margin:0;">Créer votre système Q&R</p></div>
-                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 1s forwards;"><div style="width: 50px; height: 50px; background: #FE4447; color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700; border-radius: 50%; flex-shrink: 0;">5</div><p style="margin:0;">Tester et affiner !</p></div>
+                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.2s forwards;"><div class="numbered-badge">1</div><p>Installer Ollama</p></div>
+                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.4s forwards;"><div class="numbered-badge">2</div><p>Télécharger un modèle (Llama 3.1)</p></div>
+                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.6s forwards;"><div class="numbered-badge">3</div><p>Indexer vos documents</p></div>
+                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.8s forwards;"><div class="numbered-badge">4</div><p>Créer votre système Q&R</p></div>
+                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 1s forwards;"><div class="numbered-badge accent">5</div><p>Tester et affiner !</p></div>
             </div>
         </div>
 
         <!-- Diapositive 12 : Avantages et Limites -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Avantages et Limites</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Avantages et Limites</h2>
             <div style="width: 100%; flex-grow: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                 <div style="opacity: 0; transform: translateX(-20px); animation: fadeInSlideRight 0.8s 0.2s forwards;">
-                    <h3 style="margin-bottom: 1rem; color: #277884;">✓ Avantages</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">Confidentialité maximale</li>
-                        <li style="margin-bottom: 0.5rem;">Pas de frais récurrents</li>
+                    <h3>✓ Avantages</h3>
+                    <ul>
+                        <li>Confidentialité maximale</li>
+                        <li>Pas de frais récurrents</li>
                         <li>Personnalisation totale</li>
                     </ul>
                 </div>
                 <div style="opacity: 0; transform: translateX(20px); animation: fadeInSlideRight 0.8s 0.4s forwards;">
-                    <h3 style="margin-bottom: 1rem; color: #277884;">▲ À considérer</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">Investissement matériel</li>
-                        <li style="margin-bottom: 0.5rem;">Courbe d'apprentissage</li>
+                    <h3>▲ À considérer</h3>
+                    <ul>
+                        <li>Investissement matériel</li>
+                        <li>Courbe d'apprentissage</li>
                         <li>Maintenance</li>
                     </ul>
                 </div>
@@ -201,16 +309,16 @@
         </div>
 
         <!-- Diapositive 13 : Glossaire -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Glossaire</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Glossaire</h2>
             <div style="width: 100%; flex-grow: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-                <ul style="list-style: none; padding: 0; margin: 0;">
+                <ul>
                     <li style="margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.8s 0.2s forwards;"><b>IA Locale :</b> Une intelligence artificielle qui fonctionne directement sur votre ordinateur, sans passer par Internet.</li>
                     <li style="margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.8s 0.4s forwards;"><b>RAG :</b> Une méthode qui permet à l'IA de rechercher dans vos documents pour vous donner une réponse. C'est comme lui donner une bibliothèque à lire.</li>
                     <li style="margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.8s 0.6s forwards;"><b>LLM (Grand Modèle de Langage) :</b> Le "cerveau" de l'IA, qui comprend et génère du texte.</li>
                     <li style="margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.8s 0.8s forwards;"><b>Fine-tuning :</b> Entraîner l'IA pour qu'elle adopte un style ou des connaissances spécifiques.</li>
                 </ul>
-                <ul style="list-style: none; padding: 0; margin: 0;">
+                <ul>
                     <li style="margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.8s 1s forwards;"><b>Ollama :</b> Un outil simple et populaire pour installer et utiliser des IA locales.</li>
                     <li style="margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.8s 1.2s forwards;"><b>Anonymisation :</b> Le processus de suppression des informations personnelles (noms, adresses...) d'un document.</li>
                     <li style="font-size: 1rem; margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 0.6s 1.4s forwards;"><b>POC (Proof of Concept) :</b> Une petite expérience pour vérifier qu'une idée d'IA fonctionne bien avant de la développer en grand.</li>
@@ -220,48 +328,59 @@
             </div>
         </div>
 
-
-
         <!-- Diapositive 14 : Sécurité et Confidentialité de vos Données -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; position: relative; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; padding-bottom: 0.5rem; border-bottom: 3px solid #5EA8A7; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Sécurité et Confidentialité de vos Données</h2>
+        <div class="slide">
+            <h2 style="padding-bottom: 0.5rem; border-bottom: 3px solid var(--color-primary); opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Sécurité et Confidentialité de vos Données</h2>
             <div style="width: 100%; flex-grow: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.2s forwards;"><h3>Vos données restent chez vous</h3><p>L'IA locale garantit que vos informations personnelles ne quittent jamais votre ordinateur. 🔒</p></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.4s forwards;"><h3>Protection des informations sensibles</h3><p>Possibilité de masquer automatiquement les noms, adresses ou e-mails dans vos documents. 🎭</p></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.6s forwards;"><h3>Maîtrise totale</h3><p>Vous contrôlez entièrement l'utilisation de vos données et le comportement de l'IA. 🎮</p></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.8s forwards;"><h3>Respect des licences</h3><p>Comprendre et respecter les conditions d'utilisation des modèles d'IA que vous choisissez. ✅</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.2s forwards;"><h3>Vos données restent chez vous</h3><p>L'IA locale garantit que vos informations personnelles ne quittent jamais votre ordinateur. 🔒</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.4s forwards;"><h3>Protection des informations sensibles</h3><p>Possibilité de masquer automatiquement les noms, adresses ou e-mails dans vos documents. 🎭</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.6s forwards;"><h3>Maîtrise totale</h3><p>Vous contrôlez entièrement l'utilisation de vos données et le comportement de l'IA. 🎮</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.8s forwards;"><h3>Respect des licences</h3><p>Comprendre et respecter les conditions d'utilisation des modèles d'IA que vous choisissez. ✅</p></div>
             </div>
         </div>
+
         <!-- Diapositive 15 : Conseils pour Réussir votre Projet IA -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; position: relative; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; padding-bottom: 0.5rem; border-bottom: 3px solid #5EA8A7; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Conseils pour Réussir votre Projet IA</h2>
+        <div class="slide">
+            <h2 style="padding-bottom: 0.5rem; border-bottom: 3px solid var(--color-primary); opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Conseils pour Réussir votre Projet IA</h2>
             <div style="width: 100%; flex-grow: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.2s forwards;"><h3>Commencez simple (MVP)</h3><p>Lancez une petite version de votre IA pour voir ce qui fonctionne le mieux. 🚀</p></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.4s forwards;"><h3>Améliorez pas à pas</h3><p>Testez, ajustez, et rendez votre IA de plus en plus performante. 🔄</p></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.6s forwards;"><h3>Testez avec de vraies questions</h3><p>Utilisez votre IA comme vous le feriez normalement pour vérifier ses réponses. ✅</p></div>
-                <div style="background-color: #F8F9FA; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.05); opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.8s forwards;"><h3>Suivez les performances</h3><p>Gardez un œil sur la vitesse et la consommation de ressources de votre IA. 📊</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.2s forwards;"><h3>Commencez simple (MVP)</h3><p>Lancez une petite version de votre IA pour voir ce qui fonctionne le mieux. 🚀</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.4s forwards;"><h3>Améliorez pas à pas</h3><p>Testez, ajustez, et rendez votre IA de plus en plus performante. 🔄</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.6s forwards;"><h3>Testez avec de vraies questions</h3><p>Utilisez votre IA comme vous le feriez normalement pour vérifier ses réponses. ✅</p></div>
+                <div class="card" style="opacity: 0; transform: scale(0.9); animation: fadeInScale 0.6s 0.8s forwards;"><h3>Suivez les performances</h3><p>Gardez un œil sur la vitesse et la consommation de ressources de votre IA. 📊</p></div>
             </div>
         </div>
 
         <!-- Diapositive 16 : Prochaines étapes -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Prochaines étapes</h2>
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Prochaines étapes</h2>
             <div style="width: 100%; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center;">
-                <h2 style="font-size: 2rem; color: #277884; margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.2s forwards;">Vous êtes prêt à commencer !</h2>
-                <p style="font-size: 1.25rem; color: #2C3E50; margin-bottom: 2rem; opacity: 0; animation: fadeIn 0.8s 0.4s forwards;">Commencez simplement avec le RAG et Ollama.</p>
+                <h2 style="font-size: 2rem; color: var(--color-primary-dark); margin-bottom: 1rem; opacity: 0; animation: fadeIn 0.8s 0.2s forwards;">Vous êtes prêt à commencer !</h2>
+                <p style="font-size: 1.25rem; color: var(--color-surface-foreground); margin-bottom: 2rem; opacity: 0; animation: fadeIn 0.8s 0.4s forwards;">Commencez simplement avec le RAG et Ollama.</p>
                 <div style="display: flex; justify-content: space-around; margin-top: 2rem; width: 100%;">
-                    <div style="display: flex; flex-direction: column; align-items: center; opacity: 0; animation: fadeInSlideUp 0.8s 0.6s forwards;"><div style="width: 50px; height: 50px; background: #5EA8A7; color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700; border-radius: 50%; flex-shrink: 0;">1</div><p style="margin:0;">Installez Ollama</p></div>
-                    <div style="display: flex; flex-direction: column; align-items: center; opacity: 0; animation: fadeInSlideUp 0.8s 0.8s forwards;"><div style="width: 50px; height: 50px; background: #5EA8A7; color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700; border-radius: 50%; flex-shrink: 0;">2</div><p style="margin:0;">Préparez vos données</p></div>
-                    <div style="display: flex; flex-direction: column; align-items: center; opacity: 0; animation: fadeInSlideUp 0.8s 1s forwards;"><div style="width: 50px; height: 50px; background: #5EA8A7; color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700; border-radius: 50%; flex-shrink: 0;">3</div><p style="margin:0;">Créez votre premier système RAG</p></div>
+                    <div style="display: flex; flex-direction: column; align-items: center; opacity: 0; animation: fadeInSlideUp 0.8s 0.6s forwards;"><div class="numbered-badge">1</div><p>Installez Ollama</p></div>
+                    <div style="display: flex; flex-direction: column; align-items: center; opacity: 0; animation: fadeInSlideUp 0.8s 0.8s forwards;"><div class="numbered-badge">2</div><p>Préparez vos données</p></div>
+                    <div style="display: flex; flex-direction: column; align-items: center; opacity: 0; animation: fadeInSlideUp 0.8s 1s forwards;"><div class="numbered-badge">3</div><p>Créez votre premier système RAG</p></div>
                 </div>
             </div>
         </div>
 
         <!-- Diapositive 17 : Questions ? -->
-        <div class="slide" style="width: 100%; height: 100%; flex-shrink: 0; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem; box-sizing: border-box; background-color: #FFFFFF;">
-            <h2 style="font-size: 2.25rem; color: #277884; font-weight: 700; width: 100%; text-align: left; margin-bottom: 2rem; opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Questions ?</h2>
-            <div style="width: 100%; flex-grow: 1; display: flex; justify-content: center; align-items: center; font-size: 10rem; color: #5EA8A7; opacity: 0; animation: fadeIn 0.8s 0.2s forwards;">
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Questions ?</h2>
+            <div style="width: 100%; flex-grow: 1; display: flex; justify-content: center; align-items: center; font-size: 10rem; color: var(--color-primary); opacity: 0; animation: fadeIn 0.8s 0.2s forwards;">
                 ?
+            </div>
+        </div>
+
+        <!-- Diapositive 18 : Les 5 grandes étapes -->
+        <div class="slide">
+            <h2 style="opacity: 0; transform: translateY(-20px); animation: fadeInSlideDown 0.8s forwards;">Les 5 grandes étapes</h2>
+            <div style="width: 100%; flex-grow: 1; display: flex; flex-direction: column; gap: 1rem;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.2s forwards;"><div class="numbered-badge">1</div><p><b>Définir votre besoin :</b> Clarifiez ce que vous attendez de votre IA.</p></div>
+                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.4s forwards;"><div class="numbered-badge">2</div><p><b>Préparer vos données :</b> Rassemblez et nettoyez les informations pour l'IA.</p></div>
+                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.6s forwards;"><div class="numbered-badge">3</div><p><b>Choisir la bonne approche :</b> RAG pour les documents, Fine-tuning pour le style.</p></div>
+                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 0.8s forwards;"><div class="numbered-badge">4</div><p><b>Installer les outils :</b> Mettez en place Ollama et les bibliothèques nécessaires.</p></div>
+                <div style="display: flex; align-items: center; gap: 1.5rem; opacity: 0; animation: fadeInSlideUp 0.8s 1s forwards;"><div class="numbered-badge accent">5</div><p><b>Mettre en pratique et affiner :</b> Testez, ajustez et améliorez votre IA.</p></div>
             </div>
         </div>
 

@@ -4,9 +4,9 @@
 
 ## Introduction à l'IA Locale
 
-Dans un monde où l'intelligence artificielle prend une place prépondérante, la capacité à maîtriser et à déployer des solutions d'IA en local devient un avantage stratégique majeur. Ce guide technique est conçu pour vous accompagner pas à pas dans la création de votre propre système d'IA fonctionnant entièrement sur votre infrastructure, sans dépendance aux services cloud externes. Que ce soit pour des raisons de confidentialité des données, de maîtrise des coûts, de souveraineté technologique ou de personnalisation avancée, l'IA locale offre une flexibilité et un contrôle inégalés.
+Dans un monde où l'intelligence artificielle prend une place prépondérante, la capacité à maîtriser et à déployer des solutions d'[IA](#ia-locale) en local devient un avantage stratégique majeur. Ce guide technique est conçu pour vous accompagner pas à pas dans la création de votre propre système d'[IA](#ia-locale) fonctionnant entièrement sur votre infrastructure, sans dépendance aux services cloud externes. Que ce soit pour des raisons de confidentialité des données, de maîtrise des coûts, de souveraineté technologique ou de personnalisation avancée, l'[IA locale](#ia-locale) offre une flexibilité et un contrôle inégalés.
 
-Nous explorerons ensemble les concepts fondamentaux, les pré-requis matériels et logiciels, les algorithmes clés (comme le RAG et le Fine-tuning), les outils essentiels et les meilleures pratiques pour mettre en œuvre une IA performante et sécurisée. Ce document s'adresse aux développeurs, ingénieurs et techniciens souhaitant approfondir leurs connaissances et concrétiser des projets d'IA en environnement local.
+Nous explorerons ensemble les concepts fondamentaux, les pré-requis matériels et logiciels, les algorithmes clés (comme le [RAG](#rag-retrieval-augmented-generation) et le [Fine-tuning](#fine-tuning)), les outils essentiels et les meilleures pratiques pour mettre en œuvre une IA performante et sécurisée. Ce document s'adresse aux développeurs, ingénieurs et techniciens souhaitant approfondir leurs connaissances et concrétiser des projets d'IA en environnement local.
 
 ---
 
@@ -100,25 +100,7 @@ Nous explorerons ensemble les concepts fondamentaux, les pré-requis matériels 
 12. [Bonnes pratiques de projet](#bonnes-pratiques-de-projet)
 13. [Checklist finale](#checklist-finale)
 
-1.  Introduction à l'IA Locale
-2.  Pré-requis & Environnement
-3.  Définir le Problème et la Stratégie
-4.  Préparation des Données
-5.  Les Algorithmes Clés Expliqués
-    *   RAG (Retrieval-Augmented Generation)
-    *   Fine-tuning (LoRA / QLoRA)
-    *   Autres algorithmes (Classification, Vision, etc.)
-6.  Outils et Stacks Locales
-7.  Mise en Pratique : Pas-à-Pas
-    *   Étape A : Préparer l’environnement
-    *   Étape B : Construire la base de connaissances (RAG)
-    *   Étape C : Inférence locale avec un LLM
-    *   Étape D : Fine-tuning léger (QLoRA)
-    *   Étape E : Évaluation
-    *   Étape F : Déploiement local via une API
-8.  Cas d'Usage : Exploiter son Archive YouTube
-9.  Sécurité, Confidentialité & Licences
-10. Annexes : Exemples de Code
+
 
 ---
 
@@ -127,12 +109,12 @@ Nous explorerons ensemble les concepts fondamentaux, les pré-requis matériels 
 - **OS** : Windows, macOS, Linux (Ubuntu recommandé pour le GPU).
 - **Matériel** :
   - CPU moderne ; 16–32 Go RAM conseillés.
-  - **GPU** recommandé pour l’entraînement / l’inférence rapide :
-    - NVIDIA (CUDA, >= 8–12 Go VRAM pour petits modèles ; 24–48 Go+ pour fine-tuning LLM plus grands)
-    - AMD (ROCm) ou Apple Silicon (Metal)
+  - **[GPU](#gpu)** recommandé pour l’entraînement / l’inférence rapide :
+    - NVIDIA ([CUDA](#cuda), >= 8–12 Go [VRAM](#vram) pour petits modèles ; 24–48 Go+ pour fine-tuning LLM plus grands)
+    - AMD ([ROCm](#rocm)) ou Apple Silicon (Metal)
 - **Gestion d’environnements** : `conda` ou `pyenv` + `venv`.
 - **Pilotes & Toolkits** :
-  - NVIDIA : pilotes + **CUDA** + **cuDNN**
+  - NVIDIA : pilotes + **[CUDA](#cuda)** + **[cuDNN](#cudnn)**
   - AMD : **ROCm** (Linux)
   - Apple : **Xcode Command Line Tools** (Metal)
 - **Paquets clés** : Python 3.10/3.11, `pytorch`, `transformers`, `accelerate`, `bitsandbytes`, `datasets`, `scikit-learn`, `sentence-transformers`, `faiss`/`qdrant-client`, `langchain`/`llama-index` (au choix).
@@ -219,7 +201,7 @@ Nous explorerons ensemble les concepts fondamentaux, les pré-requis matériels 
   - **vLLM** : serveur haut débit pour cartes GPU plus puissantes.
 - **Entraînement** : PyTorch + **Hugging Face Transformers**, **PEFT** (LoRA), **Accelerate**, **bitsandbytes** (4/8 bits).
 - **RAG** : **FAISS/Qdrant/Chroma**, **LangChain** ou **LlamaIndex** (chaînes, retrievers, splitters).
-- **Évaluation** : `lm-eval-harness` (LLM), **MTEB** (embeddings), `scikit-learn` (F1, ROC-AUC).
+- **Évaluation** : `lm-eval-harness` (LLM), **MTEB** (embeddings), `scikit-learn` (F1, ROC-AUC), BLEU/ROUGE.
 - **MLOps local** : DVC (données), Weights & Biases/MLflow (suivi), Docker (reproductibilité).
 
 ---
