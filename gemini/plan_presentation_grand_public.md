@@ -8,182 +8,312 @@ Ce document est un storyboard pour la présentation PowerPoint, aligné avec le 
 
 *   **Titre :** Créez votre IA Locale
 *   **Sous-titre :** Le Guide Complet de A à Z pour les non-techniciens
-*   **Graphisme :** Fond en dégradé du teal (`#5EA8A7`) au teal foncé (`#277884`). Titre en blanc, police Arial, 72px (text-7xl). Sous-titre en blanc (opacité 95%), 30px (text-3xl).
-*   **Animation :** Le titre apparaît avec un léger rebond. Le sous-titre apparaît en fondu en dessous.
+*   **Design (selon guidelines grand public) :**
+    *   **Fond :** Dégradé `linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)`.
+    *   **Titre :** `text-7xl`, `color: white`, `text-align: center`.
+    *   **Sous-titre :** `text-3xl`, `color: white`, `opacity: 0.95`.
+*   **Animation :** Le titre apparaît avec un léger rebond (`fadeInSlideDown`). Le sous-titre apparaît en fondu en dessous (`fadeInSlideDown` avec délai).
 
 ---
 
 ### Diapositive 2 : Qu'est-ce qu'une IA locale ? 🤔
 
 *   **Titre :** Qu'est-ce qu'une IA locale ? 🤔
-*   **Phrase d'accroche :** Une IA locale fonctionne entièrement sur votre ordinateur, sans connexion Internet.
-*   **Contenu :** Trois points clés, chacun dans une carte avec un fond `muted` (`#F8F9FA`), des coins arrondis (12px) et une icône circulaire colorée.
-    *   **Confidentialité totale :** Vos données restent chez vous (Icône : 🔒 dans un cercle `primary` `#5EA8A7`)
-    *   **Contrôle complet :** Vous maîtrisez tout le système (Icône : 🎮 dans un cercle `primary` `#5EA8A7`)
-    *   **Sans frais d'abonnement :** Pas de coûts récurrents (Icône : 💸 dans un cercle `primary` `#5EA8A7`)
-*   **Animation :** Chaque carte apparaît l'une après l'autre avec un effet de zoom léger.
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Trois "cartes d'information" empilées verticalement, chacune avec :
+
+        *   `background-color: var(--color-muted)`, `border-radius: 12px`, `padding: 1.5rem`.
+
+        *   Une icône circulaire (`width: 50px; height: 50px; background-color: var(--color-primary); border-radius: 50%; color: white; font-size: 1.5rem; display: flex; justify-content: center; align-items: center; flex-shrink: 0;`).
+
+        *   Un `h3` pour le titre (`color: var(--color-primary-dark)`) et un `p` pour la description.
+
+        *   Ex: "Confidentialité totale : Vos données restent chez vous" (Icône : 🔒).
+
+*   **Animation :** Chaque carte apparaît l'une après l'autre avec un effet de zoom léger (`fadeInScale`).
 
 ---
 
-### Diapositive 3 : De quoi avez-vous besoin ? 💻
+### Diapositive 3 : Que peut faire votre IA locale ?
+
+*   **Titre :** Que peut faire votre IA locale ?
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Quatre "cartes d'information" (grid 2x2) avec les caractéristiques suivantes :
+
+        *   `background-color: var(--color-muted)`, `border-radius: 12px`, `padding: 1.5rem`, `box-shadow: 0 4px 8px rgba(0,0,0,0.05)`.
+
+        *   Chaque carte contient un `h3` pour le titre (ex: "Assistant Personnel") et un `p` pour la description.
+
+        *   Icônes pertinentes pour chaque point (ex: cerveau, loupe, classeur, stylo).
+
+*   **Animation :** Chaque carte apparaît l'une après l'autre avec un effet de zoom léger (`fadeInScale`).
+
+---
+
+### Diapositive 4 : De quoi avez-vous besoin ? 💻
 
 *   **Titre :** De quoi avez-vous besoin ? 💻
-*   **Contenu :** Deux cartes avec fond `muted` (`#F8F9FA`) et coins arrondis.
-    *   **Carte 1 : Matériel**
-        *   Ordinateur moderne (Windows, Mac ou Linux)
-        *   16 à 32 Go de RAM
-        *   Carte graphique recommandée (NVIDIA idéalement)
-    *   **Carte 2 : Logiciels**
-        *   Python (langage de programmation)
-        *   Outils d'IA (Ollama ou LM Studio)
-        *   Bibliothèques spécialisées
-*   **Phrase de réconfort en bas :** Rassurez-vous : nous verrons tout pas à pas ! (Texte en `muted-foreground` `#6C757D`)
-*   **Animation :** Les cartes apparaissent en glissant depuis les côtés.
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
 
----
+    *   **Contenu :** Deux "cartes d'information" côte à côte (grid 1x2) :
 
-### Diapositive 4 : Les 5 grandes étapes
+        *   **Cartes :** `background-color: var(--color-muted)`, `border-radius: 12px`, `padding: 1.5rem`.
 
-*   **Titre :** Les 5 grandes étapes
-*   **Graphisme :** Une liste verticale. Chaque étape a un badge numérique circulaire (fond `primary` `#5EA8A7`, texte blanc). L'étape finale (5) a un badge de couleur `accent` (`#FE4447`).
-    1.  **Définir votre besoin**
-    2.  **Préparer vos données**
-    3.  **Choisir la bonne méthode**
-    4.  **Installer et configurer**
-    5.  **Tester et utiliser !**
-*   **Animation :** Chaque étape apparaît l'une après l'autre.
+        *   Chaque carte contient un `h3` pour le titre (ex: "Matériel") (`color: var(--color-primary-dark)`) et une liste (`ul`, `li`) de points.
+
+    *   **Phrase de réconfort :** "Rassurez-vous : nous verrons tout pas à pas !" (`p`, `color: var(--color-muted-foreground)`).
+
+*   **Animation :** Les cartes apparaissent en glissant depuis les côtés (`fadeInSlideUp`).
 
 ---
 
 ### Diapositive 5 : Étape 1 - Définir votre besoin
 
 *   **Titre :** 1. Définir votre besoin
-*   **Phrase d'intro :** Posez-vous ces questions :
-*   **Contenu :** Trois sections avec des icônes de questions.
-    *   **Que voulez-vous faire ?** (Répondre à des questions, résumer des documents, analyser du texte...)
-    *   **Quelles données avez-vous ?** (Documents PDF, notes, emails, historique YouTube...)
-    *   **Quelles sont vos contraintes ?** (Vitesse, confidentialité, budget matériel...)
-*   **Animation :** Chaque question apparaît en fondu.
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Phrase d'introduction :** `h3` (`margin-bottom: 1rem`).
+
+    *   **Contenu :** Liste (`ul`, `li`) de questions.
+
+        *   Chaque question est un `li` (`margin-bottom: 1rem`, `<b>` pour la question).
+
+*   **Animation :** Chaque question apparaît en fondu (`fadeIn`).
 
 ---
 
 ### Diapositive 6 : Étape 2 - Préparer vos données
 
 *   **Titre :** 2. Préparer vos données
-*   **Contenu :**
-    *   **Sources possibles :**
-        *   Documents personnels (PDF, Word)
-        *   Notes et transcriptions
-        *   Historique YouTube (via Google Takeout)
-    *   **Organisation :**
-        *   Nettoyer le texte
-        *   Supprimer les doublons
-        *   **Protéger les informations sensibles :** On s'assure de masquer les informations personnelles comme les noms ou les adresses email.
-        *   Découper en sections
-*   **Graphisme :** Des icônes pour chaque type de source. Des cases à cocher pour l'organisation.
-*   **Animation :** Les sources apparaissent, puis la liste d'organisation avec un effet de "check".
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Deux colonnes (grid 1x2) :
+
+        *   **Colonne "Sources possibles" :** `h3` (`color: var(--color-primary-dark)`) pour le titre, suivi d'une liste (`ul`, `li`) des sources.
+
+        *   **Colonne "Organisation" :** `h3` (`color: var(--color-primary-dark)`) pour le titre, suivi d'une liste (`ul`, `li`) des points d'organisation.
+
+    *   **Section "Utiliser vos données YouTube" :** `h3` (`color: var(--color-primary-dark)`) pour le titre, `p` pour la description (ex: "Extrayez votre historique de visionnage et vos sous-titres via Google Takeout pour créer une base de connaissances personnalisée sur vos contenus préférés. 🎬").
+
+*   **Animation :** Les colonnes apparaissent en glissant depuis les côtés (`fadeInSlideRight`), puis la section YouTube apparaît en fondu (`fadeIn`).
 
 ---
 
 ### Diapositive 7 : Étape 3 - Deux approches principales
 
 *   **Titre :** 3. Deux approches principales
-*   **Contenu :** Deux boîtes colorées.
-    *   **Boîte 1 : RAG (Recherche + Génération)** (Couleur : `primary` `#5EA8A7`)
-        *   Rapide à mettre en place
-        *   Idéal pour des documents
-        *   **Recommandé pour débuter**
-    *   **Boîte 2 : Fine-tuning (Entraînement personnalisé)** (Couleur : `accent` `#FE4447`)
-        *   Plus de contrôle
-        *   Style personnalisé
-        *   **Plus technique**
-*   **Animation :** Les boîtes apparaissent avec un effet de "flip".
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Deux blocs colorés côte à côte (grid 1x2) :
+
+        *   **Bloc RAG :** `background-color: var(--color-primary)`, `border-radius: 12px`, `padding: 1.5rem`, `color: white`.
+
+            *   `h3` (`color: white`) pour le titre.
+
+            *   `p` (`color: white`) pour la description.
+
+        *   **Bloc Fine-tuning :** `background-color: var(--color-accent)`, `border-radius: 12px`, `padding: 1.5rem`, `color: white`.
+
+            *   `h3` (`color: white`) pour le titre.
+
+            *   `p` (`color: white`) pour la description.
+
+*   **Animation :** Les boîtes apparaissent en glissant depuis les côtés (`fadeInSlideUp`).
 
 ---
 
 ### Diapositive 8 : Comment fonctionne le RAG ?
 
 *   **Titre :** Comment fonctionne le RAG ?
-*   **Graphisme :** Un schéma très simple en 3 étapes avec des icônes.
-    1.  **Indexation :** Vos documents sont convertis en vecteurs mathématiques.
-    2.  **Recherche :** L'IA trouve les passages pertinents pour votre question.
-    3.  **Génération :** L'IA formule une réponse basée sur ces passages.
-*   **Animation :** Les étapes apparaissent en séquence.
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Un schéma simple en 3 étapes avec des blocs verticaux et des flèches :
+
+        *   **Blocs :** `background-color: var(--color-muted)`, `border-radius: 12px`, `padding: 1.5rem`, `width: 60%`.
+
+            *   **1. Indexation :** "Vos documents sont convertis en vecteurs mathématiques."
+
+            *   **2. Recherche :** "L'IA trouve les passages pertinents pour votre question."
+
+            *   **3. Génération :** "L'IA formule une réponse basée sur ces passages."
+
+        *   **Flèches :** `font-size: 2rem`, `color: var(--color-primary)`.
+
+*   **Animation :** Les étapes apparaissent en séquence (`fadeInSlideUp`).
 
 ---
 
-### Diapositive 9 : Étape 4 - Outils à installer
+### Diapositive 9 : Choisir la Bonne Approche pour votre Projet
+
+*   **Titre :** Choisir la Bonne Approche pour votre Projet
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Texte introductif (`p`, `font-size: 1.125rem`, `color: var(--color-surface-foreground)`), suivi d'une liste (`ul`, `li`) de scénarios et d'approches recommandées.
+
+        *   Ex: "<b>Vous avez des documents (PDF, notes) ?</b> &rarr; Le <b>RAG</b> est idéal pour des réponses précises."
+
+    *   **Conseil pratique :** "<b>Conseil :</b> Commencez simple avec le RAG, puis explorez d'autres options si besoin !" (`p`, `font-size: 1.125rem`, `color: var(--color-surface-foreground)`).
+
+*   **Animation :** Le texte introductif apparaît en fondu (`fadeIn`), suivi des points de la liste (`fadeIn`) et du conseil (`fadeIn`).
+
+---
+
+### Diapositive 10 : Étape 4 - Outils à installer
 
 *   **Titre :** 4. Outils à installer
-*   **Contenu :**
-    *   **Outil principal : Ollama**
-        *   Interface simple pour faire fonctionner des modèles d'IA.
-        *   **Recommandé pour débuter.**
-    *   **Outils complémentaires :**
-        *   Python, FAISS ou Chroma, Transformers
-*   **Graphisme :** Logo d'Ollama bien visible.
-*   **Animation :** Le bloc Ollama apparaît en premier, puis les outils complémentaires.
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :**
+
+        *   **Outil principal : Ollama :** `h3` (`color: var(--color-primary-dark)`) pour le titre, `p` pour la description.
+
+        *   **Outils complémentaires :** `h3` (`color: var(--color-primary-dark)`) pour le titre, liste (`ul`, `li`) des outils.
+
+*   **Animation :** Le bloc Ollama apparaît en premier (`fadeIn`), puis les outils complémentaires (`fadeIn`).
 
 ---
 
-### Diapositive 10 : Étape 5 - Mise en pratique
+### Diapositive 11 : Étape 5 - Mise en pratique
 
 *   **Titre :** 5. Mise en pratique
-*   **Graphisme :** Une liste de 5 étapes numérotées.
-    1.  Installer Ollama
-    2.  Télécharger un modèle (Llama 3.1)
-    3.  Indexer vos documents
-    4.  Créer votre système Q&R
-    5.  Tester et affiner !
-*   **Animation :** Chaque étape s'allume ou change de couleur lorsqu'elle est "terminée".
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Une liste verticale de 5 étapes numérotées, chacune avec un badge numérique circulaire.
+
+        *   **Badge numérique circulaire :** `width: 50px; height: 50px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700;`.
+
+        *   **Badge de l'étape finale (5) :** `background: var(--color-accent)`.
+
+        *   **Texte de l'étape :** `p` (`margin: 0`).
+
+*   **Animation :** Chaque étape apparaît l'une après l'autre (`fadeInSlideUp`).
 
 ---
 
-### Diapositive 11 : Avantages et Limites
+### Diapositive 12 : Avantages et Limites
 
 *   **Titre :** Avantages et Limites
-*   **Contenu :** Deux listes côte à côte.
-    *   **✓ Avantages**
-        *   Confidentialité maximale
-        *   Pas de frais récurrents
-        *   Personnalisation totale
-    *   **▲ À considérer**
-        *   Investissement matériel
-        *   Courbe d'apprentissage
-        *   Maintenance
-*   **Animation :** La liste des avantages apparaît, puis celle des limites.
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Deux colonnes (grid 1x2) :
+
+        *   **Colonne "Avantages" :** `h3` (`color: var(--color-primary-dark)`) pour le titre, suivi d'une liste (`ul`, `li`) des avantages.
+
+        *   **Colonne "À considérer" :** `h3` (`color: var(--color-primary-dark)`) pour le titre, suivi d'une liste (`ul`, `li`) des points à considérer.
+
+*   **Animation :** Les colonnes apparaissent en glissant depuis les côtés (`fadeInSlideRight`).
 
 ---
 
-### Diapositive 12 : Glossaire
+### Diapositive 13 : Glossaire
 
 *   **Titre :** Glossaire
-*   **Contenu :**
-    *   **IA Locale :** Une intelligence artificielle qui fonctionne directement sur votre ordinateur, sans passer par Internet.
-    *   **RAG :** Une méthode qui permet à l'IA de rechercher dans vos documents pour vous donner une réponse. C'est comme lui donner une bibliothèque à lire.
-    *   **LLM (Grand Modèle de Langage) :** Le "cerveau" de l'IA, qui comprend et génère du texte.
-    *   **Fine-tuning :** Entraîner l'IA pour qu'elle adopte un style ou des connaissances spécifiques.
-    *   **Ollama :** Un outil simple et populaire pour installer et utiliser des IA locales.
-    *   **Anonymisation :** Le processus de suppression des informations personnelles (noms, adresses...) d'un document.
-    *   **Chunking :** Le fait de découper de grands documents en petits morceaux pour que l'IA puisse les "digérer" plus facilement.
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Deux colonnes de listes (`ul`, `li`) de termes et définitions.
+
+        *   **Terme :** `<b>` pour le terme (ex: `<b>IA Locale :</b>`).
+
+        *   **Définition :** Texte normal (`margin-bottom: 0.5rem`).
+
+*   **Animation :** Chaque élément de la liste apparaît progressivement (`fadeIn`).
 
 ---
 
-### Diapositive 13 : Prochaines étapes
+### Diapositive 14 : Sécurité et Confidentialité de vos Données
+
+*   **Titre :** Sécurité et Confidentialité de vos Données
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Quatre "cartes d'information" (grid 2x2) avec les caractéristiques suivantes :
+
+        *   `background-color: var(--color-muted)`, `border-radius: 12px`, `padding: 1.5rem`, `box-shadow: 0 4px 8px rgba(0,0,0,0.05)`.
+
+        *   Chaque carte contient un `h3` pour le titre (ex: "Vos données restent chez vous") et un `p` pour la description.
+
+        *   Icônes pertinentes pour chaque point (ex: cadenas, masque, manette, coche).
+
+*   **Animation :** Chaque carte apparaît l'une après l'autre avec un effet de zoom léger (`fadeInScale`).
+
+---
+
+### Diapositive 15 : Conseils pour Réussir votre Projet IA
+
+*   **Titre :** Conseils pour Réussir votre Projet IA
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Quatre "cartes d'information" (grid 2x2) avec les caractéristiques suivantes :
+
+        *   `background-color: var(--color-muted)`, `border-radius: 12px`, `padding: 1.5rem`, `box-shadow: 0 4px 8px rgba(0,0,0,0.05)`.
+
+        *   Chaque carte contient un `h3` pour le titre (ex: "Commencez simple (MVP)") et un `p` pour la description.
+
+        *   Icônes pertinentes pour chaque point (ex: fusée, flèches circulaires, coche, graphique).
+
+*   **Animation :** Chaque carte apparaît l'une après l'autre avec un effet de zoom léger (`fadeInScale`).
+
+---
+
+### Diapositive 16 : Prochaines étapes
 
 *   **Titre :** Prochaines étapes
-*   **Phrase d'accroche :** Vous êtes prêt à commencer !
-*   **Sous-titre :** Commencez simplement avec le RAG et Ollama.
-*   **Graphisme :** Trois boîtes numéotées.
-    1.  Installez Ollama
-    2.  Préparez vos données
-    3.  Créez votre premier système RAG
-*   **Animation :** Les boîtes apparaissent l'une après l'autre.
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Phrase d'accroche :** "Vous êtes prêt à commencer !" (`h2`, `font-size: 2rem`, `color: var(--color-primary-dark)`).
+
+    *   **Sous-titre :** "Commencez simplement avec le RAG et Ollama." (`p`, `font-size: 1.25rem`, `color: var(--color-surface-foreground)`).
+
+    *   **Contenu :** Trois étapes numérotées, chacune avec un badge numérique circulaire.
+
+        *   **Badge numérique circulaire :** `width: 50px; height: 50px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700;`.
+
+        *   **Texte de l'étape :** `p` (`margin: 0`).
+
+*   **Animation :** Les boîtes apparaissent l'une après l'autre (`fadeInSlideUp`).
 
 ---
 
-### Diapositive 14 : Questions ?
+### Diapositive 17 : Questions ?
 
 *   **Titre :** Questions ?
-*   **Graphisme :** Une grande icône de point d'interrogation.
-*   **Animation :** Le point d'interrogation peut avoir une légère animation de pulsation.
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Une grande icône de point d'interrogation (`font-size: 10rem`, `color: var(--color-primary)`).
+
+*   **Animation :** Le point d'interrogation apparaît en fondu (`fadeIn`).
+
+---
+
+### Diapositive 18 : Les 5 grandes étapes
+
+*   **Titre :** Les 5 grandes étapes
+*   **Design (selon guidelines grand public) :**
+    *   **Titre de slide :** `text-4xl`, `color: var(--color-primary-dark)`.
+
+    *   **Contenu :** Une liste verticale d'étapes, chacune avec un badge numérique circulaire.
+
+        *   **Badge numérique circulaire :** `width: 50px; height: 50px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 700;`.
+
+        *   **Badge de l'étape finale (5) :** `background: var(--color-accent)`.
+
+        *   **Texte de l'étape :** `p` (`margin: 0`, `<b>` pour le titre).
+
+*   **Animation :** Chaque étape apparaît l'une après l'autre (`fadeInSlideUp`).

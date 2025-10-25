@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créez votre IA Locale - Guide Complet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #FFFFFF;
+            color: #2C3E50;
+            overflow: hidden;
+        }
+
+        .slides-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            flex-direction: column;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+            background: #FFFFFF;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h1 {
+            font-size: 1.75rem;
+            color: #277884;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .slide h2 {
+            font-size: 1.375rem;
+            color: #5EA8A7;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .slide h3 {
+            font-size: 1.125rem;
+            color: #5EA8A7;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .slide p, .slide li {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide strong {
+            color: #277884;
+        }
+
+        .columns {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .card {
+            background: #F8F9FA;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #5EA8A7;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .badge-accent {
+            background: #FE4447;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #2C3E50;
+            color: #ECF0F1;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre {
+            background: #2C3E50;
+            color: #ECF0F1;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.75rem;
+        }
+
+        th, td {
+            padding: 0.5rem;
+            text-align: left;
+            border: 1px solid #DEE2E6;
+        }
+
+        th {
+            background: #5EA8A7;
+            color: white;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) {
+            background: #F8F9FA;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #5EA8A7;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #277884;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            background: #6C757D;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: #F8F9FA;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            color: #6C757D;
+            z-index: 1000;
+        }
+
+        .title-slide {
+            background: linear-gradient(135deg, #5EA8A7 0%, #277884 100%);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .title-slide p {
+            font-size: 1.375rem;
+            opacity: 0.95;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        .highlight {
+            color: #FE4447;
+            font-weight: 700;
+        }
+
+        .success {
+            color: #27AE60;
+        }
+
+        .warning {
+            color: #F39C12;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            background: #5EA8A7;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-circle.accent {
+            background: #FE4447;
+        }
+
+        .step-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media print {
+            .navigation, .slide-counter {
+                display: none;
+            }
+            .slide {
+                page-break-after: always;
+                position: relative;
+                display: block !important;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-container">
+        <!-- Slide 1: Titre -->
+        <div class="slide active title-slide">
+            <h1>Créez votre IA Locale <span class="emoji">🚀</span></h1>
+            <p><strong>Le Guide Complet de A à Z</strong></p>
+            <p style="margin-top: 2rem; font-size: 1.125rem; opacity: 0.9;">Pour les non-techniciens</p>
+        </div>
+
+        <!-- Slide 2: Qu'est-ce qu'une IA locale ? -->
+        <div class="slide">
+            <h1>Qu'est-ce qu'une IA locale ? <span class="emoji">🤔</span></h1>
+            <p style="font-size: 1rem; margin-bottom: 2rem;">Une IA locale fonctionne <strong>entièrement sur votre ordinateur</strong>, sans connexion Internet.</p>
+
+            <div class="columns">
+                <div class="column card">
+                    <h3><span class="emoji">🔒</span> Confidentialité</h3>
+                    <p><strong>Vos données restent chez vous</strong></p>
+                    <ul>
+                        <li>Aucune transmission externe</li>
+                        <li>Contrôle total</li>
+                        <li>Zéro fuite de données</li>
+                    </ul>
+                </div>
+                <div class="column card">
+                    <h3><span class="emoji">🎮</span> Contrôle complet</h3>
+                    <p><strong>Vous maîtrisez tout le système</strong></p>
+                    <ul>
+                        <li>Personnalisation totale</li>
+                        <li>Pas de limitations</li>
+                        <li>Votre infrastructure</li>
+                    </ul>
+                </div>
+                <div class="column card">
+                    <h3><span class="emoji">💸</span> Sans abonnement</h3>
+                    <p><strong>Pas de coûts récurrents</strong></p>
+                    <ul>
+                        <li>Investissement unique</li>
+                        <li>Pas de surprise</li>
+                        <li>Économies long terme</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: De quoi avez-vous besoin ? -->
+        <div class="slide">
+            <h1>De quoi avez-vous besoin ? <span class="emoji">💻</span></h1>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="card">
+                        <h2>Matériel</h2>
+                        <p><span class="success">✅</span> <strong>Ordinateur moderne</strong></p>
+                        <ul>
+                            <li>Windows, Mac ou Linux</li>
+                            <li>16 à 32 Go de RAM</li>
+                            <li>Carte graphique (idéalement NVIDIA)</li>
+                            <li>SSD 256 Go minimum</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><span class="emoji">💡</span> <em>Pas besoin de super-ordinateur !</em></p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h2>Logiciels</h2>
+                        <p><span class="success">✅</span> <strong>Outils gratuits et open-source</strong></p>
+                        <ul>
+                            <li>Python (langage de programmation)</li>
+                            <li>Ollama ou LM Studio (IA locale)</li>
+                            <li>Bibliothèques spécialisées</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><span class="emoji">💡</span> <em>Tout est gratuit et téléchargeable !</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Les 5 grandes étapes -->
+        <div class="slide">
+            <h1>Les 5 grandes étapes <span class="emoji">🗺️</span></h1>
+
+            <div style="margin: 2rem 0;">
+                <div class="step-row">
+                    <div class="step-circle">1</div>
+                    <p style="font-size: 1rem; margin: 0;"><strong>Définir votre besoin</strong></p>
+                </div>
+                <div class="step-row">
+                    <div class="step-circle">2</div>
+                    <p style="font-size: 1rem; margin: 0;"><strong>Préparer vos données</strong></p>
+                </div>
+                <div class="step-row">
+                    <div class="step-circle">3</div>
+                    <p style="font-size: 1rem; margin: 0;"><strong>Choisir la bonne méthode (RAG ou Fine-tuning)</strong></p>
+                </div>
+                <div class="step-row">
+                    <div class="step-circle">4</div>
+                    <p style="font-size: 1rem; margin: 0;"><strong>Installer et configurer</strong></p>
+                </div>
+                <div class="step-row">
+                    <div class="step-circle accent">5</div>
+                    <p style="font-size: 1rem; margin: 0;"><strong class="highlight">Tester et utiliser !</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Étape 1 : Définir votre besoin -->
+        <div class="slide">
+            <h1>Étape 1 : Définir votre besoin <span class="emoji">🎯</span></h1>
+            <p style="font-size: 1rem; margin-bottom: 2rem;"><strong>Posez-vous ces questions :</strong></p>
+
+            <div class="columns">
+                <div class="column card">
+                    <h3><span class="emoji">❓</span> Que voulez-vous faire ?</h3>
+                    <ul>
+                        <li>Répondre à des questions</li>
+                        <li>Résumer des documents</li>
+                        <li>Analyser du texte</li>
+                        <li>Générer du contenu</li>
+                    </ul>
+                </div>
+                <div class="column card">
+                    <h3><span class="emoji">📁</span> Quelles données avez-vous ?</h3>
+                    <ul>
+                        <li>Documents PDF, Word</li>
+                        <li>Notes personnelles</li>
+                        <li>Emails archivés</li>
+                        <li>Historique YouTube</li>
+                    </ul>
+                </div>
+                <div class="column card">
+                    <h3><span class="emoji">⚡</span> Vos contraintes ?</h3>
+                    <ul>
+                        <li>Vitesse nécessaire</li>
+                        <li>Niveau de confidentialité</li>
+                        <li>Budget matériel</li>
+                        <li>Complexité acceptable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Étape 2 : Préparer vos données -->
+        <div class="slide">
+            <h1>Étape 2 : Préparer vos données <span class="emoji">📊</span></h1>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="card">
+                        <h2>Sources possibles</h2>
+                        <p><strong><span class="emoji">📄</span> Documents</strong></p>
+                        <ul>
+                            <li>PDF, Word, PowerPoint</li>
+                            <li>Fichiers texte</li>
+                        </ul>
+                        <p><strong><span class="emoji">📝</span> Notes</strong></p>
+                        <ul>
+                            <li>Markdown, Notion</li>
+                            <li>Obsidian, Evernote</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h2>Organisation nécessaire</h2>
+                        <p><strong>1. Nettoyer</strong></p>
+                        <p>Supprimer doublons, corriger erreurs</p>
+                        <p><strong>2. Protéger</strong></p>
+                        <p>Masquer infos personnelles</p>
+                        <p><strong>3. Découper</strong></p>
+                        <p>Diviser longs documents</p>
+                        <p><strong>4. Enrichir</strong></p>
+                        <p>Ajouter métadonnées</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Étape 3 : RAG et Fine-tuning -->
+        <div class="slide">
+            <h1>Étape 3 : RAG et Fine-tuning <span class="emoji">⚖️</span></h1>
+
+            <div class="columns">
+                <div class="column card">
+                    <h2>RAG <span class="emoji">🔍📝</span></h2>
+                    <p><strong>Recherche + Génération</strong></p>
+                    <p><span class="success">✅</span> <strong>Avantages</strong></p>
+                    <ul>
+                        <li>Rapide à mettre en place</li>
+                        <li>Idéal pour documents</li>
+                        <li><strong>Recommandé pour débuter</strong></li>
+                        <li>Pas d'entraînement</li>
+                    </ul>
+                    <p><span class="emoji">💡</span> <strong>Fonctionnement</strong></p>
+                    <p>L'IA cherche dans vos documents puis génère une réponse</p>
+                </div>
+                <div class="column card">
+                    <h2>Fine-tuning <span class="emoji">🎓</span></h2>
+                    <p><strong>Entraînement personnalisé</strong></p>
+                    <p><span class="success">✅</span> <strong>Avantages</strong></p>
+                    <ul>
+                        <li>Plus de contrôle</li>
+                        <li>Style personnalisé</li>
+                        <li>Connaissances intégrées</li>
+                    </ul>
+                    <p><span class="warning">⚠️</span> <strong>Mais...</strong></p>
+                    <ul>
+                        <li><strong>Plus technique</strong></li>
+                        <li>Nécessite beaucoup d'exemples</li>
+                        <li>Temps d'entraînement</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 1.5rem; text-align: center; font-size: 1rem;"><strong>Notre recommandation : Commencez par RAG !</strong> <span class="emoji">🎯</span></p>
+        </div>
+
+        <!-- Slide 8: Étape 4 : Installation complète -->
+        <div class="slide">
+            <h1>Étape 4 : Installation complète <span class="emoji">🛠️</span></h1>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="card">
+                        <h2>Outil principal : Ollama <span class="emoji">⭐</span></h2>
+                        <p><span class="success">✅</span> <strong>Pourquoi Ollama ?</strong></p>
+                        <ul>
+                            <li>Interface très simple</li>
+                            <li>Installation en 2 minutes</li>
+                            <li>Windows, Mac, Linux</li>
+                            <li>Gratuit et open-source</li>
+                        </ul>
+                        <h3>Installation Ollama</h3>
+                        <pre>curl -fsSL ollama.com/install.sh | sh</pre>
+                        <h3>Télécharger un modèle</h3>
+                        <pre>ollama pull llama3.1:8b</pre>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h2>Python et dépendances <span class="emoji">🐍</span></h2>
+                        <h3>Installer Python</h3>
+                        <p><strong>Windows</strong></p>
+                        <ol>
+                            <li>Télécharger python.org</li>
+                            <li>Cocher "Add to PATH" ✅</li>
+                            <li>Vérifier : <code>python --version</code></li>
+                        </ol>
+                        <h3>Bibliothèques nécessaires</h3>
+                        <pre>python -m venv mon_ia_locale
+source mon_ia_locale/bin/activate
+pip install langchain chromadb \
+  sentence-transformers ollama</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Vérification et choix du modèle -->
+        <div class="slide">
+            <h1>Vérification et choix du modèle <span class="emoji">✅</span></h1>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="card">
+                        <h2>Test rapide d'installation</h2>
+                        <pre>import ollama
+from langchain_community.embeddings \
+  import HuggingFaceEmbeddings
+
+# Test 1 : Ollama
+response = ollama.chat(
+  model='llama3.1:8b',
+  messages=[{
+    'role': 'user',
+    'content': 'Bonjour !'
+  }]
+)
+print("✅ Ollama OK")
+
+# Test 2 : Embeddings
+embeddings = HuggingFaceEmbeddings()
+test_vec = embeddings.embed_query("Test")
+print(f"✅ Embeddings : {len(test_vec)}D")</pre>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h2>Choisir le bon modèle</h2>
+                        <table>
+                            <tr>
+                                <th>Modèle</th>
+                                <th>Taille</th>
+                                <th>RAM</th>
+                                <th>Qualité</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Llama 3.1 8B</strong></td>
+                                <td>4.7 GB</td>
+                                <td>8 GB</td>
+                                <td>⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mistral 7B</strong></td>
+                                <td>4.1 GB</td>
+                                <td>8 GB</td>
+                                <td>⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phi-3 Mini</strong></td>
+                                <td>2.3 GB</td>
+                                <td>4 GB</td>
+                                <td>⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Llama 13B</strong></td>
+                                <td>7.4 GB</td>
+                                <td>16 GB</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                            </tr>
+                        </table>
+                        <p><strong>Recommandé débutant : Llama 3.1 8B</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Étape 5 : Créer votre système RAG -->
+        <div class="slide">
+            <h1>Étape 5 : Créer votre système RAG ! <span class="emoji">🎬</span></h1>
+            <p><strong>Processus en 5 sous-étapes</strong></p>
+            <ol style="font-size: 1rem; margin: 1rem 0;">
+                <li>Installer Ollama</li>
+                <li>Télécharger un modèle (ex: Llama 3.1)</li>
+                <li>Indexer vos documents (Python + Chroma)</li>
+                <li>Créer système Q&R (LangChain)</li>
+                <li>Tester et affiner !</li>
+            </ol>
+
+            <h3>Script RAG complet (30 lignes)</h3>
+            <pre>from langchain_community.document_loaders import DirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_community.llms import Ollama
+from langchain.chains import RetrievalQA
+
+# 1. Charger documents
+loader = DirectoryLoader("mes_documents/", glob="**/*.txt")
+documents = loader.load()
+
+# 2. Découper en morceaux
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=500, chunk_overlap=50
+)
+chunks = text_splitter.split_documents(documents)
+
+# 3. Créer embeddings
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-mpnet-base-v2"
+)
+
+# 4. Créer base vectorielle
+vectorstore = Chroma.from_documents(chunks, embeddings)
+
+# 5. Connecter Ollama
+llm = Ollama(model="llama3.1:8b")
+
+# 6. Créer système RAG
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=vectorstore.as_retriever(search_kwargs={"k": 3})
+)
+
+# 7. Poser questions !
+reponse = qa_chain.invoke({"query": "Qu'est-ce que le RAG ?"})
+print(reponse['result'])</pre>
+        </div>
+
+        <!-- Slide 11: Exemple concret -->
+        <div class="slide">
+            <h1>Exemple concret : Assistant de cours <span class="emoji">🎯</span></h1>
+            <p style="font-size: 1rem;"><strong>Situation</strong> : 50 PDFs de cours universitaires</p>
+
+            <div class="card" style="margin: 1.5rem 0;">
+                <h3>Étapes</h3>
+                <ol>
+                    <li>Créer dossier avec vos PDFs</li>
+                    <li>Lancer script RAG</li>
+                    <li>Attendre 2-5 minutes (indexation)</li>
+                    <li>Poser vos questions !</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>Questions exemples</h3>
+                <pre>qa_chain.invoke({
+  "query": "Résume le chapitre sur les réseaux de neurones"
+})
+qa_chain.invoke({
+  "query": "Différence entre CNN et RNN ?"
+})</pre>
+            </div>
+
+            <div class="card">
+                <h3>Résultat</h3>
+                <p><span class="success">✅</span> Réponses <strong>précises</strong> basées sur vos documents</p>
+                <p><span class="success">✅</span> <strong>Sources citées</strong> (quel PDF, quelle page)</p>
+                <p><span class="success">✅</span> Temps de réponse : <strong>1-3 secondes</strong></p>
+                <p><span class="success">✅</span> Économie de temps : <strong>-82%</strong> (45min → 8min)</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Problèmes courants & Optimisations -->
+        <div class="slide">
+            <h1>Problèmes courants & Optimisations <span class="emoji">🔧</span></h1>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="card">
+                        <h2><span class="emoji">❌</span> Problèmes fréquents</h2>
+                        <p><strong>"Ollama not found"</strong></p>
+                        <p>→ Redémarrer terminal ou ajouter au PATH</p>
+                        <p><strong>"Out of memory"</strong></p>
+                        <p>→ Utiliser modèle plus petit (Phi-3)</p>
+                        <p>→ Fermer autres applications</p>
+                        <p><strong>Réponses lentes (&gt;10s)</strong></p>
+                        <p>→ Vérifier GPU : <code>nvidia-smi</code></p>
+                        <p>→ Installer CUDA toolkit</p>
+                        <p><strong>Réponses imprécises</strong></p>
+                        <p>→ Nettoyer documents (OCR)</p>
+                        <p>→ Ajuster <code>chunk_size</code> (300/500/1000)</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h2><span class="emoji">🚀</span> 5 astuces d'optimisation</h2>
+                        <p><strong>1. Choisir le bon modèle</strong></p>
+                        <ul>
+                            <li>Llama 3.1 8B : équilibré</li>
+                            <li>Mistral 7B : excellent français</li>
+                        </ul>
+                        <p><strong>2. Optimiser chunking</strong></p>
+                        <pre>chunk_size=500  # Équilibré ✅</pre>
+                        <p><strong>3. Augmenter k (documents)</strong></p>
+                        <pre>search_kwargs={"k": 5}</pre>
+                        <p><strong>4. Utiliser le cache</strong></p>
+                        <pre>vectorstore = Chroma(
+  persist_directory="./chroma_db"
+)</pre>
+                        <p><strong>5. Ajuster température</strong></p>
+                        <pre>temperature=0.1  # Factuel
+temperature=0.7  # Créatif</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Avantages, limites et cas d'usage -->
+        <div class="slide">
+            <h1>Avantages, limites et cas d'usage <span class="emoji">⚖️</span></h1>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="card">
+                        <h2><span class="success">✅</span> Avantages</h2>
+                        <p><strong>Confidentialité maximale</strong></p>
+                        <ul>
+                            <li>Données sous contrôle</li>
+                            <li>Aucune fuite</li>
+                        </ul>
+                        <p><strong>Pas de frais récurrents</strong></p>
+                        <ul>
+                            <li>Investissement unique</li>
+                            <li>Pas d'abonnement</li>
+                        </ul>
+                        <p><strong>Personnalisation totale</strong></p>
+                        <ul>
+                            <li>Adapté à vos besoins</li>
+                            <li>Aucune limite</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h2><span class="warning">⚠️</span> À considérer</h2>
+                        <ul>
+                            <li><strong>Investissement matériel</strong> : 500-2000€</li>
+                            <li><strong>Courbe d'apprentissage</strong> : quelques heures/jours</li>
+                            <li><strong>Maintenance</strong> : mises à jour manuelles</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h2><span class="emoji">💼</span> Cas d'usage concrets</h2>
+                        <p><strong><span class="emoji">🏢</span> Entreprise</strong></p>
+                        <ul>
+                            <li>Documentation interne</li>
+                            <li>Analyse contrats</li>
+                            <li>Support client L1</li>
+                        </ul>
+                        <p><strong><span class="emoji">👨‍🎓</span> Éducation</strong></p>
+                        <ul>
+                            <li>Assistant révisions</li>
+                            <li>Résumé de cours</li>
+                            <li>Q&A notes de lecture</li>
+                        </ul>
+                        <p><strong><span class="emoji">🏥</span> Santé</strong></p>
+                        <ul>
+                            <li>Dossiers médicaux</li>
+                            <li>Anonymisation données</li>
+                            <li>Assistant protocoles</li>
+                        </ul>
+                        <p><strong><span class="emoji">🔬</span> Recherche</strong></p>
+                        <ul>
+                            <li>Analyse littérature</li>
+                            <li>Veille scientifique</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; text-align: center; font-size: 1rem;"><strong>Verdict : Les avantages dépassent les inconvénients !</strong> <span class="emoji">🎉</span></p>
+        </div>
+
+        <!-- Slide 14: Comparaison Local vs Cloud -->
+        <div class="slide">
+            <h1>Comparaison Local vs Cloud <span class="emoji">☁️</span></h1>
+
+            <table>
+                <tr>
+                    <th>Critère</th>
+                    <th>IA Locale 🏠</th>
+                    <th>IA Cloud ☁️</th>
+                </tr>
+                <tr>
+                    <td><strong>Confidentialité</strong></td>
+                    <td><span class="success">✅</span> Totale</td>
+                    <td><span class="warning">❌</span> Partielle</td>
+                </tr>
+                <tr>
+                    <td><strong>Coût mensuel</strong></td>
+                    <td><span class="success">✅</span> 0€</td>
+                    <td><span class="warning">❌</span> 20-100€</td>
+                </tr>
+                <tr>
+                    <td><strong>Coût initial</strong></td>
+                    <td><span class="warning">⚠️</span> 500-2000€</td>
+                    <td><span class="success">✅</span> 0€</td>
+                </tr>
+                <tr>
+                    <td><strong>Performance</strong></td>
+                    <td><span class="warning">⚠️</span> Selon matériel</td>
+                    <td><span class="success">✅</span> Très élevée</td>
+                </tr>
+                <tr>
+                    <td><strong>Personnalisation</strong></td>
+                    <td><span class="success">✅</span> Totale</td>
+                    <td><span class="warning">❌</span> Limitée</td>
+                </tr>
+                <tr>
+                    <td><strong>Hors ligne</strong></td>
+                    <td><span class="success">✅</span> Oui</td>
+                    <td><span class="warning">❌</span> Non</td>
+                </tr>
+                <tr>
+                    <td><strong>Complexité</strong></td>
+                    <td><span class="warning">⚠️</span> Moyenne</td>
+                    <td><span class="success">✅</span> Simple</td>
+                </tr>
+            </table>
+
+            <div class="card" style="margin-top: 1.5rem;">
+                <h3>Quand choisir le local ?</h3>
+                <ul>
+                    <li><span class="success">✅</span> Données sensibles (entreprise, santé, finance)</li>
+                    <li><span class="success">✅</span> Usage intensif (amortissement rapide)</li>
+                    <li><span class="success">✅</span> Besoin de personnalisation</li>
+                    <li><span class="success">✅</span> Pas de connexion Internet fiable</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 15: Ressources et prochaines étapes -->
+        <div class="slide">
+            <h1>Ressources et prochaines étapes <span class="emoji">📚</span></h1>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="card">
+                        <h2>Documentation & Tutoriels</h2>
+                        <p><span class="emoji">📖</span> <strong>Guide technique détaillé</strong> (PDF)</p>
+                        <p><span class="emoji">🎥</span> <strong>Tutoriels vidéo</strong> : Ollama, LangChain</p>
+                        <p><span class="emoji">💻</span> <strong>Code d'exemple</strong> : scripts Python</p>
+                        <h3>Communautés</h3>
+                        <ul>
+                            <li><strong>Reddit r/LocalLLaMA</strong> : entraide</li>
+                            <li><strong>Discord LangChain</strong> : support technique</li>
+                            <li><strong>Hugging Face Forums</strong> : questions modèles</li>
+                        </ul>
+                        <h3>Outils</h3>
+                        <ul>
+                            <li><strong>Ollama</strong> : ollama.com</li>
+                            <li><strong>LM Studio</strong> : lmstudio.ai</li>
+                            <li><strong>Hugging Face</strong> : huggingface.co</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h2><span class="emoji">🚀</span> Prochaines étapes</h2>
+                        <p><strong>Week-end 1</strong></p>
+                        <ol>
+                            <li>Installer Ollama (10 min)</li>
+                            <li>Télécharger Llama 3.1 (15 min)</li>
+                            <li>Tester en ligne de commande (30 min)</li>
+                        </ol>
+                        <p><strong>Semaine 1</strong></p>
+                        <ol start="4">
+                            <li>Installer Python (1h)</li>
+                            <li>Préparer données (2-4h)</li>
+                            <li>Créer premier RAG (3-5h)</li>
+                        </ol>
+                        <p><strong>Roadmap Mois 1</strong></p>
+                        <ul>
+                            <li><strong>S1</strong> : Installation et tests</li>
+                            <li><strong>S2</strong> : RAG basique fonctionnel</li>
+                            <li><strong>S3</strong> : Optimisation</li>
+                            <li><strong>S4</strong> : Production</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><span class="emoji">📖</span> <strong>Consultez le guide technique !</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: FAQ & Glossaire -->
+        <div class="slide">
+            <h1>FAQ & Glossaire <span class="emoji">📖❓</span></h1>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="card">
+                        <h2>Questions Fréquentes</h2>
+                        <p><strong>Quel budget prévoir ?</strong></p>
+                        <p>Minimum 500€, optimal 1500-2000€</p>
+                        <p><strong>Temps pour être opérationnel ?</strong></p>
+                        <p>Week-end pour test, 1-2 semaines complet</p>
+                        <p><strong>Faut-il être développeur ?</strong></p>
+                        <p>Non, bases Python suffisent (quelques jours)</p>
+                        <p><strong>Quelle taille de modèle ?</strong></p>
+                        <p>Débutant : 7-8B (Llama, Mistral)</p>
+                        <p>Avancé : 13B avec bon GPU</p>
+                        <p><strong>Plusieurs modèles possibles ?</strong></p>
+                        <p>Oui ! Ollama permet de basculer facilement</p>
+                        <p><strong>Données vraiment en local ?</strong></p>
+                        <p>Oui, 100% local avec Ollama/llama.cpp</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h2>Glossaire</h2>
+                        <p><strong>IA Locale</strong></p>
+                        <p>IA sur votre ordinateur sans Internet</p>
+                        <p><strong>RAG</strong></p>
+                        <p>Recherche dans documents pour répondre</p>
+                        <p><strong>LLM</strong></p>
+                        <p>Grand Modèle de Langage, "cerveau" de l'IA</p>
+                        <p><strong>Fine-tuning</strong></p>
+                        <p>Entraîner l'IA pour style spécifique</p>
+                        <p><strong>Embeddings</strong></p>
+                        <p>Représentation mathématique du texte</p>
+                        <p><strong>Ollama</strong></p>
+                        <p>Outil simple pour IA locales</p>
+                        <p><strong>Chunking</strong></p>
+                        <p>Découper documents en morceaux</p>
+                        <p><strong>Anonymisation</strong></p>
+                        <p>Supprimer infos personnelles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Conclusion -->
+        <div class="slide">
+            <h1>Conclusion : Lancez-vous ! <span class="emoji">🎉</span></h1>
+
+            <div class="card">
+                <h2>Ce que vous avez appris</h2>
+                <ul>
+                    <li><span class="success">✅</span> Qu'est-ce qu'une IA locale et pourquoi c'est utile</li>
+                    <li><span class="success">✅</span> Le matériel et les logiciels nécessaires</li>
+                    <li><span class="success">✅</span> Les 5 grandes étapes pour créer votre IA</li>
+                    <li><span class="success">✅</span> La différence entre RAG et fine-tuning</li>
+                    <li><span class="success">✅</span> Comment démarrer concrètement</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Votre plan d'action</h2>
+                <ol>
+                    <li><strong>Ce soir</strong> : télécharger Ollama et tester un modèle</li>
+                    <li><strong>Ce week-end</strong> : préparer vos premières données</li>
+                    <li><strong>Semaine prochaine</strong> : créer votre premier système RAG</li>
+                    <li><strong>Dans 1 mois</strong> : système complet en production !</li>
+                </ol>
+            </div>
+
+            <p style="margin-top: 2rem; text-align: center; font-size: 1.25rem;"><strong><span class="emoji">🚀</span> Vous avez tout ce qu'il faut pour réussir !</strong></p>
+            <p style="text-align: center; margin-top: 1rem;"><span class="emoji">📧</span> Contact : karim.laurent@gmail.com</p>
+            <p style="text-align: center;"><span class="emoji">📚</span> Guide technique : guide_technique_detaille.pdf</p>
+        </div>
+
+        <!-- Slide 18: Merci -->
+        <div class="slide title-slide">
+            <h1>Merci ! Questions ? <span class="emoji">🙋</span></h1>
+
+            <div style="margin-top: 3rem; display: flex; gap: 3rem; justify-content: center;">
+                <div style="text-align: left;">
+                    <h2 style="color: white; font-size: 1.125rem; margin-bottom: 1rem;"><span class="emoji">📚</span> Documentation</h2>
+                    <p style="font-size: 0.875rem;">Guide technique complet (PDF)</p>
+                    <p style="font-size: 0.875rem;">Scripts Python prêts à l'emploi</p>
+                    <p style="font-size: 0.875rem;">Tutoriels vidéo</p>
+                    <h2 style="color: white; font-size: 1.125rem; margin: 1.5rem 0 1rem 0;"><span class="emoji">🔗</span> Liens utiles</h2>
+                    <p style="font-size: 0.875rem;">ollama.com</p>
+                    <p style="font-size: 0.875rem;">huggingface.co</p>
+                    <p style="font-size: 0.875rem;">reddit.com/r/LocalLLaMA</p>
+                </div>
+                <div style="text-align: left;">
+                    <h2 style="color: white; font-size: 1.125rem; margin-bottom: 1rem;"><span class="emoji">💬</span> Support</h2>
+                    <p style="font-size: 0.875rem;">Email : karim.laurent@gmail.com</p>
+                    <h2 style="color: white; font-size: 1.125rem; margin: 1.5rem 0 1rem 0;"><span class="emoji">🎯</span> Ressources</h2>
+                    <p style="font-size: 0.875rem;">Présentation : presentation_grand_public.pptx</p>
+                    <p style="font-size: 0.875rem;">Guide : guide_technique_detaille.pdf</p>
+                    <p style="font-size: 0.875rem;">Code : github.com/kl-IOS/IA_Locale</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 3rem; font-size: 1.125rem;"><strong>N'hésitez pas à poser vos questions !</strong> <span class="emoji">😊</span></p>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">18</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn" onclick="prevSlide()">◀ Précédent</button>
+        <button class="nav-btn" id="next-btn" onclick="nextSlide()">Suivant ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            if (n >= totalSlides) currentSlide = totalSlides - 1;
+            if (n < 0) currentSlide = 0;
+
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>

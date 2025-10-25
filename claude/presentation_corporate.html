@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Locale : La Prochaine Révolution pour votre Entreprise</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #2E4053;
+            --color-primary-dark: #1C2833;
+            --color-accent: #5D6D7E;
+            --color-surface: #FFFFFF;
+            --color-surface-foreground: #1C2833;
+            --color-muted: #F4F6F6;
+            --color-muted-foreground: #5D6D7E;
+            --color-border: #D5D8DC;
+            --color-highlight: #3498DB;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--color-surface);
+            color: var(--color-surface-foreground);
+            overflow: hidden;
+        }
+
+        .slides-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            flex-direction: column;
+            padding: 2.5rem 3.5rem;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h1 {
+            font-size: 1.75rem;
+            color: var(--color-primary-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            border-bottom: 3px solid var(--color-highlight);
+            padding-bottom: 0.5rem;
+        }
+
+        .slide h2 {
+            font-size: 1.375rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .slide h3 {
+            font-size: 1.125rem;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .slide p, .slide li {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide strong {
+            color: var(--color-primary-dark);
+        }
+
+        .columns {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .card {
+            background: var(--color-muted);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--color-highlight);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .badge-highlight {
+            background: var(--color-highlight);
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: var(--color-primary-dark);
+            color: #ECF0F1;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre {
+            background: var(--color-primary-dark);
+            color: #ECF0F1;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.7rem;
+            line-height: 1.4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.75rem;
+        }
+
+        th, td {
+            padding: 0.5rem;
+            text-align: left;
+            border: 1px solid var(--color-border);
+        }
+
+        th {
+            background: var(--color-primary);
+            color: white;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) {
+            background: var(--color-muted);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            background: var(--color-muted-foreground);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: var(--color-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--color-muted-foreground);
+            border: 1px solid var(--color-border);
+            z-index: 1000;
+        }
+
+        .title-slide {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            border-bottom: none;
+        }
+
+        .title-slide p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+        }
+
+        .title-slide .confidential {
+            font-size: 0.875rem;
+            margin-top: 3rem;
+            opacity: 0.8;
+        }
+
+        .highlight {
+            color: var(--color-highlight);
+            font-weight: 700;
+        }
+
+        .success {
+            color: #27AE60;
+        }
+
+        .warning {
+            color: #E67E22;
+        }
+
+        .metric-box {
+            background: linear-gradient(135deg, var(--color-highlight), var(--color-primary));
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 0.5rem;
+        }
+
+        .metric-box h3 {
+            color: white;
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .metric-box p {
+            color: white;
+            opacity: 0.9;
+            margin: 0.5rem 0 0 0;
+        }
+
+        @media print {
+            .navigation, .slide-counter {
+                display: none;
+            }
+            .slide {
+                page-break-after: always;
+                position: relative;
+                display: block !important;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-container">
+        <!-- Slide 1: Titre -->
+        <div class="slide active title-slide">
+            <h1>IA Locale</h1>
+            <p style="font-size: 1.5rem; margin-top: 1rem;"><strong>La Prochaine Révolution pour votre Entreprise</strong></p>
+            <p style="margin-top: 2rem;">Guide stratégique pour une mise en œuvre réussie</p>
+            <p class="confidential">Document confidentiel - Usage interne uniquement</p>
+        </div>
+
+        <!-- Slide 2: Sommaire Exécutif -->
+        <div class="slide">
+            <h1>Sommaire Exécutif</h1>
+
+            <div class="columns">
+                <div class="column card">
+                    <h2>Enjeux Stratégiques</h2>
+                    <ol>
+                        <li>Impératifs de l'IA locale</li>
+                        <li>Analyse coûts-bénéfices</li>
+                        <li>Feuille de route de déploiement</li>
+                        <li>Gestion des risques</li>
+                    </ol>
+                </div>
+                <div class="column card">
+                    <h2>Livrables</h2>
+                    <ul>
+                        <li><strong>ROI attendu :</strong> 12-18 mois</li>
+                        <li><strong>Réduction coûts :</strong> 40-60 k€/an</li>
+                        <li><strong>Gains productivité :</strong> +25%</li>
+                        <li><strong>Conformité RGPD :</strong> 100%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 1.125rem;"><strong class="highlight">Timeline recommandée : POC 6 semaines, Production M+3</strong></p>
+        </div>
+
+        <!-- Slide 3: Contexte et Impératifs -->
+        <div class="slide">
+            <h1>Contexte et Impératifs Stratégiques</h1>
+
+            <div class="columns">
+                <div class="column">
+                    <h2>Marché en forte croissance</h2>
+                    <div class="card">
+                        <p><strong>CAGR 2023-2030 : +42%</strong></p>
+                        <p>2023: 10 Mds$ → 2024: 25 Mds$ → 2025: 52 Mds$ → 2030: 280 Mds$</p>
+                        <ul style="margin-top: 1rem;">
+                            <li>85% des entreprises expérimentent l'IA (2024)</li>
+                            <li>52% citent la confidentialité comme frein</li>
+                            <li>68% s'inquiètent des coûts croissants</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <h2>4 Piliers Fondamentaux</h2>
+                    <div class="card">
+                        <p><strong>1. Souveraineté des données</strong></p>
+                        <p>100% contrôle, conformité RGPD garantie</p>
+                    </div>
+                    <div class="card">
+                        <p><strong>2. Réduction des coûts</strong></p>
+                        <p>0€/mois vs 20-100€/utilisateur cloud</p>
+                    </div>
+                    <div class="card">
+                        <p><strong>3. Personnalisation</strong></p>
+                        <p>Adaptation aux processus métier</p>
+                    </div>
+                    <div class="card">
+                        <p><strong>4. Indépendance</strong></p>
+                        <p>Aucune dépendance fournisseur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Analyse Coûts-Bénéfices -->
+        <div class="slide">
+            <h1>Analyse Coûts-Bénéfices Détaillée</h1>
+
+            <div class="columns">
+                <div class="column">
+                    <h2>Investissement Initial (An 0-1)</h2>
+                    <table>
+                        <tr><th>Poste</th><th>Montant</th></tr>
+                        <tr><td><strong>Matériel</strong></td><td>15-25 k€</td></tr>
+                        <tr><td>Serveur GPU (RTX A6000)</td><td>8-12 k€</td></tr>
+                        <tr><td>Stockage (4 TB NVMe)</td><td>2-3 k€</td></tr>
+                        <tr><td>RAM (128-256 GB)</td><td>2-4 k€</td></tr>
+                        <tr><td><strong>Logiciels & Licences</strong></td><td>0-5 k€</td></tr>
+                        <tr><td><strong>Services</strong></td><td>20-30 k€</td></tr>
+                    </table>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 1.125rem;"><strong class="highlight">Total Année 1 : 35-60 k€</strong></p>
+                </div>
+                <div class="column">
+                    <h2>Économies Annuelles (An 2+)</h2>
+                    <table>
+                        <tr><th>Poste</th><th>Économie</th></tr>
+                        <tr><td><strong>Licences évitées</strong></td><td>24-96 k€/an</td></tr>
+                        <tr><td>ChatGPT Enterprise</td><td>24 k€</td></tr>
+                        <tr><td>API OpenAI évitée</td><td>12-36 k€</td></tr>
+                        <tr><td><strong>Gains productivité</strong></td><td>30-50 k€/an</td></tr>
+                        <tr><td>-60% temps recherche</td><td>15-25 k€</td></tr>
+                        <tr><td>Support L1 automatisé</td><td>10-15 k€</td></tr>
+                        <tr><td><strong>Coûts opérationnels</strong></td><td>-6-12 k€/an</td></tr>
+                    </table>
+                    <div class="metric-box" style="margin-top: 1rem;">
+                        <h3>48-134 k€/an</h3>
+                        <p>Économie nette</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.875rem;">ROI : 6-18 mois</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Roadmap -->
+        <div class="slide">
+            <h1>Roadmap de Déploiement (3 Phases)</h1>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <p><strong>Phase 1 → Phase 2 → Phase 3 = 6 mois (POC → Production)</strong></p>
+            </div>
+
+            <div class="columns">
+                <div class="column card">
+                    <h3>Phase 1 : POC (6 semaines)</h3>
+                    <p><strong>Objectif :</strong> Valider faisabilité technique</p>
+                    <ul>
+                        <li>1 use case unique</li>
+                        <li>20 bêta testeurs</li>
+                        <li>1 000 documents test</li>
+                        <li><strong>Budget : 15 k€</strong></li>
+                    </ul>
+                </div>
+                <div class="column card">
+                    <h3>Phase 2 : Pilote (10 semaines)</h3>
+                    <p><strong>Objectif :</strong> Prouver valeur métier</p>
+                    <ul>
+                        <li>2-3 use cases production</li>
+                        <li>100 utilisateurs</li>
+                        <li>Corpus complet département</li>
+                        <li><strong>Budget : 25 k€</strong></li>
+                    </ul>
+                </div>
+                <div class="column card">
+                    <h3>Phase 3 : Production (10 semaines)</h3>
+                    <p><strong>Objectif :</strong> Déploiement généralisé</p>
+                    <ul>
+                        <li>Tous use cases</li>
+                        <li>Toute l'entreprise</li>
+                        <li>HA + scalabilité</li>
+                        <li><strong>Budget : 20 k€</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Architecture -->
+        <div class="slide">
+            <h1>Architecture Technique Recommandée</h1>
+
+            <h2>Stack Technologique</h2>
+            <table>
+                <tr><th>Composant</th><th>Technologie</th><th>Justification</th></tr>
+                <tr><td><strong>LLM</strong></td><td>Llama 3.1 13B (Ollama)</td><td>Open-source, performant, français excellent</td></tr>
+                <tr><td><strong>Embeddings</strong></td><td>e5-large-v2</td><td>91% précision FR, 1024 dimensions</td></tr>
+                <tr><td><strong>Vector DB</strong></td><td>FAISS → Qdrant (prod)</td><td>Performance, scalabilité</td></tr>
+                <tr><td><strong>Framework</strong></td><td>LangChain</td><td>Ecosystem mature, modulaire</td></tr>
+                <tr><td><strong>API</strong></td><td>FastAPI</td><td>Performance, documentation auto</td></tr>
+                <tr><td><strong>Infrastructure</strong></td><td>Docker + Kubernetes</td><td>Portabilité, scalabilité</td></tr>
+            </table>
+
+            <h2 style="margin-top: 1.5rem;">Couches Architecture</h2>
+            <div class="columns">
+                <div class="column card">
+                    <h3>Couche Utilisateur</h3>
+                    <p>• Interface Web (Gradio)</p>
+                    <p>• API REST (FastAPI)</p>
+                    <p>• Intégration Slack/Teams</p>
+                </div>
+                <div class="column card">
+                    <h3>Couche Traitement</h3>
+                    <p>• Ollama Server (Llama 3.1 13B)</p>
+                    <p>• Pipeline RAG (LangChain)</p>
+                    <p>• Embeddings (e5-large-v2)</p>
+                </div>
+                <div class="column card">
+                    <h3>Couche Stockage</h3>
+                    <p>• Base Vectorielle (FAISS/Chroma)</p>
+                    <p>• Documents Sources (NFS/S3)</p>
+                    <p>• Cache (Redis)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Performance -->
+        <div class="slide">
+            <h1>Métriques de Performance Mesurées</h1>
+
+            <h2>Benchmarks Production (Llama 3.1)</h2>
+            <table>
+                <tr><th>Modèle</th><th>Latence p50</th><th>Throughput</th><th>VRAM</th><th>Coût matériel</th></tr>
+                <tr><td><strong>Llama 8B</strong></td><td>1.2s</td><td>120 req/min</td><td>10 GB</td><td>8 k€ (RTX 4070)</td></tr>
+                <tr style="background: #EAF2F8;"><td><strong>Llama 13B ⭐</strong></td><td>2.1s</td><td>65 req/min</td><td>16 GB</td><td>12 k€ (RTX A6000)</td></tr>
+                <tr><td><strong>Llama 70B</strong></td><td>8.5s</td><td>18 req/min</td><td>48 GB</td><td>40 k€ (2× A100)</td></tr>
+            </table>
+
+            <p style="margin-top: 1rem;"><strong class="highlight">Recommandation entreprise 100-500 employés : Llama 13B</strong></p>
+
+            <h2 style="margin-top: 1.5rem;">Comparaison RAG vs Fine-tuning</h2>
+            <table>
+                <tr><th>Critère</th><th>RAG</th><th>Fine-tuning QLoRA</th></tr>
+                <tr><td><strong>Setup time</strong></td><td>1-3 jours</td><td>2-4 semaines</td></tr>
+                <tr><td><strong>GPU nécessaire</strong></td><td>Optionnel (CPU OK)</td><td>Obligatoire (12+ GB)</td></tr>
+                <tr><td><strong>Données requises</strong></td><td>500-5 000 docs</td><td>5 000-50 000 exemples</td></tr>
+                <tr><td><strong>Coût total</strong></td><td>15-25 k€</td><td>30-60 k€</td></tr>
+                <tr><td><strong>Use case idéal</strong></td><td>Q&A, recherche doc</td><td>Style personnalisé, ton</td></tr>
+            </table>
+        </div>
+
+        <!-- Slide 8: Cas Finance -->
+        <div class="slide">
+            <h1>Cas d'Usage Secteur : Finance & Banque</h1>
+
+            <div class="columns">
+                <div class="column">
+                    <h2>Contexte Client</h2>
+                    <p><strong>Entreprise :</strong> Banque régionale (450 employés)</p>
+
+                    <div class="card">
+                        <h3>Problématique</h3>
+                        <p>• Recherche procédures : 3-4h/jour/analyste</p>
+                        <p>• 15 analystes compliance</p>
+                        <p>• Coût : 180 k€/an en temps perdu</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Solution Déployée</h3>
+                        <p>• RAG sur 8 000 docs réglementaires</p>
+                        <p>• Embeddings e5-large-v2</p>
+                        <p>• Base vectorielle FAISS</p>
+                        <p>• Modèle Llama 13B</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <h2>Résultats Mesurés (6 mois)</h2>
+
+                    <div class="metric-box">
+                        <h3>ROI : 634%</h3>
+                        <p>Payback : 1.6 mois</p>
+                    </div>
+
+                    <table style="margin-top: 1rem;">
+                        <tr><th>Métrique</th><th>Avant</th><th>Après</th><th>Gain</th></tr>
+                        <tr><td>Temps recherche</td><td>3.2h/jour</td><td>0.8h/jour</td><td><strong>-75%</strong></td></tr>
+                        <tr><td>Précision</td><td>78%</td><td>94%</td><td><strong>+16 pts</strong></td></tr>
+                        <tr><td>Conformité audits</td><td>85%</td><td>98%</td><td><strong>+13 pts</strong></td></tr>
+                    </table>
+
+                    <div class="card" style="margin-top: 1rem;">
+                        <p><strong>Économie annuelle : 135 k€</strong></p>
+                        <p><strong>Investissement : 18 k€</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Cas Santé -->
+        <div class="slide">
+            <h1>Cas d'Usage Secteur : Santé & Pharmaceutique</h1>
+
+            <div class="columns">
+                <div class="column">
+                    <h2>Contexte Client</h2>
+                    <p><strong>Entreprise :</strong> Biotech R&D (500 employés)</p>
+
+                    <div class="card">
+                        <h3>Problématique</h3>
+                        <p>• Veille scientifique : 120 articles/mois</p>
+                        <p>• 8h/semaine/chercheur pour synthèse</p>
+                        <p>• Équipe 25 chercheurs = 200h/sem</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Solution Déployée</h3>
+                        <p>• RAG multimodal (texte + tableaux)</p>
+                        <p>• Llama 13B + fine-tuning domaine</p>
+                        <p>• 15 000 publications indexées</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <h2>Résultats Mesurés (1 an)</h2>
+
+                    <div class="metric-box">
+                        <h3>ROI : 3622%</h3>
+                    </div>
+
+                    <table style="margin-top: 1rem;">
+                        <tr><th>Métrique</th><th>Avant</th><th>Après</th><th>Gain</th></tr>
+                        <tr><td>Protocoles créés</td><td>40/mois</td><td>150/mois</td><td><strong>+275%</strong></td></tr>
+                        <tr><td>Temps revue littérature</td><td>8h/sem</td><td>1.5h/sem</td><td><strong>-81%</strong></td></tr>
+                        <tr><td>Découverte insights</td><td>12/an</td><td>45/an</td><td><strong>+275%</strong></td></tr>
+                    </table>
+
+                    <div class="card" style="margin-top: 1rem;">
+                        <p><strong>Économie : 250 k€/an</strong></p>
+                        <p><strong>Conformité :</strong> HDS ✅ ISO 27001 ✅</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Cas Industrie -->
+        <div class="slide">
+            <h1>Cas d'Usage Secteur : Industrie & Manufacturing</h1>
+
+            <div class="columns">
+                <div class="column">
+                    <h2>Contexte Client</h2>
+                    <p><strong>Entreprise :</strong> Équipementier automobile</p>
+
+                    <div class="card">
+                        <h3>Problématique</h3>
+                        <p>• Downtime ligne : 50-200 k€/heure</p>
+                        <p>• Documentation dispersée</p>
+                        <p>• MTTR : 4.2h</p>
+                        <p>• Accès hors ligne obligatoire</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Solution Déployée</h3>
+                        <p>• Edge computing (local usines)</p>
+                        <p>• Mistral 7B (français technique)</p>
+                        <p>• Interface vocale mains libres</p>
+                        <p>• Tablettes durcies IP67</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <h2>Résultats Mesurés (6 mois)</h2>
+
+                    <div class="metric-box">
+                        <h3>ROI : 1650%</h3>
+                        <p>Payback : 21 jours ⚡</p>
+                    </div>
+
+                    <table style="margin-top: 1rem;">
+                        <tr><th>Métrique</th><th>Avant</th><th>Après</th><th>Gain</th></tr>
+                        <tr><td>MTTR</td><td>4.2h</td><td>1.8h</td><td><strong>-57%</strong></td></tr>
+                        <tr><td>Disponibilité</td><td>87%</td><td>94.5%</td><td><strong>+7.5 pts</strong></td></tr>
+                        <tr><td>Downtime/mois</td><td>180h</td><td>65h</td><td><strong>-64%</strong></td></tr>
+                    </table>
+
+                    <div class="card" style="margin-top: 1rem;">
+                        <p><strong>Économie : 1.2 M€/an</strong></p>
+                        <p><strong>Investissement : 42 k€</strong> (multi-sites)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Sécurité et RGPD -->
+        <div class="slide">
+            <h1>Sécurité, Conformité RGPD et Anonymisation</h1>
+
+            <div class="columns">
+                <div class="column">
+                    <h2>Architecture Sécurisée</h2>
+
+                    <div class="card">
+                        <h3>Réseau</h3>
+                        <p>• VLAN dédié IA (isolation)</p>
+                        <p>• Firewall applicatif (WAF)</p>
+                        <p>• VPN pour accès distant</p>
+                        <p>• Certificats SSL/TLS</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Données</h3>
+                        <p>• Chiffrement au repos (AES-256)</p>
+                        <p>• Chiffrement en transit (TLS 1.3)</p>
+                        <p>• Backup chiffré quotidien</p>
+                        <p>• Retention 90 jours</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Accès</h3>
+                        <p>• SSO entreprise (SAML/OAuth)</p>
+                        <p>• RBAC granulaire</p>
+                        <p>• Audit logs complets</p>
+                        <p>• 2FA obligatoire</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <h2>Conformité RGPD</h2>
+
+                    <div class="card">
+                        <p><strong class="success">✅ Base légale</strong></p>
+                        <p>• Intérêt légitime documenté</p>
+                        <p>• DPIA réalisée</p>
+                    </div>
+
+                    <div class="card">
+                        <p><strong class="success">✅ Droits des personnes</strong></p>
+                        <p>• Droit à l'oubli implémenté</p>
+                        <p>• Portabilité garantie</p>
+                    </div>
+
+                    <div class="card">
+                        <p><strong class="success">✅ Sécurité</strong></p>
+                        <p>• Pseudonymisation par défaut</p>
+                        <p>• Minimisation des données</p>
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem;">Conformité Sectorielle</h3>
+                    <table>
+                        <tr><th>Secteur</th><th>Certification</th><th>Statut</th></tr>
+                        <tr><td>Santé</td><td>HDS</td><td><span class="success">✅</span> Compatible</td></tr>
+                        <tr><td>Finance</td><td>ISO 27001</td><td><span class="success">✅</span> Compatible</td></tr>
+                        <tr><td>Public</td><td>RGS</td><td><span class="success">✅</span> Compatible</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Risques -->
+        <div class="slide">
+            <h1>Gestion des Risques et Plan de Contingence</h1>
+
+            <h2>Analyse des Risques</h2>
+            <table>
+                <tr><th>Risque</th><th>Probabilité</th><th>Impact</th><th>Mitigation</th></tr>
+                <tr><td>Qualité réponses insuffisante</td><td>Moyenne</td><td>Élevé</td><td>POC avec tests utilisateurs, fine-tuning si nécessaire</td></tr>
+                <tr><td>Dépassement budget</td><td>Faible</td><td>Moyen</td><td>Phases incrémentales, validation à chaque étape</td></tr>
+                <tr><td>Adoption utilisateurs faible</td><td>Moyenne</td><td>Élevé</td><td>Formation, champions, quick wins, feedback continu</td></tr>
+                <tr><td>Incident sécurité</td><td>Faible</td><td>Critique</td><td>Pentests, monitoring 24/7, incident response plan</td></tr>
+            </table>
+
+            <h2 style="margin-top: 1.5rem;">Plan de Contingence</h2>
+            <div class="columns">
+                <div class="column card">
+                    <h3>Backup & Recovery</h3>
+                    <p>• Backup complet quotidien</p>
+                    <p>• RTO : 4h / RPO : 24h</p>
+                    <p>• Disaster Recovery testé trimestriellement</p>
+                </div>
+                <div class="column card">
+                    <h3>Support & Monitoring</h3>
+                    <p>• Astreinte ML/DevOps 24/7</p>
+                    <p>• Monitoring Prometheus + Grafana</p>
+                    <p>• SLA uptime : 99.5%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Équipe -->
+        <div class="slide">
+            <h1>Équipe et Compétences Requises</h1>
+
+            <div class="columns">
+                <div class="column">
+                    <h2>Core Team (Temps plein)</h2>
+                    <div class="card">
+                        <p><strong>Lead ML Engineer</strong> (1 FTE)</p>
+                        <p>Architecture RAG/LLM, Fine-tuning, 5+ ans NLP</p>
+                    </div>
+                    <div class="card">
+                        <p><strong>Data Engineer</strong> (1 FTE)</p>
+                        <p>Pipeline données, Nettoyage, 3+ ans Python</p>
+                    </div>
+                    <div class="card">
+                        <p><strong>DevOps/MLOps</strong> (0.5 FTE)</p>
+                        <p>Infrastructure, CI/CD, monitoring</p>
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem;">Support Team (Partiel)</h3>
+                    <p>• Product Owner (0.3 FTE)</p>
+                    <p>• UX Designer (0.2 FTE)</p>
+                    <p>• Juriste/DPO (0.1 FTE)</p>
+                    <p>• Chef de Projet (0.5 FTE)</p>
+                </div>
+                <div class="column">
+                    <h2>Formation Recommandée</h2>
+                    <div class="card">
+                        <p><strong>Équipe IT</strong> : Formation LLM/RAG (3 jours)</p>
+                        <p>Concepts IA générative, Ollama, LangChain</p>
+                    </div>
+                    <div class="card">
+                        <p><strong>Utilisateurs</strong> : Formation outil (1 jour)</p>
+                        <p>Prise en main, best practices prompts</p>
+                    </div>
+                    <div class="card">
+                        <p><strong>Management</strong> : Présentation (2h)</p>
+                        <p>Vision, roadmap, KPIs, ROI</p>
+                    </div>
+
+                    <h2 style="margin-top: 1.5rem;">Budget RH</h2>
+                    <table>
+                        <tr><th>Phase</th><th>FTE total</th><th>Coût mensuel</th></tr>
+                        <tr><td>POC</td><td>2.5 FTE</td><td>15 k€/mois</td></tr>
+                        <tr><td>Pilote</td><td>3.6 FTE</td><td>22 k€/mois</td></tr>
+                        <tr><td>Production</td><td>2.0 FTE</td><td>12 k€/mois</td></tr>
+                        <tr><td>Run</td><td>1.5 FTE</td><td>9 k€/mois</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Comparaison Local vs Cloud -->
+        <div class="slide">
+            <h1>Comparaison IA Locale vs Cloud</h1>
+
+            <table>
+                <tr><th>Critère</th><th>IA Locale</th><th>IA Cloud</th></tr>
+                <tr><td>Confidentialité</td><td><span class="success">✅</span> 100% contrôle</td><td>❌ Données transmises</td></tr>
+                <tr><td>Coût mensuel (100 users)</td><td><span class="success">✅</span> 0€</td><td>❌ 2 000-10 000€/mois</td></tr>
+                <tr><td>Coût initial</td><td><span class="warning">⚠️</span> 35-60 k€</td><td><span class="success">✅</span> 0€</td></tr>
+                <tr><td>Performance</td><td><span class="warning">⚠️</span> Selon matériel (1-3s)</td><td><span class="success">✅</span> Très élevée (<500ms)</td></tr>
+                <tr><td>Personnalisation</td><td><span class="success">✅</span> Totale (fine-tuning)</td><td>❌ Limitée (few-shot)</td></tr>
+                <tr><td>Hors ligne</td><td><span class="success">✅</span> Oui</td><td>❌ Internet requis</td></tr>
+                <tr><td>Conformité RGPD</td><td><span class="success">✅</span> Garantie</td><td><span class="warning">⚠️</span> Dépend fournisseur</td></tr>
+            </table>
+
+            <h2 style="margin-top: 1.5rem;">Recommandation par Scénario</h2>
+            <div class="columns">
+                <div class="column card">
+                    <h3>IA Locale recommandée si :</h3>
+                    <p><span class="success">✅</span> Données sensibles (santé, finance)</p>
+                    <p><span class="success">✅</span> Usage intensif (>500 req/jour/user)</p>
+                    <p><span class="success">✅</span> Conformité stricte (HDS, ISO 27001)</p>
+                    <p><span class="success">✅</span> Besoin personnalisation forte</p>
+                    <p><span class="success">✅</span> Indépendance stratégique</p>
+                </div>
+                <div class="column card">
+                    <h3>IA Cloud recommandée si :</h3>
+                    <p><span class="success">✅</span> Données non sensibles</p>
+                    <p><span class="success">✅</span> Usage sporadique (<100 req/jour)</p>
+                    <p><span class="success">✅</span> Besoin performances maximales</p>
+                    <p><span class="success">✅</span> Équipe IT réduite</p>
+                    <p><span class="success">✅</span> POC rapide</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Prochaines Étapes -->
+        <div class="slide">
+            <h1>Prochaines Étapes : Décision et Lancement</h1>
+
+            <h2>Options Proposées</h2>
+            <div class="columns">
+                <div class="column card">
+                    <h3>Option A : POC Rapide</h3>
+                    <p><strong>6 semaines - 15 k€</strong></p>
+                    <p>• Use case unique</p>
+                    <p>• 20 bêta testeurs</p>
+                    <p>• Corpus test 1 000 docs</p>
+                    <p><span class="success">✅ Recommandé pour valider</span></p>
+                </div>
+                <div class="column card" style="border-left: 4px solid var(--color-primary);">
+                    <h3>Option B : Déploiement Pilote ⭐</h3>
+                    <p><strong>14 semaines - 60 k€</strong></p>
+                    <p>• 2-3 use cases</p>
+                    <p>• 100 utilisateurs</p>
+                    <p>• Corpus complet</p>
+                    <p><strong class="highlight">✅ Recommandé pour démarrer</strong></p>
+                </div>
+                <div class="column card">
+                    <h3>Option C : Full Deployment</h3>
+                    <p><strong>6 mois - 90 k€</strong></p>
+                    <p>• Tous use cases</p>
+                    <p>• Toute l'entreprise</p>
+                    <p>• HA + scalabilité</p>
+                    <p><span class="warning">⚠️ Risqué sans POC</span></p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 1.5rem;">Timeline de Décision</h2>
+            <ol>
+                <li><strong>J+7</strong> : Validation présentation par COMEX</li>
+                <li><strong>J+14</strong> : Décision Go/No-Go sur option choisie</li>
+                <li><strong>J+21</strong> : Kickoff projet si Go</li>
+                <li><strong>J+28</strong> : Constitution équipe et lancement</li>
+            </ol>
+        </div>
+
+        <!-- Slide 16: Conclusion -->
+        <div class="slide">
+            <h1>Conclusion : L'IA Locale, un Investissement Stratégique</h1>
+
+            <div class="columns">
+                <div class="column">
+                    <h2>Ce que vous retenez</h2>
+                    <p><span class="success">✅</span> <strong>Marché en croissance :</strong> +42% CAGR, 280 Mds$ en 2030</p>
+                    <p><span class="success">✅</span> <strong>ROI prouvé :</strong> 12-18 mois, économies 48-134 k€/an</p>
+                    <p><span class="success">✅</span> <strong>Conformité garantie :</strong> RGPD, HDS, ISO 27001</p>
+
+                    <h3 style="margin-top: 1.5rem;">3 cas d'usage sectoriels</h3>
+                    <div class="card">
+                        <p>• Finance : ROI 634%, payback 1.6 mois</p>
+                        <p>• Santé : ROI 3622%, +275% protocoles</p>
+                        <p>• Industrie : ROI 1650%, payback 21 jours</p>
+                    </div>
+
+                    <p style="margin-top: 1rem;"><span class="success">✅</span> <strong>Timeline maîtrisée :</strong> POC 6 sem, Production M+3</p>
+                </div>
+                <div class="column">
+                    <h2>Votre Décision</h2>
+
+                    <div class="metric-box">
+                        <h3 style="font-size: 1.25rem;">Option recommandée</h3>
+                        <p style="font-size: 1.125rem; margin-top: 0.5rem;">Déploiement Pilote</p>
+                        <p style="font-size: 1rem;">14 semaines - 60 k€</p>
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem;">Prochaines étapes :</h3>
+                    <ol>
+                        <li>Validation COMEX (J+7)</li>
+                        <li>Décision Go/No-Go (J+14)</li>
+                        <li>Kickoff projet (J+21)</li>
+                    </ol>
+
+                    <h3 style="margin-top: 1.5rem;">Bénéfices attendus :</h3>
+                    <p>• Gains productivité : +25%</p>
+                    <p>• Économies : 48-134 k€/an</p>
+                    <p>• Conformité RGPD : 100%</p>
+
+                    <p style="margin-top: 1.5rem; text-align: center;"><strong class="highlight">L'IA locale n'est plus une option, c'est un impératif compétitif.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Merci -->
+        <div class="slide title-slide">
+            <h1 style="font-size: 2rem;">Merci pour votre Attention</h1>
+            <h2 style="color: white; margin-top: 2rem;">Questions & Discussion</h2>
+
+            <div class="columns" style="margin-top: 3rem; color: white; text-align: left; font-size: 0.875rem;">
+                <div class="column">
+                    <p><strong>📧 Contact</strong></p>
+                    <p>Email : [votre.email@entreprise.com]</p>
+                    <p>Tél : [+33 X XX XX XX XX]</p>
+
+                    <p style="margin-top: 1.5rem;"><strong>📚 Ressources</strong></p>
+                    <p>• Guide technique complet (PDF)</p>
+                    <p>• Architecture détaillée (Visio)</p>
+                    <p>• Calculateur ROI (Excel)</p>
+                </div>
+                <div class="column">
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;">
+                        <p><strong>🎯 Décision Attendue : J+14</strong></p>
+                        <p style="margin-top: 0.5rem;">Recommandation : <strong>Option B - Déploiement Pilote</strong></p>
+                        <p>14 semaines - 60 k€</p>
+                        <p style="margin-top: 1rem;">ROI attendu : 12-18 mois</p>
+                        <p>Économies : 48-134 k€/an</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="confidential" style="margin-top: 3rem;">Document confidentiel - Ne pas diffuser | Version 2.0 - Janvier 2025</p>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">17</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn" onclick="prevSlide()">◀ Précédent</button>
+        <button class="nav-btn" id="next-btn" onclick="nextSlide()">Suivant ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            if (n >= totalSlides) currentSlide = totalSlides - 1;
+            if (n < 0) currentSlide = 0;
+
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>

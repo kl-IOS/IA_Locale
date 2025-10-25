@@ -35,35 +35,37 @@
 --font-weight-content: 400;                 /* Normal pour texte */
 ```
 
-### Hiérarchie des tailles
+### Hiérarchie des tailles (réduites pour meilleure lisibilité)
 ```css
-/* Très grands titres (slide de couverture) */
-.text-7xl { font-size: 4.5rem; }    /* 72px */
+/* Très grands titres (slide de couverture uniquement) */
+.text-6xl { font-size: 3rem; }      /* 48px - réduit de 72px */
 
 /* Grands titres (titres de slides) */
-.text-4xl { font-size: 2.25rem; }   /* 36px */
+.text-3xl { font-size: 1.75rem; }   /* 28px - réduit de 36px */
 
-/* Sous-titres */
-.text-3xl { font-size: 1.875rem; }  /* 30px */
-.text-2xl { font-size: 1.5rem; }    /* 24px */
+/* Sous-titres importants */
+.text-2xl { font-size: 1.375rem; }  /* 22px - réduit de 30px */
+.text-xl { font-size: 1.125rem; }   /* 18px - réduit de 24px */
 
 /* Titres de sections */
-.text-xl { font-size: 1.25rem; }    /* 20px */
-.text-lg { font-size: 1.125rem; }   /* 18px */
+.text-lg { font-size: 1rem; }       /* 16px - réduit de 20px */
+.text-base { font-size: 0.938rem; } /* 15px - réduit de 18px */
 
 /* Corps de texte */
-.text-base { font-size: 1rem; }     /* 16px */
+.text-sm { font-size: 0.875rem; }   /* 14px - maintenu */
 
-/* Petits textes */
-.text-sm { font-size: 0.875rem; }   /* 14px */
+/* Petits textes / notes */
+.text-xs { font-size: 0.75rem; }    /* 12px */
 ```
 
-### Règles d'utilisation
-- **Titres principaux** : text-4xl, couleur primary-dark, gras
-- **Sous-titres** : text-2xl ou text-xl, couleur primary
-- **Corps de texte** : text-base ou text-lg, couleur surface-foreground
-- **Descriptions** : text-sm, couleur muted-foreground
+### Règles d'utilisation (mise à jour pour PowerPoint)
+- **Titres principaux** : text-3xl (28px), couleur primary-dark, gras
+- **Sous-titres** : text-xl (18px), couleur primary, gras
+- **Titres de sections** : text-lg (16px), couleur primary
+- **Corps de texte** : text-sm (14px), couleur surface-foreground
+- **Descriptions/notes** : text-xs (12px), couleur muted-foreground
 - **Maximum 3 tailles** de texte par slide pour la cohérence
+- **Limite de contenu** : Maximum 6-7 points par slide, utiliser des puces courtes
 
 ---
 

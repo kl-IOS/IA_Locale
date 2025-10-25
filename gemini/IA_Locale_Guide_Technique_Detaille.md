@@ -2,47 +2,103 @@
 
 ---
 
+## Introduction à l'IA Locale
+
+Dans un monde où l'intelligence artificielle prend une place prépondérante, la capacité à maîtriser et à déployer des solutions d'IA en local devient un avantage stratégique majeur. Ce guide technique est conçu pour vous accompagner pas à pas dans la création de votre propre système d'IA fonctionnant entièrement sur votre infrastructure, sans dépendance aux services cloud externes. Que ce soit pour des raisons de confidentialité des données, de maîtrise des coûts, de souveraineté technologique ou de personnalisation avancée, l'IA locale offre une flexibilité et un contrôle inégalés.
+
+Nous explorerons ensemble les concepts fondamentaux, les pré-requis matériels et logiciels, les algorithmes clés (comme le RAG et le Fine-tuning), les outils essentiels et les meilleures pratiques pour mettre en œuvre une IA performante et sécurisée. Ce document s'adresse aux développeurs, ingénieurs et techniciens souhaitant approfondir leurs connaissances et concrétiser des projets d'IA en environnement local.
+
+---
+
 ## Glossaire
 
 *   **Accelerate**: Bibliothèque de Hugging Face qui simplifie l'entraînement de modèles sur des configurations distribuées (multi-GPU, TPU).
+*   **API (Application Programming Interface)**: Interface permettant à différents logiciels de communiquer entre eux.
+*   **AWQ (Activation-aware Weight Quantization)**: Méthode de quantification des modèles pour réduire leur taille et accélérer l'inférence.
 *   **bitsandbytes**: Bibliothèque permettant la quantification des modèles (ex: en 8-bit ou 4-bit) pour réduire leur empreinte mémoire.
+*   **CatBoost**: Algorithme de boosting d'arbres de décision, performant sur les données tabulaires.
 *   **Chunking**: Processus de segmentation de documents textuels en morceaux plus petits (chunks) pour l'indexation et le traitement par des modèles de langage.
+*   **Chroma**: Base de données vectorielle locale, simple d'utilisation.
+*   **CNN (Convolutional Neural Network)**: Type de réseau de neurones particulièrement efficace pour le traitement d'images.
 *   **Cross-Encoder**: Type de modèle qui évalue la pertinence d'une paire de textes (ex: question et document) en les traitant simultanément. Plus lent mais plus précis que les bi-encodeurs, il est souvent utilisé pour le re-ranking.
 *   **CUDA**: Architecture de calcul parallèle et plateforme de programmation développée par NVIDIA pour ses GPU. Essentielle pour l'accélération matérielle du deep learning.
 *   **cuDNN**: Bibliothèque de primitives accélérées par GPU pour les réseaux de neurones profonds, complémentaire à CUDA.
+*   **Docker**: Plateforme permettant d'encapsuler des applications et leurs dépendances dans des conteneurs isolés pour une meilleure reproductibilité.
+*   **DVC (Data Version Control)**: Système de gestion de versions pour les données et les modèles de Machine Learning.
 *   **Embeddings**: Représentations vectorielles (listes de nombres) de données (mots, phrases, documents) dans un espace de grande dimension. La proximité entre vecteurs indique une similarité sémantique.
 *   **FAISS (Facebook AI Similarity Search)**: Bibliothèque développée par Facebook AI pour la recherche efficace de similarité parmi des milliards de vecteurs.
 *   **Fine-tuning**: Processus de spécialisation d'un modèle de langage pré-entraîné sur un jeu de données spécifique à une tâche ou un domaine, en ajustant ses poids.
 *   **GGUF (GPT-Generated Unified Format)**: Format de fichier conçu pour exécuter efficacement les modèles de langage sur CPU et GPU, popularisé par des outils comme `llama.cpp`.
+*   **GPTQ**: Méthode de quantification des modèles (souvent en 4 bits) pour réduire leur taille et accélérer l'inférence.
 *   **HNSW (Hierarchical Navigable Small World)**: Algorithme de recherche de plus proches voisins approximatif, performant et équilibré, utilisé dans des bases de données vectorielles comme FAISS.
 *   **Inference**: Phase d'utilisation d'un modèle entraîné pour faire des prédictions sur de nouvelles données.
+*   **InfoNCE (Info Noise-Contrastive Estimation)**: Fonction de perte utilisée pour entraîner des modèles d'embeddings, notamment dans les approches contrastives.
 *   **IA Locale**: Intelligence artificielle qui fonctionne entièrement sur l'ordinateur de l'utilisateur, sans nécessiter de connexion Internet ou de services cloud.
 *   **IVF (Inverted File Index)**: Méthode d'indexation pour la recherche de vecteurs qui partitionne l'espace vectoriel en cellules pour accélérer la recherche.
+*   **kNN (k-Nearest Neighbors)**: Algorithme de recherche des k éléments les plus proches d'un point donné dans un espace de données.
+*   **KV-caching**: Technique d'optimisation pour les LLM qui stocke les clés et valeurs (Key-Value) des couches d'attention précédentes pour accélérer la génération de texte.
 *   **LangChain**: Framework d'orchestration pour construire des applications basées sur les LLM, notamment des systèmes RAG.
 *   **LLM (Large Language Model)**: Modèle de langage de grande échelle, comme GPT-3 ou Llama, entraîné sur de vastes corpus de texte.
+*   **LM Studio**: Interface utilisateur graphique conviviale pour télécharger, exécuter et interagir avec des LLM locaux.
 *   **LoRA (Low-Rank Adaptation)**: Technique de fine-tuning efficace qui consiste à n'entraîner qu'un petit nombre de paramètres (adaptateurs) ajoutés au modèle, réduisant ainsi considérablement les besoins en calcul et en mémoire.
 *   **LlamaIndex**: Alternative à LangChain, également axée sur la construction d'applications LLM et de pipelines RAG.
+*   **LSTM (Long Short-Term Memory)**: Type de réseau de neurones récurrents, efficace pour les séquences de données comme les séries temporelles.
 *   **MMR (Maximal Marginal Relevance)**: Stratégie de diversification utilisée lors de la recherche de documents pour éviter la redondance et augmenter la couverture de l'information.
+*   **MLOps**: Ensemble de pratiques pour déployer et maintenir des modèles de Machine Learning en production.
+*   **MVP (Minimum Viable Product)**: Version d'un produit avec juste assez de fonctionnalités pour être utilisable par les premiers clients.
 *   **MTEB (Massive Text Embedding Benchmark)**: Benchmark complet pour évaluer la qualité des modèles d'embeddings sur un large éventail de tâches.
+*   **NF4 (NormalFloat 4-bit)**: Format de quantification en 4 bits utilisé dans QLoRA pour les poids des modèles.
+*   **OCR (Optical Character Recognition)**: Technique permettant de convertir des images de texte en texte éditable.
 *   **Ollama**: Outil convivial qui simplifie le téléchargement, l'exécution et la gestion de modèles de langage locaux via une interface en ligne de commande ou une API.
 *   **PEFT (Parameter-Efficient Fine-Tuning)**: Ensemble de techniques (dont LoRA) visant à adapter les grands modèles pré-entraînés à des tâches en aval de manière efficace, en ne modifiant qu'une petite fraction de leurs paramètres.
 *   **PII (Personally Identifiable Information)**: Informations personnelles identifiables (nom, adresse, etc.) qu'il est crucial de protéger.
+*   **Playbook**: Guide ou ensemble d'instructions détaillées pour réaliser une tâche ou un processus.
 *   **Prompt Engineering**: Art de concevoir des instructions (prompts) claires et efficaces pour guider un modèle de langage vers la sortie souhaitée.
 *   **PyTorch**: Framework de deep learning open-source populaire, connu pour sa flexibilité et son écosystème riche.
+*   **Qdrant**: Base de données vectorielle open-source, optimisée pour la recherche de similarité.
 *   **QLoRA (Quantized Low-Rank Adaptation)**: Variante de LoRA qui combine le fine-tuning par adaptateurs avec la quantification du modèle de base (généralement en 4 bits), permettant d'entraîner des modèles très volumineux sur des GPU avec une VRAM limitée.
 *   **Quantization**: Processus de réduction de la précision numérique des poids d'un modèle (ex: de 32-bit à 8-bit ou 4-bit) pour diminuer sa taille, son empreinte mémoire et accélérer l'inférence, souvent avec une perte de qualité minime.
 *   **RAG (Retrieval-Augmented Generation)**: Architecture où un modèle de langage ne s'appuie pas uniquement sur sa mémoire interne, mais "récupère" (retrieve) des informations pertinentes d'une base de connaissances externe (comme une base de données vectorielle) avant de générer une réponse.
+*   **RandomForest**: Algorithme d'apprentissage automatique basé sur la construction de multiples arbres de décision.
 *   **ROCm**: Plateforme de calcul open-source de AMD pour le calcul sur GPU, alternative à CUDA.
+*   **Telemetry**: Collecte et transmission automatique de données à distance pour surveiller le fonctionnement d'un système.
 *   **TGI (Text Generation Inference)**: Serveur d'inférence de Hugging Face optimisé pour la génération de texte à haut débit.
+*   **TPU (Tensor Processing Unit)**: Processeur spécialisé développé par Google pour accélérer les charges de travail de Machine Learning.
 *   **Transformers**: Bibliothèque de Hugging Face qui donne accès à des milliers de modèles pré-entraînés et à des outils pour les entraîner et les utiliser.
+*   **Transformer temporel (TFT)**: Modèle de type Transformer adapté aux prévisions de séries temporelles.
 *   **Vector Database**: Base de données spécialisée dans le stockage et la recherche ultra-rapide de représentations vectorielles (embeddings). Exemples : FAISS, Chroma, Qdrant, Milvus.
+*   **ViT (Vision Transformer)**: Modèle de type Transformer appliqué aux tâches de vision par ordinateur.
 *   **vLLM**: Serveur d'inférence pour LLM très performant, optimisé pour un débit élevé.
+*   **VRAM (Video RAM)**: Mémoire vive dédiée aux cartes graphiques (GPU), essentielle pour les calculs d'IA.
+*   **Whisper**: Modèle de reconnaissance vocale automatique (ASR) développé par OpenAI.
+*   **XGBoost**: Algorithme de boosting d'arbres de décision très efficace et populaire.
+*   **YOLO (You Only Look Once)**: Algorithme de détection d'objets en temps réel.
 
----
 
 ## Table des Matières
 
-*Cette section sera générée automatiquement dans le fichier .docx final.*
+1.  [Introduction à l'IA Locale](#introduction-à-lia-locale)
+2.  [Pré-requis & Environnement](#pré-requis--environnement)
+3.  [Définir le Problème et la Stratégie](#définir-le-problème-et-la-stratégie)
+4.  [Préparation des Données](#préparation-des-données)
+5.  [Les Algorithmes Clés Expliqués](#les-algorithmes-clés-expliqués)
+    *   [RAG (Retrieval-Augmented Generation)](#rag-retrieval-augmented-generation)
+    *   [Fine-tuning (LoRA / QLoRA)](#fine-tuning-lora--qlora)
+    *   [Autres algorithmes (Classification, Vision, etc.)](#autres-algorithmes-classification-vision-etc)
+6.  [Outils et Stacks Locales](#outils-et-stacks-locales)
+7.  [Mise en Pratique : Pas-à-Pas](#mise-en-pratique--pas-à-pas)
+    *   [Étape A : Préparer l’environnement](#étape-a--préparer-lenvironnement)
+    *   [Étape B : Construire la base de connaissances (RAG)](#étape-b--construire-la-base-de-connaissances-rag)
+    *   [Étape C : Inférence locale avec un LLM](#étape-c--inférence-locale-avec-un-llm)
+    *   [Étape D : Fine-tuning léger (QLoRA)](#étape-d--fine-tuning-léger-qlora)
+    *   [Étape E : Évaluation](#étape-e--évaluation)
+    *   [Étape F : Déploiement local via une API](#étape-f--déploiement-local-via-une-api)
+8.  [Cas d'Usage : Exploiter son Archive YouTube](#cas-dusage--exploiter-son-archive-youtube)
+9.  [Sécurité, Confidentialité & Licences](#sécurité-confidentialité--licences)
+10. [Annexes : Exemples de Code](#annexes--exemples-de-code)
+11. [Modèles & tailles conseillés (local)](#modèles--tailles-conseillés-local)
+12. [Bonnes pratiques de projet](#bonnes-pratiques-de-projet)
+13. [Checklist finale](#checklist-finale)
 
 1.  Introduction à l'IA Locale
 2.  Pré-requis & Environnement
