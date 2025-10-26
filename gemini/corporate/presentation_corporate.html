@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Locale : La Prochaine Révolution</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            overflow: hidden;
+            color: #333;
+        }
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            width: 90%;
+            max-width: 1200px;
+            height: 80%;
+            max-height: 700px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            text-align: center;
+            overflow-y: auto; /* Allow scrolling for long content */
+        }
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            position: relative;
+        }
+        .slide h1 {
+            font-size: 48px; /* text-6xl */
+            color: #2E4053;
+            margin-bottom: 20px;
+        }
+        .slide h2 {
+            font-size: 28px; /* text-3xl */
+            color: #3498DB;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #3498DB;
+            padding-bottom: 5px;
+        }
+        .slide h3 {
+            font-size: 22px; /* text-2xl */
+            color: #2E4053;
+            margin-bottom: 10px;
+        }
+        .slide p, .slide ul, .slide ol {
+            font-size: 16px; /* text-lg */
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 10px auto;
+            text-align: left;
+        }
+        .slide ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .slide ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+        .slide code {
+            background-color: #e0e0e0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 14px; /* text-sm */
+        }
+        .slide pre {
+            background-color: #22303F;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            overflow-x: auto;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 14px; /* text-sm */
+        }
+        .slide pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+            font-size: 14px; /* text-sm */
+        }
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+        }
+        .nav-button {
+            background-color: #2E4053;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .nav-button:hover {
+            background-color: #3498DB;
+        }
+        .nav-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .slide-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            font-size: 16px;
+            color: #777;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #2E4053 0%, #3498DB 100%);
+            color: white;
+        }
+        .gradient-bg h1, .gradient-bg h2, .gradient-bg h3, .gradient-bg p, .gradient-bg ul, .gradient-bg h4, .gradient-bg ol {
+            color: white;
+        }
+        .card {
+            background-color: #f9f9f9;
+            border-left: 4px solid #3498DB;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .metric-box {
+            background: linear-gradient(45deg, #3498DB, #2E4053);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .metric-box h4 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .metric-box p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #2E4053;
+            color: white;
+        }
+        .two-columns {
+            display: flex;
+            gap: 30px;
+            width: 100%;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+        .two-columns > div {
+            flex: 1;
+            min-width: 45%;
+        }
+        @media print {
+            body {
+                background-color: #fff;
+            }
+            .presentation-container, .slide {
+                box-shadow: none;
+                border: none;
+                width: 100%;
+                height: auto;
+                max-width: none;
+                max-height: none;
+                position: static;
+                opacity: 1;
+                transform: scale(1);
+                page-break-after: always;
+            }
+            .navigation, .slide-counter {
+                display: none;
+            }
+            .slide h1 { font-size: 36px; }
+            .slide h2 { font-size: 24px; }
+            .slide h3 { font-size: 20px; }
+            .slide p, .slide ul, .slide ol { font-size: 14px; }
+            .slide pre, .slide code { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide active gradient-bg">
+            <h1>IA Locale : La Prochaine Révolution</h1>
+            <p style="font-size: 22px;">Optimisez vos opérations avec l'Intelligence Artificielle sur site.</p>
+            <p style="font-size: 14px; margin-top: 50px;">Confidentiel - Ne pas distribuer sans autorisation.</p>
+        </div>
+        <div class="slide">
+            <h2>Sommaire Exécutif</h2>
+            <ul>
+                <li>**Enjeux Actuels :** Confidentialité des données, coûts du cloud, souveraineté numérique.</li>
+                <li>**Notre Proposition :** Déploiement d'IA locale pour une performance et une sécurité accrues.</li>
+                <li>**Livrables Clés :** Guide technique, présentations stratégiques, preuve de concept (POC).</li>
+                <li>**Bénéfices Attendus :** Réduction des coûts, amélioration de la productivité, conformité RGPD.</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <h2>Contexte et Impératifs Stratégiques</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Évolution du Marché de l'IA</h3>
+                    <p>Le marché de l'IA connaît une croissance exponentielle, mais soulève des questions cruciales sur la gestion des données et la dépendance aux fournisseurs cloud.</p>
+                    <ul>
+                        <li>Augmentation des coûts d'infrastructure cloud.</li>
+                        <li>Préoccupations croissantes sur la confidentialité et la sécurité des données sensibles.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Nos 4 Piliers Stratégiques</h3>
+                    <ul>
+                        <li>**Sécurité :** Protection maximale des informations critiques.</li>
+                        <li>**Performance :** Latence réduite, traitement rapide des données.</li>
+                        <li>**Coût :** Optimisation des dépenses opérationnelles à long terme.</li>
+                        <li>**Contrôle :** Maîtrise totale de l'infrastructure et des modèles d'IA.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Analyse Coûts-Bénéfices Détaillée</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Catégorie</th>
+                        <th>Coût Initial (estimé)</th>
+                        <th>Économies Annuelles (estimées)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Matériel (GPU, Serveur)</td>
+                        <td>35 000 € - 60 000 €</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>Licences Logiciels</td>
+                        <td>0 € - 5 000 €</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>Coûts Cloud Évités</td>
+                        <td>N/A</td>
+                        <td>30 000 € - 80 000 €</td>
+                    </tr>
+                    <tr>
+                        <td>Gain de Productivité</td>
+                        <td>N/A</td>
+                        <td>18 000 € - 54 000 €</td>
+                    </tr>
+                    <tr>
+                        <td>**Total**</td>
+                        <td>**35 000 € - 65 000 €**</td>
+                        <td>**48 000 € - 134 000 €**</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 20px;">**ROI estimé :** 150% - 300% sur 3 ans. **Délai de récupération :** 6 - 18 mois.</p>
+        </div>
+        <div class="slide">
+            <h2>Roadmap de Déploiement</h2>
+            <pre><code>graph TD
+    A[Phase 1: POC & Validation Technique] --> B{Mois 1-2}
+    B --> C[Phase 2: Pilote & Intégration] --> D{Mois 3-6}
+    D --> E[Phase 3: Déploiement Généralisé & Optimisation] --> F{Mois 7-12}
+
+    subgraph Phase 1
+        A1[Sélection Cas d'Usage] --> A2[Mise en place Infra] --> A3[Développement POC] --> A4[Tests & Validation]
+    end
+
+    subgraph Phase 2
+        C1[Intégration Systèmes Existants] --> C2[Formation Utilisateurs Clés] --> C3[Collecte Feedback] --> C4[Ajustements]
+    end
+
+    subgraph Phase 3
+        E1[Déploiement à Grande Échelle] --> E2[Monitoring & Maintenance] --> E3[Optimisation Continue]
+    end</code></pre>
+            <p><em>Diagramme de Gantt Mermaid illustrant les phases et jalons.</em></p>
+        </div>
+        <div class="slide">
+            <h2>Architecture Technique Recommandée</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Stack Technologique</h3>
+                    <ul>
+                        <li>**LLM Runtime :** Ollama</li>
+                        <li>**Frameworks :** LangChain, LlamaIndex</li>
+                        <li>**API :** FastAPI</li>
+                        <li>**Base Vectorielle :** ChromaDB, Qdrant</li>
+                        <li>**Conteneurisation :** Docker, Kubernetes</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Structure en 3 Couches</h3>
+                    <ul>
+                        <li>**Couche d'Ingestion :** Collecte, nettoyage et vectorisation des données.</li>
+                        <li>**Couche de Traitement :** Moteurs RAG, Fine-tuning, gestion des modèles.</li>
+                        <li>**Couche d'Exposition :** API REST, interfaces utilisateur (Gradio, Streamlit).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Métriques de Performance Mesurées</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Modèle</th>
+                        <th>Latence (p95)</th>
+                        <th>Throughput (req/min)</th>
+                        <th>VRAM (Go)</th>
+                        <th>CPU (cores)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Llama 3 8B</td>
+                        <td>1.2s</td>
+                        <td>50</td>
+                        <td>8</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Llama 3 70B</td>
+                        <td>4.5s</td>
+                        <td>15</td>
+                        <td>24</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Mistral 7B</td>
+                        <td>0.8s</td>
+                        <td>70</td>
+                        <td>7</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 20px;"><em>Benchmarks réalisés sur une infrastructure type NVIDIA RTX 4090.</em></p>
+        </div>
+        <div class="slide">
+            <h2>Cas d'Usage Secteur : Finance & Banque</h2>
+            <div class="card">
+                <h3>Assistant Réglementaire Intelligent</h3>
+                <p><strong>Problème :</strong> Les analystes passent 3-4 heures/jour à rechercher des procédures réglementaires complexes.</p>
+                <p><strong>Solution :</strong> Système RAG local indexant des milliers de documents réglementaires.</p>
+                <div class="metric-box">
+                    <h4>ROI : 634%</h4>
+                    <p>Payback : 1.6 mois | Économie annuelle : 380k€</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Cas d'Usage Secteur : Santé & Pharmaceutique</h2>
+            <div class="card">
+                <h3>Veille Scientifique Automatisée</h3>
+                <p><strong>Problème :</strong> Processus de veille scientifique lent et manuel (120 articles/mois).</p>
+                <p><strong>Solution :</strong> RAG multimodal avec fine-tuning sur la terminologie médicale.</p>
+                <div class="metric-box">
+                    <h4>ROI : 3622%</h4>
+                    <p>Augmentation de 275% des protocoles traités | -81% temps de revue</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Cas d'Usage Secteur : Industrie & Manufacturing</h2>
+            <div class="card">
+                <h3>Maintenance Prédictive et Assistance Opérationnelle</h3>
+                <p><strong>Problème :</strong> Downtime coûteux (50-200k€/h) dû à une documentation technique dispersée.</p>
+                <p><strong>Solution :</strong> IA locale sur Edge computing avec interface vocale pour les techniciens.</p>
+                <div class="metric-box">
+                    <h4>ROI : 1650%</h4>
+                    <p>Payback : 21 jours | -57% MTTR (Mean Time To Repair)</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Sécurité, Conformité RGPD et Anonymisation</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Sécurité API</h3>
+                    <ul>
+                        <li>Authentification par token (HTTPBearer).</li>
+                        <li>Chiffrement des communications (HTTPS).</li>
+                        <li>Gestion des accès et des rôles.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Conformité RGPD & Anonymisation</h3>
+                    <ul>
+                        <li>Fonctions d'anonymisation des PII (emails, téléphones, noms).</li>
+                        <li>Hashing SHA-256 pour les données sensibles.</li>
+                        <li>Droit à l'oubli : suppression sécurisée des données.</li>
+                        <li>Audit trail complet des accès et traitements.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Gestion des Risques et Plan de Contingence</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Risque</th>
+                        <th>Impact</th>
+                        <th>Probabilité</th>
+                        <th>Atténuation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Défaillance Matérielle</td>
+                        <td>Élevé</td>
+                        <td>Faible</td>
+                        <td>Redondance, Maintenance préventive</td>
+                    </tr>
+                    <tr>
+                        <td>Qualité des Données</td>
+                        <td>Moyen</td>
+                        <td>Moyenne</td>
+                        <td>Pipeline de nettoyage robuste, Validation</td>
+                    </tr>
+                    <tr>
+                        <td>Obsolescence Modèle</td>
+                        <td>Moyen</td>
+                        <td>Faible</td>
+                        <td>Mise à jour régulière, Fine-tuning continu</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 20px;"><em>Plan de reprise d'activité (PRA) détaillé en annexe.</em></p>
+        </div>
+        <div class="slide">
+            <h2>Équipe et Compétences Requises</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Composition de l'Équipe</h3>
+                    <ul>
+                        <li>1 Data Scientist Senior</li>
+                        <li>1 Ingénieur MLOps</li>
+                        <li>1 Développeur Backend</li>
+                        <li>1 Chef de Projet</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Budget RH Estimé</h3>
+                    <p>~150 000 € sur 12 mois (salaires + charges).</p>
+                    <p>Formation continue sur les dernières avancées en IA locale.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Comparaison IA Locale vs Cloud</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Caractéristique</th>
+                        <th>IA Locale</th>
+                        <th>IA Cloud</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Confidentialité</td>
+                        <td>Maximale</td>
+                        <td>Dépend du fournisseur</td>
+                    </tr>
+                    <tr>
+                        <td>Coût</td>
+                        <td>Investissement initial, puis faible</td>
+                        <td>Coûts récurrents variables</td>
+                    </tr>
+                    <tr>
+                        <td>Performance</td>
+                        <td>Faible latence, contrôle direct</td>
+                        <td>Dépend de la connexion, mutualisation</td>
+                    </tr>
+                    <tr>
+                        <td>Scalabilité</td>
+                        <td>Limitée par le matériel</td>
+                        <td>Élevée, à la demande</td>
+                    </tr>
+                    <tr>
+                        <td>Contrôle</td>
+                        <td>Total</td>
+                        <td>Partiel (SLA)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="slide">
+            <h2>Prochaines Étapes : Décision et Lancement</h2>
+            <ul>
+                <li>**Option 1 : Preuve de Concept (POC) :** Démarrage rapide sur un cas d'usage ciblé.</li>
+                <li>**Option 2 : Projet Pilote :** Déploiement sur un département avec intégration limitée.</li>
+                <li>**Option 3 : Déploiement Complet :** Intégration à l'échelle de l'entreprise.</li>
+            </ul>
+            <p style="margin-top: 20px;">Nous sommes prêts à discuter de l'option la plus adaptée à vos objectifs stratégiques.</p>
+        </div>
+        <div class="slide gradient-bg">
+            <h1>Conclusion : L'IA Locale, un Investissement Stratégique</h1>
+            <p style="font-size: 22px;">L'adoption de l'IA locale est un levier de compétitivité, de sécurité et d'innovation pour votre entreprise.</p>
+            <p style="font-size: 18px;">Un investissement qui garantit autonomie et maîtrise de vos données.</p>
+        </div>
+        <div class="slide">
+            <h2>Merci pour votre Attention</h2>
+            <p>Questions & Réponses.</p>
+            <p style="margin-top: 30px;">Contact : votre.email@example.com</p>
+            <p style="font-size: 14px; margin-top: 50px;">Confidentiel - Ne pas distribuer sans autorisation.</p>
+        </div>
+    </div>
+
+    <div class="slide-counter">Slide <span id="current-slide">1</span> / <span id="total-slides">17</span></div>
+    <div class="navigation">
+        <button class="nav-button" id="prev-button" disabled>Précédent</button>
+        <button class="nav-button" id="next-button">Suivant</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlideIndex = 0;
+        const totalSlides = slides.length;
+
+        const currentSlideSpan = document.getElementById('current-slide');
+        const totalSlidesSpan = document.getElementById('total-slides');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+
+        totalSlidesSpan.textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            currentSlideSpan.textContent = index + 1;
+            prevButton.disabled = index === 0;
+            nextButton.disabled = index === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                showSlide(currentSlideIndex);
+            }
+        }
+
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        showSlide(currentSlideIndex); // Initialize first slide
+    </script>
+</body>
+</html>

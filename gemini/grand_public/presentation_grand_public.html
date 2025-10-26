@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créez votre IA Locale 🚀</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            overflow: hidden;
+            color: #333;
+        }
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            width: 90%;
+            max-width: 1200px;
+            height: 80%;
+            max-height: 700px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            text-align: center;
+            overflow-y: auto; /* Allow scrolling for long content */
+        }
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            position: relative;
+        }
+        .slide h1 {
+            font-size: 48px; /* text-6xl */
+            color: #5EA8A7;
+            margin-bottom: 20px;
+        }
+        .slide h2 {
+            font-size: 28px; /* text-3xl */
+            color: #FE4447;
+            margin-bottom: 15px;
+        }
+        .slide h3 {
+            font-size: 22px; /* text-2xl */
+            color: #5EA8A7;
+            margin-bottom: 10px;
+        }
+        .slide p, .slide ul, .slide ol {
+            font-size: 16px; /* text-lg */
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 10px auto;
+            text-align: left;
+        }
+        .slide ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .slide ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+        .slide code {
+            background-color: #e0e0e0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 14px; /* text-sm */
+        }
+        .slide pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            overflow-x: auto;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 14px; /* text-sm */
+        }
+        .slide pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+            font-size: 14px; /* text-sm */
+        }
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+        }
+        .nav-button {
+            background-color: #5EA8A7;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .nav-button:hover {
+            background-color: #4a8a89;
+        }
+        .nav-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .slide-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            font-size: 16px;
+            color: #777;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #5EA8A7 0%, #FE4447 100%);
+            color: white;
+        }
+        .gradient-bg h1, .gradient-bg h2, .gradient-bg h3, .gradient-bg p, .gradient-bg ul, .gradient-bg ol {
+            color: white;
+        }
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #FE4447;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .two-columns {
+            display: flex;
+            gap: 30px;
+            width: 100%;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+        .two-columns > div {
+            flex: 1;
+            min-width: 45%;
+        }
+        @media print {
+            body {
+                background-color: #fff;
+            }
+            .presentation-container, .slide {
+                box-shadow: none;
+                border: none;
+                width: 100%;
+                height: auto;
+                max-width: none;
+                max-height: none;
+                position: static;
+                opacity: 1;
+                transform: scale(1);
+                page-break-after: always;
+            }
+            .navigation, .slide-counter {
+                display: none;
+            }
+            .slide h1 { font-size: 36px; }
+            .slide h2 { font-size: 24px; }
+            .slide h3 { font-size: 20px; }
+            .slide p, .slide ul, .slide ol { font-size: 14px; }
+            .slide pre, .slide code { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide active gradient-bg">
+            <h1>Créez votre IA Locale 🚀</h1>
+            <p style="font-size: 22px;">Un guide pratique pour maîtriser l'intelligence artificielle sur votre machine.</p>
+        </div>
+        <div class="slide">
+            <h2>Qu'est-ce qu'une IA locale ?</h2>
+            <ul>
+                <li>**Confidentialité :** Vos données restent sur votre machine, jamais envoyées à des serveurs externes.</li>
+                <li>**Autonomie :** Fonctionne sans connexion internet, idéal pour les environnements isolés.</li>
+                <li>**Maîtrise :** Contrôle total sur le modèle, les données et les performances.</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <h2>De quoi avez-vous besoin ?</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Matériel</h3>
+                    <ul>
+                        <li>**Processeur (CPU) :** Intel i5/Ryzen 5 (minimum), i7/Ryzen 7 (recommandé).</li>
+                        <li>**Mémoire vive (RAM) :** 16 Go (minimum), 32 Go ou plus (recommandé).</li>
+                        <li>**Carte graphique (GPU) :** NVIDIA RTX 3060 (minimum), RTX 4070+ (recommandé) pour de meilleures performances.</li>
+                        <li>**Stockage :** SSD 500 Go (minimum), 1 To+ (recommandé).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Logiciels</h3>
+                    <ul>
+                        <li>**Système d'exploitation :** Windows 10/11, macOS, Linux.</li>
+                        <li>**Python :** Version 3.9 ou supérieure.</li>
+                        <li>**Ollama :** Pour exécuter les modèles de langage localement.</li>
+                        <li>**Bibliothèques Python :** LangChain, Pydantic, FastAPI, etc.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Les 5 grandes étapes</h2>
+            <ol>
+                <li><span class="badge">1</span> Définir votre besoin : Comprendre le problème à résoudre.</li>
+                <li><span class="badge">2</span> Préparer vos données : Collecte, nettoyage et formatage.</li>
+                <li><span class="badge">3</span> RAG et Fine-tuning : Choisir et adapter l'approche IA.</li>
+                <li><span class="badge">4</span> Installation complète : Mettre en place l'environnement.</li>
+                <li><span class="badge">5</span> Créer votre système RAG ! : Développer et tester votre solution.</li>
+            </ol>
+        </div>
+        <div class="slide">
+            <h2>Étape 1 : Définir votre besoin</h2>
+            <p>Avant de commencer, posez-vous les bonnes questions :</p>
+            <ul>
+                <li>Quel est le problème spécifique que l'IA doit résoudre ?</li>
+                <li>Quel type de tâche l'IA effectuera-t-elle (réponse à des questions, résumé, génération de texte, classification) ?</li>
+                <li>Qui sont les utilisateurs finaux et quelles sont leurs attentes ?</li>
+            </ul>
+            <p>Exemples : assistant pour la recherche documentaire, chatbot interne pour le support client, outil de résumé de rapports.</p>
+        </div>
+        <div class="slide">
+            <h2>Étape 2 : Préparer vos données</h2>
+            <p>La qualité des données est cruciale pour la performance de votre IA.</p>
+            <h3>Processus typique :</h3>
+            <ul>
+                <li>**Collecte :** Rassembler les documents pertinents (PDF, DOCX, TXT, HTML).</li>
+                <li>**Extraction :** Convertir les documents en texte brut.</li>
+                <li>**Nettoyage :** Supprimer les éléments indésirables (balises HTML, URLs, caractères spéciaux, erreurs OCR).</li>
+                <li>**Déduplication :** Éliminer les doublons pour éviter les biais.</li>
+                <li>**Formatage :** Structurer les données pour l'entraînement ou l'indexation (ex: JSONL).</li>
+            </ul>
+            <p>Un script Python peut automatiser ces tâches pour un traitement par lots.</p>
+        </div>
+        <div class="slide">
+            <h2>Étape 3 : RAG et Fine-tuning</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>RAG (Retrieval Augmented Generation)</h3>
+                    <p>L'IA "cherche" des informations pertinentes dans une base de connaissances avant de générer une réponse. Idéal pour des réponses factuelles et à jour.</p>
+                    <pre><code># Pseudo-code RAG
+query = "Quelle est la capitale de la France ?"
+documents = vector_store.retrieve(query) # Recherche
+context = combine(documents)
+answer = llm.generate(query, context) # Génération</code></pre>
+                </div>
+                <div>
+                    <h3>Fine-tuning (Ajustement fin)</h3>
+                    <p>Adapter un modèle de langage pré-entraîné à un domaine ou un style spécifique avec vos propres données. Utile pour des tâches très spécifiques ou un ton particulier.</p>
+                    <p>Le choix dépend de votre cas d'usage : RAG pour la précision factuelle, Fine-tuning pour la spécialisation comportementale.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Étape 4 : Installation complète</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Installer Ollama</h3>
+                    <p>Téléchargez et installez Ollama depuis <a href="https://ollama.com" target="_blank">ollama.com</a>.</p>
+                    <pre><code># Télécharger un modèle (ex: Llama 3)
+ollama pull llama3
+
+# Tester le modèle
+ollama run llama3 "Bonjour, comment allez-vous ?"</code></pre>
+                </div>
+                <div>
+                    <h3>Installer Python et dépendances</h3>
+                    <p>Assurez-vous d'avoir Python 3.9+ et installez les bibliothèques :</p>
+                    <pre><code># Vérifier Python
+python3 --version
+
+# Installer les dépendances
+pip install langchain ollama pydantic fastapi uvicorn</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Vérification et choix du modèle</h2>
+            <h3>Vérification de l'installation</h3>
+            <p>Un script simple pour s'assurer qu'Ollama et les embeddings fonctionnent :</p>
+            <pre><code># verif_ollama.py
+from langchain_community.llms import Ollama
+from langchain_community.embeddings import OllamaEmbeddings
+
+llm = Ollama(model="llama3")
+embeddings = OllamaEmbeddings(model="llama3")
+
+print(llm.invoke("Salut !"))
+print(embeddings.embed_query("Ceci est un test."))</code></pre>
+            <h3>Choisir le bon modèle</h3>
+            <p>Considérez la VRAM de votre GPU, la vitesse et la qualité souhaitée. Ex: Llama 3 8B pour 8Go VRAM.</p>
+        </div>
+        <div class="slide">
+            <h2>Étape 5 : Créer votre système RAG !</h2>
+            <p>Voici un aperçu simplifié d'un pipeline RAG en Python :</p>
+            <pre><code># rag_simple.py
+from langchain_community.document_loaders import TextLoader
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.chains import RetrievalQA
+from langchain_community.llms import Ollama
+
+# 1. Charger le document
+loader = TextLoader("mon_document.txt")
+documents = loader.load()
+
+# 2. Diviser le texte en "chunks"
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+chunks = text_splitter.split_documents(documents)
+
+# 3. Créer les embeddings et le Vector Store
+embeddings = OllamaEmbeddings(model="llama3")
+vector_store = Chroma.from_documents(chunks, embeddings)
+
+# 4. Configurer le modèle de langage
+llm = Ollama(model="llama3")
+
+# 5. Créer la chaîne RAG
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    chain_type="stuff",
+    retriever=vector_store.as_retriever()
+)
+
+# 6. Poser une question
+question = "Quel est le sujet principal du document ?"
+response = qa_chain.invoke({"query": question})
+print(response["result"])</code></pre>
+        </div>
+        <div class="slide">
+            <h2>Exemple concret : Assistant de cours</h2>
+            <h3>Cas d'usage :</h3>
+            <p>Un étudiant doit analyser une thèse de 350 pages pour préparer un examen.</p>
+            <h3>Solution :</h3>
+            <p>Mise en place d'un système RAG local avec la thèse comme base de connaissances.</p>
+            <h3>Résultats :</h3>
+            <ul>
+                <li>**Avant :** 3-4 heures de recherche manuelle.</li>
+                <li>**Après :** 8 minutes pour obtenir des réponses précises et sourcées.</li>
+                <li>**Gain de temps :** -82% !</li>
+            </ul>
+            <p>L'IA locale transforme la productivité académique.</p>
+        </div>
+        <div class="slide">
+            <h2>Problèmes courants & Optimisations</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Problèmes fréquents</h3>
+                    <ul>
+                        <li>**Erreur GPU :** Pilotes non à jour, VRAM insuffisante.</li>
+                        <li>**Modèle lent :** Modèle trop grand pour le matériel, pas d'accélération GPU.</li>
+                        <li>**Réponses imprécises :** Mauvaise qualité des données, chunking inadapté.</li>
+                        <li>**Ollama non trouvé :** Chemin d'accès incorrect, service non démarré.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Astuces d'optimisation</h3>
+                    <ul>
+                        <li>**Chunking :** Ajuster `chunk_size` et `chunk_overlap`.</li>
+                        <li>**Cache :** Utiliser un cache pour les embeddings et les réponses.</li>
+                        <li>**GPU :** S'assurer que l'accélération GPU est active.</li>
+                        <li>**Modèle :** Choisir un modèle adapté à votre matériel.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Comparaison Local vs Cloud</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>IA Locale</h3>
+                    <ul>
+                        <li>✅ Confidentialité maximale</li>
+                        <li>✅ Coûts maîtrisés (investissement initial)</li>
+                        <li>✅ Indépendance (pas de dépendance externe)</li>
+                        <li>❌ Scalabilité limitée par le matériel</li>
+                        <li>❌ Nécessite des compétences techniques</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>IA Cloud</h3>
+                    <ul>
+                        <li>✅ Scalabilité illimitée</li>
+                        <li>✅ Facilité de déploiement</li>
+                        <li>✅ Accès à des modèles de pointe</li>
+                        <li>❌ Coûts récurrents élevés</li>
+                        <li>❌ Dépendance à un fournisseur tiers</li>
+                        <li>❌ Questions de confidentialité des données</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide gradient-bg">
+            <h1>Conclusion : Lancez-vous !</h1>
+            <p style="font-size: 22px;">L'IA locale est une technologie accessible et puissante qui vous offre contrôle et confidentialité.</p>
+            <p style="font-size: 18px;">Commencez par un petit projet, expérimentez et découvrez son potentiel !</p>
+        </div>
+        <div class="slide">
+            <h2>Merci ! Questions ?</h2>
+            <p>N'hésitez pas à poser vos questions.</p>
+            <p style="margin-top: 30px;">Contact : votre.email@example.com</p>
+        </div>
+    </div>
+
+    <div class="slide-counter">Slide <span id="current-slide">1</span> / <span id="total-slides">15</span></div>
+    <div class="navigation">
+        <button class="nav-button" id="prev-button" disabled>Précédent</button>
+        <button class="nav-button" id="next-button">Suivant</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlideIndex = 0;
+        const totalSlides = slides.length;
+
+        const currentSlideSpan = document.getElementById('current-slide');
+        const totalSlidesSpan = document.getElementById('total-slides');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+
+        totalSlidesSpan.textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            currentSlideSpan.textContent = index + 1;
+            prevButton.disabled = index === 0;
+            nextButton.disabled = index === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                showSlide(currentSlideIndex);
+            }
+        }
+
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        showSlide(currentSlideIndex); // Initialize first slide
+    </script>
+</body>
+</html>
