@@ -435,6 +435,28 @@ REFONTE PRÉSENTATION CORPORATE - 2025-10-25 18:15 :
     - 3 cas d'usage sectoriels complets avec ROI détaillés
     - Analyse coûts-bénéfices détaillée (35-60 k€ investissement, 48-134 k€/an économies)
     - Roadmap 3 phases avec diagramme Gantt Mermaid
+      ```mermaid
+      gantt
+          dateFormat  YYYY-MM-DD
+          title Roadmap de Déploiement IA Locale
+
+          section Phase 1: POC & Validation Technique
+          Sélection Cas d'Usage           :a1, 2025-11-01, 14d
+          Mise en place Infra             :a2, after a1, 10d
+          Développement POC               :a3, after a2, 20d
+          Tests & Validation              :a4, after a3, 7d
+
+          section Phase 2: Pilote & Intégration
+          Intégration Systèmes Existants  :b1, 2025-12-15, 20d
+          Formation Utilisateurs Clés     :b2, after b1, 10d
+          Collecte Feedback               :b3, after b2, 15d
+          Ajustements                     :b4, after b3, 7d
+
+          section Phase 3: Déploiement Généralisé & Optimisation
+          Déploiement à Grande Échelle    :c1, 2026-02-01, 30d
+          Monitoring & Maintenance        :c2, after c1, 15d
+          Optimisation Continue           :c3, after c2, 10d
+      ```
     - Architecture technique complète (stack + 3 couches)
     - Benchmarks de performance (Llama 8B/13B/70B)
     - Comparaison RAG vs Fine-tuning
@@ -461,6 +483,25 @@ REFONTE PRÉSENTATION CORPORATE - 2025-10-25 18:15 :
     - Support impression (print CSS)
     - Compteur de slides professionnel
     - Mention confidentialité sur slide titre et fin
+    - Configuration Mermaid.js :
+      ```javascript
+      mermaid.initialize({ startOnLoad: true, svg: { height: '100%' } });
+      ```
+    - Styles CSS spécifiques :
+      ```css
+      .mermaid {
+          width: 100%;
+          height: auto;
+          text-align: center;
+          overflow-x: auto;
+          margin: 20px 0;
+          overflow-y: auto;
+      }
+      #roadmap-slide {
+          height: auto !important;
+          max-height: none !important;
+      }
+      ```
 
   Structure HTML :
     - 17 slides avec classe .slide
@@ -525,3 +566,13 @@ PROGRESSION ACTUELLE - 2025-10-26:
   ✅ Les chemins avec espaces ont été correctement gérés lors de la conversion Pandoc.
   ✅ Fichiers corporate et grand public déplacés dans leurs sous-répertoires respectifs ('gemini/corporate/' et 'gemini/grand_public/').
   ✅ Fichier README.md généré à la racine du projet.
+  ✅ Code Mermaid ajouté à 'gemini/corporate/presentation_corporate.md'.
+  ✅ 'gemini/corporate/presentation_corporate.pptx' régénéré.
+  ✅ Support Mermaid.js ajouté à 'gemini/corporate/presentation_corporate.html' pour le rendu du diagramme.
+  ✅ Code Mermaid dans 'gemini/corporate/presentation_corporate.html' corrigé pour correspondre au fichier Markdown.
+  ✅ Styles CSS ajustés dans 'gemini/corporate/presentation_corporate.html' pour améliorer le rendu du diagramme Mermaid.
+  ✅ Option 'height: 100%' ajoutée à la configuration Mermaid.js dans 'gemini/corporate/presentation_corporate.html'.
+  ✅ Suppression de 'max-height' de la classe '.mermaid' dans 'gemini/corporate/presentation_corporate.html'.
+  ✅ ID 'roadmap-slide' ajouté à la slide du diagramme de Gantt dans 'gemini/corporate/presentation_corporate.html'.
+  ✅ Règles CSS spécifiques pour '#roadmap-slide' ajoutées dans 'gemini/corporate/presentation_corporate.html' pour gérer la hauteur du diagramme.
+  ✅ Fichiers de présentation (DOCX, PPTX, HTML) régénérés avec les dernières modifications.

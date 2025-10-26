@@ -116,6 +116,14 @@
             border-radius: 0;
             font-size: 14px; /* text-sm */
         }
+        .mermaid {
+            width: 100%;
+            height: auto;
+            text-align: center; /* Centrer le diagramme */
+            overflow-x: auto; /* Permettre le défilement horizontal si nécessaire */
+            margin: 20px 0;
+            overflow-y: auto; /* Ajouter un défilement vertical si le contenu dépasse */
+        }
         .navigation {
             position: absolute;
             bottom: 30px;
@@ -208,14 +216,6 @@
         .two-columns > div {
             flex: 1;
             min-width: 45%;
-        }
-        .mermaid {
-            width: 100%;
-            height: auto;
-            text-align: center;
-            overflow-x: auto;
-            margin: 20px 0;
-            overflow-y: auto;
         }
         #roadmap-slide {
             height: auto !important;
@@ -581,6 +581,7 @@ gantt
             <h2>Merci pour votre Attention</h2>
             <p>Questions & Réponses.</p>
             <p style="margin-top: 30px;">Contact : votre.email@example.com</p>
+            <p style="font-size: 14px; margin-top: 50px;">Confidentiel - Ne pas distribuer sans autorisation.</p>
         </div>
     </div>
 

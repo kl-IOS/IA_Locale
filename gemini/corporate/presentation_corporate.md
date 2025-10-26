@@ -33,6 +33,29 @@
 *   **Phase 3 (Mois 7-12) :** Déploiement généralisé et optimisation.
 *   Diagramme de Gantt Mermaid.
 
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title Roadmap de Déploiement IA Locale
+
+    section Phase 1: POC & Validation Technique
+    Sélection Cas d'Usage           :a1, 2025-11-01, 14d
+    Mise en place Infra             :a2, after a1, 10d
+    Développement POC               :a3, after a2, 20d
+    Tests & Validation              :a4, after a3, 7d
+
+    section Phase 2: Pilote & Intégration
+    Intégration Systèmes Existants  :b1, 2025-12-15, 20d
+    Formation Utilisateurs Clés     :b2, after b1, 10d
+    Collecte Feedback               :b3, after b2, 15d
+    Ajustements                     :b4, after b3, 7d
+
+    section Phase 3: Déploiement Généralisé & Optimisation
+    Déploiement à Grande Échelle    :c1, 2026-02-01, 30d
+    Monitoring & Maintenance        :c2, after c1, 15d
+    Optimisation Continue           :c3, after c2, 10d
+```
+
 ---
 
 ## Slide 6: Architecture Technique Recommandée
