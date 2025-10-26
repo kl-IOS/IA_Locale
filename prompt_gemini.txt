@@ -576,3 +576,13 @@ PROGRESSION ACTUELLE - 2025-10-26:
   ✅ ID 'roadmap-slide' ajouté à la slide du diagramme de Gantt dans 'gemini/corporate/presentation_corporate.html'.
   ✅ Règles CSS spécifiques pour '#roadmap-slide' ajoutées dans 'gemini/corporate/presentation_corporate.html' pour gérer la hauteur du diagramme.
   ✅ Fichiers de présentation (DOCX, PPTX, HTML) régénérés avec les dernières modifications.
+
+TROUBLESHOOTING PANDOC STYLES - 2025-10-26:
+  - Problème : Les styles définis dans les modèles PPTX modifiés par l'utilisateur ne sont pas appliqués aux présentations finales générées avec `pandoc --reference-doc`.
+  - Diagnostic en cours : Déterminer si le problème vient de la modification manuelle du modèle ou de l'utilisation par Pandoc.
+  - Action en attente de l'utilisateur :
+    1. Ouvrir `gemini/corporate/corporate_template.pptx`.
+    2. Ajouter une nouvelle diapositive en mode normal.
+    3. Vérifier si la nouvelle diapositive a le style personnalisé ou un style par défaut.
+  - Prochaine étape : Attendre le résultat de ce test de la part de l'utilisateur pour continuer le dépannage.
+  - Contexte : L'utilisateur doit redémarrer son système et a demandé de sauvegarder l'état actuel.
