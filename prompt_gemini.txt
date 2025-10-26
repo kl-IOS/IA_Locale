@@ -524,3 +524,4 @@ PROGRESSION ACTUELLE - 2025-10-26:
     - presentation_corporate.html
   ✅ Les chemins avec espaces ont été correctement gérés lors de la conversion Pandoc.
   ✅ Fichiers corporate et grand public déplacés dans leurs sous-répertoires respectifs ('gemini/corporate/' et 'gemini/grand_public/').
+  ✅ Fichier README.md généré à la racine du projet.
