@@ -1,0 +1,50 @@
+@page {
+  size: landscape;
+  margin: 0;
+}
+html, body {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  height: 100%;
+  overflow: hidden;
+}
+.presentation-container {
+  width: 100%;
+  height: 100%;
+  box-shadow: none;
+  display: block;
+}
+.slide {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  box-shadow: none;
+  border: none;
+  width: 100%;
+  height: 100vh; /* Each slide takes a full viewport height */
+  max-width: none;
+  max-height: none;
+  position: relative;
+  opacity: 1;
+  transform: scale(1);
+  display: block;
+  text-align: center; /* For centering block content */
+  page-break-before: always;
+  background: radial-gradient(circle, rgba(94, 168, 167, 0.05), rgba(254, 68, 71, 0.05)); /* Grand Public Background */
+}
+.slide:first-of-type {
+  page-break-before: avoid;
+}
+.navigation, .slide-counter {
+  display: none !important;
+}
+/* Font sizes for print */
+.slide h1 { font-size: 30pt; }
+.slide h2 { font-size: 22pt; }
+.slide p, .slide ul, .slide ol { font-size: 11pt; }
+.slide pre, .slide code { font-size: 9pt; }
+
+/* Density classes for harmonization */
+.slide-sparse { font-size: 1.1em; justify-content: center; }
+.slide-dense { font-size: 0.9em; }
+.slide-dense-code { font-size: 0.8em; }
+.slide-diagram .mermaid { transform: scale(0.9); margin-top: -20px; }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>$title$</title>
+
+  <!-- Reveal core CSS (media=all pour ignorer print.css) -->
+  <link rel="stylesheet" href="$revealjs-url$/dist/reveal.css" media="all">
+  <link rel="stylesheet" href="$revealjs-url$/dist/theme/white.css" media="all">
+
+  <!-- Styles inline (prioritaires) -->
+  <style>
+    /* Centrage et couleurs */
+    .reveal .slides > section {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      min-height: 100vh;
+      width: 100%;
+      padding: 60px;
+      text-align: center;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reveal .slides > section:first-of-type::before,
+    .reveal .slides > section:last-of-type::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(94,168,167,0.10), rgba(254,68,71,0.10));
+      z-index: -1;
+    }
+
+    .reveal section h1, .reveal section h2 { color: #FE4447; }
+    .reveal section h3 { color: #5EA8A7; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      $body$
+    </div>
+  </div>
+
+  <script src="$revealjs-url$/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+  <script>
+    // Initialisation de Reveal
+    Reveal.initialize({
+      hash: false,
+      controls: false,
+      progress: false,
+      slideNumber: false,
+      transition: 'fade'
+    });
+
+    // Convertit les blocs Mermaid avant rendu
+    function upgradeMermaidCodeBlocks() {
+      document.querySelectorAll('pre > code.mermaid, pre > code.language-mermaid').forEach(code => {
+        const pre = code.parentElement;
+        const div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = code.textContent;
+        pre.replaceWith(div);
+      });
+    }
+
+    // Initialisation Mermaid après chargement DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      upgradeMermaidCodeBlocks();
+      mermaid.initialize({ startOnLoad: true, securityLevel: 'loose', theme: 'default' });
+      setTimeout(() => mermaid.init(), 1500);
+    });
+  </script>
+</body>
+</html>

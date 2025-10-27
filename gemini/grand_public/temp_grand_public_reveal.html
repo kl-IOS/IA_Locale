@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+
+  <!-- Reveal core CSS (media=all pour ignorer print.css) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" media="all">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css" media="all">
+
+  <!-- Styles inline (prioritaires) -->
+  <style>
+    /* Centrage et couleurs */
+    .reveal .slides > section {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      min-height: 100vh;
+      width: 100%;
+      padding: 60px;
+      text-align: center;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reveal .slides > section:first-of-type::before,
+    .reveal .slides > section:last-of-type::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(94,168,167,0.10), rgba(254,68,71,0.10));
+      z-index: -1;
+    }
+
+    .reveal section h1, .reveal section h2 { color: #FE4447; }
+    .reveal section h3 { color: #5EA8A7; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+      <section id="créez-votre-ia-locale"
+      class="title-slide slide level1">
+      <h1>Créez votre IA Locale 🚀</h1>
+
+      </section>
+      <section id="titre---créez-votre-ia-locale" class="slide level2">
+      <h2>Titre - Créez votre IA Locale 🚀</h2>
+      <p>Un guide pratique pour maîtriser l’intelligence artificielle
+      sur votre machine.</p>
+      </section>
+      <section id="quest-ce-quune-ia-locale" class="slide level2">
+      <h2>Qu’est-ce qu’une IA locale ?</h2>
+      <ul>
+      <li><strong>Confidentialité :</strong> Vos données restent chez
+      vous.</li>
+      <li><strong>Autonomie :</strong> Fonctionne sans connexion
+      internet.</li>
+      <li><strong>Maîtrise :</strong> Contrôle total sur l’IA et son
+      fonctionnement.</li>
+      </ul>
+      </section>
+      <section id="de-quoi-avez-vous-besoin" class="slide level2">
+      <h2>De quoi avez-vous besoin ?</h2>
+      <h3 id="matériel">Matériel</h3>
+      <ul>
+      <li><strong>Processeur (CPU) :</strong> Intel i5/Ryzen 5
+      (minimum), i7/Ryzen 7 (recommandé).</li>
+      <li><strong>Mémoire vive (RAM) :</strong> 16 Go (minimum), 32 Go
+      ou plus (recommandé).</li>
+      <li><strong>Carte graphique (GPU) :</strong> NVIDIA RTX 3060
+      (minimum), RTX 4070+ (recommandé) pour de meilleures
+      performances.</li>
+      <li><strong>Stockage :</strong> SSD 500 Go (minimum), 1 To+
+      (recommandé).</li>
+      </ul>
+      <h3 id="logiciels">Logiciels</h3>
+      <ul>
+      <li><strong>Système d’exploitation :</strong> Windows 10/11,
+      macOS, Linux.</li>
+      <li><strong>Python :</strong> Version 3.9 ou supérieure.</li>
+      <li><strong>Ollama :</strong> Pour exécuter les modèles de langage
+      localement.</li>
+      <li><strong>Bibliothèques Python :</strong> LangChain, Pydantic,
+      FastAPI, etc.</li>
+      </ul>
+      </section>
+      <section id="les-5-grandes-étapes" class="slide level2">
+      <h2>Les 5 grandes étapes</h2>
+      <ol type="1">
+      <li>Définir votre besoin</li>
+      <li>Préparer vos données</li>
+      <li>RAG et Fine-tuning</li>
+      <li>Installation complète</li>
+      <li>Créer votre système RAG !</li>
+      </ol>
+      </section>
+      <section id="étape-1-définir-votre-besoin" class="slide level2">
+      <h2>Étape 1 : Définir votre besoin</h2>
+      <ul>
+      <li>Quel problème voulez-vous résoudre ?</li>
+      <li>Quel type d’IA est le plus adapté ?</li>
+      <li>Exemples : assistant personnel, résumé de documents,
+      chatbot.</li>
+      </ul>
+      </section>
+      <section id="étape-2-préparer-vos-données" class="slide level2">
+      <h2>Étape 2 : Préparer vos données</h2>
+      <ul>
+      <li>Collecte et extraction (PDF, DOCX, TXT).</li>
+      <li>Nettoyage et formatage (suppression HTML, déduplication).</li>
+      <li>Exemple de script Python pour le nettoyage.</li>
+      </ul>
+      </section>
+      <section id="étape-3-rag-et-fine-tuning" class="slide level2">
+      <h2>Étape 3 : RAG et Fine-tuning</h2>
+      <div class="columns">
+      <div class="column">
+      <h3 id="rag-retrieval-augmented-generation">RAG (Retrieval
+      Augmented Generation)</h3>
+      <p>L’IA “cherche” des informations pertinentes dans une base de
+      connaissances avant de générer une réponse. Idéal pour des
+      réponses factuelles et à jour.</p>
+      <pre><code># Pseudo-code RAG
+query = &quot;Quelle est la capitale de la France ?&quot;
+documents = vector_store.retrieve(query) # Recherche
+context = combine(documents)
+answer = llm.generate(query, context) # Génération</code></pre>
+      </div><div class="column">
+      <h3 id="rag-diagramme-mermaid">RAG (Diagramme Mermaid)</h3>
+      <p>Voici une représentation visuelle du fonctionnement du RAG.</p>
+      <pre class="mermaid"><code>graph TD
+    A[User Query] --&gt; B(Retrieve relevant documents);
+    B --&gt; C{Vector Database};
+    C --&gt; D[Context from documents];
+    D --&gt; E(Large Language Model - LLM);
+    E --&gt; F[Generated Answer];</code></pre>
+      </div>
+      </div>
+      <h3 id="fine-tuning-ajustement-fin">Fine-tuning (Ajustement
+      fin)</h3>
+      <p>Adapter un modèle de langage pré-entraîné à un domaine ou un
+      style spécifique avec vos propres données. Utile pour des tâches
+      très spécifiques ou un ton particulier. Le choix dépend de votre
+      cas d’usage : RAG pour la précision factuelle, Fine-tuning pour la
+      spécialisation comportementale.</p>
+      </section>
+      <section id="étape-4-installation-complète" class="slide level2">
+      <h2>Étape 4 : Installation complète</h2>
+      <h3 id="installer-ollama">Installer Ollama</h3>
+      <p>Téléchargez et installez Ollama depuis <a
+      href="https://ollama.com">ollama.com</a>.</p>
+      <pre><code># Télécharger un modèle (ex: Llama 3)
+ollama pull llama3
+
+# Tester le modèle
+ollama run llama3 &quot;Bonjour, comment allez-vous ?&quot;</code></pre>
+      <h3 id="installer-python-et-dépendances">Installer Python et
+      dépendances</h3>
+      <p>Assurez-vous d’avoir Python 3.9+ et installez les bibliothèques
+      :</p>
+      <pre><code># Vérifier Python
+python3 --version
+
+# Installer les dépendances
+pip install langchain ollama pydantic fastapi uvicorn</code></pre>
+      </section>
+      <section id="vérification-et-choix-du-modèle"
+      class="slide level2">
+      <h2>Vérification et choix du modèle</h2>
+      <ul>
+      <li>Script Python pour vérifier l’installation.</li>
+      <li>Tableau comparatif des modèles (Llama, Mistral, Phi-3) selon
+      VRAM et qualité.</li>
+      <li>Recommandations pour différents budgets matériels.</li>
+      </ul>
+      </section>
+      <section id="étape-5-créer-votre-système-rag"
+      class="slide level2">
+      <h2>Étape 5 : Créer votre système RAG !</h2>
+      <ul>
+      <li>Code Python simplifié pour un pipeline RAG.</li>
+      <li>Étapes : Import, Chunking, Embeddings, Vectorstore, QA.</li>
+      <li>Commentaires en français.</li>
+      </ul>
+      </section>
+      <section id="exemple-concret-assistant-de-cours"
+      class="slide level2">
+      <h2>Exemple concret : Assistant de cours</h2>
+      <ul>
+      <li>Cas d’usage : Étudiant avec une thèse de 350 pages.</li>
+      <li>Résultats : Réduction du temps de recherche de 82%.</li>
+      <li>Workflow expliqué.</li>
+      </ul>
+      </section>
+      <section id="problèmes-courants-optimisations"
+      class="slide level2">
+      <h2>Problèmes courants &amp; Optimisations</h2>
+      <h3 id="problèmes-fréquents">Problèmes fréquents</h3>
+      <ul>
+      <li><strong>Erreur GPU :</strong> Pilotes non à jour, VRAM
+      insuffisante.</li>
+      <li><strong>Modèle lent :</strong> Modèle trop grand pour le
+      matériel, pas d’accélération GPU.</li>
+      <li><strong>Réponses imprécises :</strong> Mauvaise qualité des
+      données, chunking inadapté.</li>
+      <li><strong>Ollama non trouvé :</strong> Chemin d’accès incorrect,
+      service non démarré.</li>
+      </ul>
+      <h3 id="astuces-doptimisation">Astuces d’optimisation</h3>
+      <ul>
+      <li><strong>Chunking :</strong> Ajuster <code>chunk_size</code> et
+      <code>chunk_overlap</code>.</li>
+      <li><strong>Cache :</strong> Utiliser un cache pour les embeddings
+      et les réponses.</li>
+      <li><strong>GPU :</strong> S’assurer que l’accélération GPU est
+      active.</li>
+      <li><strong>Modèle :</strong> Choisir un modèle adapté à votre
+      matériel.</li>
+      </ul>
+      </section>
+      <section id="comparaison-local-vs-cloud" class="slide level2">
+      <h2>Comparaison Local vs Cloud</h2>
+      <ul>
+      <li><strong>Local :</strong> Confidentialité, coût maîtrisé,
+      autonomie.</li>
+      <li><strong>Cloud :</strong> Scalabilité, facilité de déploiement,
+      accès à des modèles plus grands.</li>
+      <li>Tableau comparatif des avantages et inconvénients.</li>
+      </ul>
+      </section>
+      <section id="conclusion-lancez-vous" class="slide level2">
+      <h2>Conclusion : Lancez-vous !</h2>
+      <p>L’IA locale est une technologie accessible et puissante qui
+      vous offre contrôle et confidentialité. Commencez par un petit
+      projet, expérimentez et découvrez son potentiel !</p>
+      </section>
+      <section id="merci-questions" class="slide level2">
+      <h2>Merci ! Questions ?</h2>
+      <p>N’hésitez pas à poser vos questions. Contact :
+      votre.email@example.com</p>
+      </section></section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+  <script>
+    // Initialisation de Reveal
+    Reveal.initialize({
+      hash: false,
+      controls: false,
+      progress: false,
+      slideNumber: false,
+      transition: 'fade'
+    });
+
+    // Convertit les blocs Mermaid avant rendu
+    function upgradeMermaidCodeBlocks() {
+      document.querySelectorAll('pre > code.mermaid, pre > code.language-mermaid').forEach(code => {
+        const pre = code.parentElement;
+        const div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = code.textContent;
+        pre.replaceWith(div);
+      });
+    }
+
+    // Initialisation Mermaid après chargement DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      upgradeMermaidCodeBlocks();
+      mermaid.initialize({ startOnLoad: true, securityLevel: 'loose', theme: 'default' });
+      setTimeout(() => mermaid.init(), 1500);
+    });
+  </script>
+</body>
+</html>
