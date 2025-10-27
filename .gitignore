@@ -1,19 +1,16 @@
-# Fichiers macOS
+# macOS
 .DS_Store
 .AppleDouble
+.LSOverride
+Icon?
+._*
 .Spotlight-V100
 .Trashes
+ehthumbs.db
+Thumbs.db
 
-# Fichiers temporaires
-*.log
-*.tmp
-
-# Dossier node_modules
-node_modules/
-
-# Fichiers de build
-dist/
-build/
-
-# Fichiers d'environnement
-.env
+# Editor / OS helpers you might also want
+*.swp
+*.swo
+*.sublime-workspace
+.vscode/

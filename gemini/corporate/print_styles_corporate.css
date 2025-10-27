@@ -1,0 +1,63 @@
+@page {
+  size: landscape;
+  margin: 0;
+}
+html, body {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  height: auto; /* Allow height to expand */
+  overflow: visible; /* Allow content to flow */
+}
+.presentation-container {
+  width: 100%;
+  height: auto; /* Allow height to expand */
+  box-shadow: none;
+  display: block;
+}
+.slide {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  box-shadow: none;
+  border: none;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  position: relative;
+  opacity: 1;
+  transform: scale(1);
+  display: block; /* Use block for page breaks */
+  text-align: center; /* Center content horizontally */
+  page-break-before: always;
+  background-color: #f8f9fa; /* Corporate Background */
+  background-image: radial-gradient(#dce1e5 1px, transparent 1px);
+  background-size: 15px 15px;
+  min-height: 95vh; /* Ensure enough space for content, but allow to grow */
+  padding: 5vh 5vw; /* Adjust padding for print */
+}
+.slide:first-of-type {
+  page-break-before: avoid;
+}
+/* Ensure content within slide is block-level for flow */
+.slide h1, .slide h2, .slide h3, .slide p, .slide ul, .slide ol, .slide pre, .slide table, .slide .two-columns, .slide .card, .slide .metric-box, .slide .mermaid {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: initial; /* Reset text-align for content */
+}
+.slide ul, .slide ol {
+  text-align: left; /* Ensure lists are left-aligned */
+}
+.navigation, .slide-counter {
+  display: none !important;
+}
+/* Font sizes for print */
+.slide h1 { font-size: 30pt; }
+.slide h2 { font-size: 22pt; }
+.slide p, .slide ul, .slide ol { font-size: 11pt; }
+.slide pre, .slide code { font-size: 9pt; }
+
+/* Density classes for harmonization */
+.slide-sparse { font-size: 1.1em; justify-content: center; }
+.slide-dense { font-size: 0.9em; }
+.slide-dense-code { font-size: 0.8em; }
+.slide-diagram .mermaid { transform: scale(0.9); margin-top: -20px; }

@@ -261,17 +261,17 @@ ENRICHISSEMENT DES PRÉSENTATIONS - 2025-10-25 17:15 :
 
   9. Cas d'Usage Secteur : Santé & Pharmaceutique
      - Biotech 500 employés
-     - Problème : veille scientifique lente (120 articles/mois)
-     - Solution : RAG multimodal + Llama 13B + fine-tuning domaine
-     - Résultats : 3622% ROI, +275% protocoles/mois, -81% temps review
-     - Conformité : HDS + ISO 27001
+     - Problème : veille scientifique lente (120 articles/mois).
+     - Solution : RAG multimodal + Llama 13B + fine-tuning domaine.
+     - Résultats : 3622% ROI, +275% protocoles/mois, -81% temps review.
+     - Conformité : HDS + ISO 27001.
 
   10. Cas d'Usage Secteur : Industrie & Manufacturing
       - Équipementier automobile
-      - Problème : downtime coûteux (50-200k€/h), documentation technique dispersée
-      - Solution : Edge computing + Mistral 7B + interface vocale
-      - Résultats : 1650% ROI, payback 21 jours, -57% MTTR
-      - Impact : +7.5 pts disponibilité lignes
+      - Problème : downtime coûteux (50-200k€/h), documentation technique dispersée.
+      - Solution : Edge computing + Mistral 7B + interface vocale.
+      - Résultats : 1650% ROI, payback 21 jours, -57% MTTR.
+      - Impact : +7.5 pts disponibilité lignes.
 
   RECONVERSION EFFECTUÉE LE 2025-10-25 17:14 :
     ✅ presentation_grand_public.pptx (111 Ko) - 27+ slides enrichies
@@ -586,3 +586,30 @@ TROUBLESHOOTING PANDOC STYLES - 2025-10-26:
     3. Vérifier si la nouvelle diapositive a le style personnalisé ou un style par défaut.
   - Prochaine étape : Attendre le résultat de ce test de la part de l'utilisateur pour continuer le dépannage.
   - Contexte : L'utilisateur doit redémarrer son système et a demandé de sauvegarder l'état actuel.
+
+MISE À JOUR PDF - 2025-10-27:
+  - Demande de génération de PDF à partir des fichiers HTML.
+  - Échec des conversions directes (weasyprint, wkhtmltopdf non installés).
+  - Succès de la conversion HTML -> PDF avec Google Chrome en mode headless.
+  - Demande de regénération des PDF à partir des fichiers Markdown.
+  - Échec de la conversion directe MD -> PDF (pdflatex non installé).
+  - Contournement mis en place : MD -> HTML (temporaire) -> PDF (avec Chrome).
+  - Demande de mise en page : 1 slide par page.
+  - Solution : Injection de CSS (`page-break-after`) dans des copies HTML temporaires avant conversion.
+  - Rappel utilisateur : Ne jamais modifier les fichiers originaux. Processus ajusté pour utiliser des copies.
+  - Demande de mise en page : Mode paysage.
+  - Solution : Injection de CSS (`@page { size: landscape; }`) dans les copies HTML temporaires.
+  - ✅ Fichiers PDF des présentations (`grand_public` et `corporate`) mis à jour avec succès en mode paysage, une slide par page.
+
+MISE À JOUR PDF - 2025-10-27 (Problème persistant de saut de page):
+  - L'utilisateur signale que les PDF générés (corporate) affichent toujours tout le contenu sur une seule page, malgré les dernières corrections CSS.
+  - Le message d'erreur Chrome `CVDisplayLinkCreateWithCGDisplay failed` est noté mais n'est pas considéré comme la cause directe du problème de mise en page.
+  - Hypothèse actuelle : Conflit entre `display: flex` sur les slides et les propriétés de saut de page en mode impression de Chrome.
+  - Tentative de correction 3 (pour corporate) :
+    - Modification du CSS d'impression (`print_styles_corporate.css`) pour :
+      - Remplacer `display: flex` par `display: block` pour `.slide`.
+      - Utiliser `text-align: center;` sur `.slide` et `margin-left: auto; margin-right: auto; text-align: initial;` sur les éléments internes pour le centrage.
+      - Assurer que les éléments de contenu sont `display: block`.
+    - Processus de génération : MD -> HTML temporaire (avec CSS corrigé, Mermaid, classes de densité) -> PDF (via Chrome headless).
+    - Résultat : L'utilisateur confirme que le problème persiste.
+  - Prochaine étape : Revoir en profondeur la stratégie de gestion des sauts de page et du flux de document pour la génération PDF, en se basant sur les fichiers Markdown et le prompt, et en évitant les écueils de la conversion HTML.
