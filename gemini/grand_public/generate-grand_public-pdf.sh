@@ -1,12 +1,24 @@
 #!/bin/bash
 set -e
 
-SRC="presentation_grand_public-pdf.md"
-OUT_HTML="temp_grand_public_reveal.html"
-OUT_PDF="presentation_grand_public.pdf"
-CSS="print_styles_grand_public.css"
+HTML_FILE="presentation_grand_public.html"
+PDF_FILE="presentation_grand_public.pdf"
+CSS_FILE="print_styles_grand_public.css"
 
-pandoc "$SRC" -t revealjs -s -o "$OUT_HTML" -V revealjs-url=https://cdn.jsdelivr.net/npm/reveal.js@5
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
-  --headless --disable-gpu --no-margins \
-  --print-to-pdf="$OUT_PDF" --print-to-pdf-no-header --landscape "file://$(pwd)/$OUT_HTML"
+CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+if [ ! -f "$CHROME" ]; then
+  echo "❌ Chrome introuvable à $CHROME"
+  exit 1
+fi
+
+if [ ! -f "$HTML_FILE" ]; then
+  echo "❌ Fichier HTML introuvable : $HTML_FILE"
+  exit 1
+fi
+
+echo "➡️ Génération du PDF fidèle au HTML ($HTML_FILE)..."
+
+"$CHROME"   --headless   --disable-gpu   --print-to-pdf="$PDF_FILE"   --print-to-pdf-no-header   --disable-web-security   --allow-file-access-from-files   --virtual-time-budget=10000   --css-file="$CSS_FILE"   "file://$(pwd)/$HTML_FILE"
+
+echo "✅ PDF généré avec succès : $PDF_FILE"

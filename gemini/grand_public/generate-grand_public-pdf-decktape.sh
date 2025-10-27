@@ -16,10 +16,10 @@ if ! command -v decktape &> /dev/null; then
   exit 1
 fi
 
-echo "➡️ Conversion du Markdown vers Reveal.js..."
-pandoc "$SRC" -t revealjs -s   -o "$OUT_HTML"   --template="$TEMPLATE"   -V revealjs-url=https://cdn.jsdelivr.net/npm/reveal.js@5   -V theme=white   -V transition=fade
+echo "➡️ Conversion du Markdown vers Reveal.js (A4, Mermaid, CSS custom)…"
+pandoc "$SRC" -t revealjs -s   -o "$OUT_HTML"   --template="$TEMPLATE"   --lua-filter=filters.lua   -V revealjs-url=https://cdn.jsdelivr.net/npm/reveal.js@5   -V theme=white   -V transition=fade
 
-echo "➡️ Génération du PDF A4 paysage (haute résolution) via Decktape..."
-decktape reveal "file://$(pwd)/$OUT_HTML" "$OUT_PDF"   --size 2480x1754   --slides 1-999   --pause 3000   --chrome-arg=--no-sandbox   --chrome-arg=--disable-web-security   --chrome-arg=--allow-file-access-from-files   --chrome-arg=--enable-unsafe-webgl
+echo "➡️ Génération du PDF A4 paysage via Decktape…"
+decktape reveal "file://$(pwd)/$OUT_HTML" "$OUT_PDF"   --size 2480x1754   --slides 1-999   --pause 4000   --chrome-arg=--no-sandbox   --chrome-arg=--disable-web-security   --chrome-arg=--allow-file-access-from-files   --chrome-arg=--enable-unsafe-webgl   --chrome-arg=--force-device-scale-factor=1
 
-echo "✅ PDF A4 paysage généré avec succès : $OUT_PDF"
+echo "✅ PDF A4 paysage généré : $OUT_PDF"

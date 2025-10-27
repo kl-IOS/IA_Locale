@@ -1,177 +1,211 @@
+# 🤖 L’IA Locale, une révolution à portée de main
+💬 *« Découvrez comment rendre l’IA accessible à tous, sans cloud ni dépendance. »*
+
+### Pourquoi s’y intéresser ?
+- 💡 **Autonome :** fonctionne sans cloud ni abonnement.
+- 🔒 **Sûre :** vos données restent sur votre ordinateur.
+- ⚙️ **Personnalisable :** adaptez l’IA à vos usages.
+- ⚡ **Efficace :** des performances proches des solutions cloud.
+
+> 🎯 *Objectif :* vous montrer **comment mettre en place votre propre IA locale** en quelques étapes simples.
+
+---
+
 # Créez votre IA Locale 🚀
-
-## Titre - Créez votre IA Locale 🚀
-Un guide pratique pour maîtriser l'intelligence artificielle sur votre machine.
+Un guide pratique pour maîtriser l’intelligence artificielle sur votre machine.
 
 ---
 
-## Qu'est-ce qu'une IA locale ?
-
-*   **Confidentialité :** Vos données restent chez vous.
-*   **Autonomie :** Fonctionne sans connexion internet.
-*   **Maîtrise :** Contrôle total sur l'IA et son fonctionnement.
+## Qu’est‑ce qu’une IA locale ?
+- **Confidentialité :** Vos données restent sur votre machine, jamais envoyées à des serveurs externes.
+- **Autonomie :** Fonctionne sans connexion internet, utile hors‑ligne.
+- **Maîtrise :** Contrôle total sur l’outil, ses modèles et ses mises à jour.
 
 ---
 
-## De quoi avez-vous besoin ?
+## Matériel {.subslide}
+💻 **Ce qu’il faut idéalement :**
+- **Processeur (CPU) :** i7/Ryzen 7 recommandé (i5/Ryzen 5 minimum).
+- **Mémoire vive (RAM) :** 32 Go recommandé (16 Go minimum).
+- **Carte graphique (GPU) :** NVIDIA RTX 4070+ recommandé (RTX 3060 minimum).
+- **Stockage :** SSD 1 To recommandé (500 Go minimum).
 
-### Matériel
-*   **Processeur (CPU) :** Intel i5/Ryzen 5 (minimum), i7/Ryzen 7 (recommandé).
-*   **Mémoire vive (RAM) :** 16 Go (minimum), 32 Go ou plus (recommandé).
-*   **Carte graphique (GPU) :** NVIDIA RTX 3060 (minimum), RTX 4070+ (recommandé) pour de meilleures performances.
-*   **Stockage :** SSD 500 Go (minimum), 1 To+ (recommandé).
+---
 
-### Logiciels
-*   **Système d'exploitation :** Windows 10/11, macOS, Linux.
-*   **Python :** Version 3.9 ou supérieure.
-*   **Ollama :** Pour exécuter les modèles de langage localement.
-*   **Bibliothèques Python :** LangChain, Pydantic, FastAPI, etc.
+## Logiciels {.subslide}
+🧩 **Outils nécessaires :**
+- **Système :** Windows 10/11, macOS, ou Linux.
+- **Python :** 3.9 ou supérieur.
+- **Ollama :** exécuter des modèles de langage en local.
+- **Bibliothèques :** LangChain, FastAPI (facultatives selon votre usage).
 
 ---
 
 ## Les 5 grandes étapes
-
-1.  Définir votre besoin
-2.  Préparer vos données
-3.  RAG et Fine-tuning
-4.  Installation complète
-5.  Créer votre système RAG !
-
----
-
-## Étape 1 : Définir votre besoin
-
-*   Quel problème voulez-vous résoudre ?
-*   Quel type d'IA est le plus adapté ?
-*   Exemples : assistant personnel, résumé de documents, chatbot.
+1. <span class="badge">1</span> **Définir votre besoin :** préciser le problème à résoudre.
+2. <span class="badge">2</span> **Préparer vos données :** collecter, nettoyer, structurer.
+3. <span class="badge">3</span> **RAG et Fine‑tuning (ajustement fin du modèle) :** choisir l’approche.
+4. <span class="badge">4</span> **Installation complète :** mettre en place l’environnement.
+5. <span class="badge">5</span> **Créer votre système RAG :** tester et itérer.
 
 ---
 
-## Étape 2 : Préparer vos données
+## Étape 1 — Définir votre besoin
+Posez‑vous les bonnes questions :
+- Quel problème l’IA doit‑elle résoudre ?
+- À qui s’adresse‑t‑elle et dans quel contexte d’usage ?
+- Quel résultat attendez‑vous (réponse, résumé, classement, génération de texte) ?
 
-*   Collecte et extraction (PDF, DOCX, TXT).
-*   Nettoyage et formatage (suppression HTML, déduplication).
-*   Exemple de script Python pour le nettoyage.
+Exemples d’usages : **recherche documentaire**, **FAQ interne**, **résumé de rapports**.
 
 ---
 
-## Étape 3 : RAG et Fine-tuning
+## Étape 2 — Préparer vos données
+La qualité des données détermine la qualité des réponses.
 
-::: columns
+**Étapes simples :**
+- **Collecte :** rassembler les documents utiles (PDF, DOCX, TXT).
+- **Nettoyage :** supprimer le bruit (balises, urls, artefacts).
+- **Organisation :** structurer les textes (titres, sections).
 
-::: column
-### RAG (Retrieval Augmented Generation)
-L'IA "cherche" des informations pertinentes dans une base de connaissances avant de générer une réponse. Idéal pour des réponses factuelles et à jour.
-```
-# Pseudo-code RAG
-query = "Quelle est la capitale de la France ?"
-documents = vector_store.retrieve(query) # Recherche
-context = combine(documents)
-answer = llm.generate(query, context) # Génération
-```
-:::
+💡 Un petit script peut automatiser ces opérations.
 
-::: column
-### RAG (Diagramme Mermaid)
-Voici une représentation visuelle du fonctionnement du RAG.
+---
+
+## Diagramme RAG (Mermaid) {.subslide}
 ```mermaid
+%%{init: {'theme': 'default', 'securityLevel': 'loose'}}%%
 graph TD
-    A[User Query] --> B(Retrieve relevant documents);
-    B --> C{Vector Database};
-    C --> D[Context from documents];
-    D --> E(Large Language Model - LLM);
-    E --> F[Generated Answer];
+  A[Question utilisateur] --> B[Recherche de documents]
+  B --> C[Base vectorielle]
+  C --> D[Construction du contexte]
+  D --> E[Réponse du modèle]
 ```
-:::
+---
 
-:::
+## Pseudo‑code RAG {.subslide}
+```python
+# Pseudo-code RAG (retrieval-augmented generation)
+question = "Quelle est la capitale de la France ?"
+documents = vector_store.retrieve(question)   # Recherche
+contexte = combine(documents)                 # Construit le contexte
+reponse = llm.generate(question, contexte)    # Génération
+print(reponse)
+```
 
-### Fine-tuning (Ajustement fin)
-Adapter un modèle de langage pré-entraîné à un domaine ou un style spécifique avec vos propres données. Utile pour des tâches très spécifiques ou un ton particulier.
-Le choix dépend de votre cas d'usage : RAG pour la précision factuelle, Fine-tuning pour la spécialisation comportementale.
+> ℹ️ **Fine‑tuning (ajustement fin du modèle)** : à envisager plus tard, quand RAG seul ne suffit pas.
 
 ---
 
-## Étape 4 : Installation complète
+## Installation Ollama {.subslide}
+⚙️ Téléchargez et installez depuis **https://ollama.com**
 
-### Installer Ollama
-Téléchargez et installez Ollama depuis [ollama.com](https://ollama.com).
-```
-# Télécharger un modèle (ex: Llama 3)
+```bash
+# Télécharger un modèle (ex : Llama 3)
 ollama pull llama3
 
 # Tester le modèle
-ollama run llama3 "Bonjour, comment allez-vous ?"
+ollama run llama3 "Bonjour !"
 ```
 
-### Installer Python et dépendances
-Assurez-vous d'avoir Python 3.9+ et installez les bibliothèques :
-```
-# Vérifier Python
+---
+
+## Installation Python et dépendances {.subslide}
+🧩 Vérifier Python et installer quelques bibliothèques utiles :
+
+```bash
 python3 --version
 
-# Installer les dépendances
-pip install langchain ollama pydantic fastapi uvicorn
+pip install langchain ollama fastapi uvicorn
 ```
 
 ---
 
-## Vérification et choix du modèle
+## Vérification & choix du modèle
+🧠 Test rapide pour vérifier que tout fonctionne :
 
-*   Script Python pour vérifier l'installation.
-*   Tableau comparatif des modèles (Llama, Mistral, Phi-3) selon VRAM et qualité.
-*   Recommandations pour différents budgets matériels.
+```python
+from langchain_community.llms import Ollama
+llm = Ollama(model="llama3")
+print(llm.invoke("Salut !"))  # Doit répondre
+```
 
----
-
-## Étape 5 : Créer votre système RAG !
-
-*   Code Python simplifié pour un pipeline RAG.
-*   Étapes : Import, Chunking, Embeddings, Vectorstore, QA.
-*   Commentaires en français.
+**Choisir le modèle :** adaptez‑le à votre matériel (ex. *Llama 3 8B* ≈ 8 Go VRAM).
 
 ---
 
-## Exemple concret : Assistant de cours
+## Créer votre premier RAG
+Chemin simple en 6 étapes :
+1) Charger un ou deux fichiers texte  
+2) Découper en petits morceaux (chunks)  
+3) Créer des **embeddings** et une base vectorielle  
+4) Configurer le modèle (Ollama)  
+5) Poser une question → récupérer et injecter le contexte  
+6) Afficher la réponse
 
-*   Cas d'usage : Étudiant avec une thèse de 350 pages.
-*   Résultats : Réduction du temps de recherche de 82%.
-*   Workflow expliqué.
-
----
-
-## Problèmes courants & Optimisations
-
-### Problèmes fréquents
-*   **Erreur GPU :** Pilotes non à jour, VRAM insuffisante.
-*   **Modèle lent :** Modèle trop grand pour le matériel, pas d'accélération GPU.
-*   **Réponses imprécises :** Mauvaise qualité des données, chunking inadapté.
-*   **Ollama non trouvé :** Chemin d'accès incorrect, service non démarré.
-
-### Astuces d'optimisation
-*   **Chunking :** Ajuster `chunk_size` et `chunk_overlap`.
-*   **Cache :** Utiliser un cache pour les embeddings et les réponses.
-*   **GPU :** S'assurer que l'accélération GPU est active.
-*   **Modèle :** Choisir un modèle adapté à votre matériel.
+```python
+# Exemple minimal illustratif
+documents = load_texts(["notes.txt"])
+chunks = split(documents, size=800, overlap=150)
+vs = build_vector_store(chunks)     # embeddings + index
+llm = local_llm("llama3")
+print(ask(llm, "Sujet du document ?", vs))
+```
 
 ---
 
-## Comparaison Local vs Cloud
+## Exemple concret — Assistant de cours
+🎓 Étudiant face à un mémoire de 350 pages.
 
-*   **Local :** Confidentialité, coût maîtrisé, autonomie.
-*   **Cloud :** Scalabilité, facilité de déploiement, accès à des modèles plus grands.
-*   Tableau comparatif des avantages et inconvénients.
-
----
-
-## Conclusion : Lancez-vous !
-
-L'IA locale est une technologie accessible et puissante qui vous offre contrôle et confidentialité.
-Commencez par un petit projet, expérimentez et découvrez son potentiel !
+**Avant :** heures de recherche manuelle.  
+**Après :** quelques minutes pour obtenir des réponses sourcées.  
+**Bénéfice :** concentration sur l’essentiel.
 
 ---
 
-## Merci ! Questions ?
+## Problèmes courants & optimisations
+⚠️ **Problèmes fréquents**
+- Pilotes GPU non à jour / VRAM insuffisante
+- Modèle trop gros → lenteur
+- Données brutes ou mal segmentées
 
-N'hésitez pas à poser vos questions.
+💡 **Astuces**
+- Ajuster la taille/recouvrement des morceaux
+- Préparer/filtrer les sources
+- Commencer petit, itérer souvent
+
+---
+
+## IA Locale {.subslide}
+🏠 **Atouts**
+- Confidentialité maximale
+- Coûts maîtrisés (pas d’abonnement)
+- Indépendance (hors‑ligne possible)
+
+**Limites**
+- Dépend du matériel disponible
+- Un peu de prise en main au départ
+
+---
+
+## IA Cloud {.subslide}
+☁️ **Atouts**
+- Scalabilité et simplicité de déploiement
+- Accès aux tout derniers modèles
+
+**Limites**
+- Coûts récurrents
+- Dépendance à un fournisseur
+- Questions de confidentialité
+
+---
+
+# Conclusion — Lancez‑vous !
+L’IA locale est **accessible et utile**. Commencez petit, expérimentez et progressez.
+
+🚀 *À vous de jouer !*
+
+---
+
+## Merci ! Des questions ?
 Contact : votre.email@example.com
